@@ -1,0 +1,26 @@
+{
+  "name": "pgc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelcalpena/pgc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelcalpena/pgc/issues"
+  },
+  "homepage": "https://github.com/rafaelcalpena/pgc#readme",
+  "dependencies": {
+    "@stackomate/data-structures": "^1.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
