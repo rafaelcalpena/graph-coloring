@@ -1,66 +1,23 @@
-import {BidirectionalTupleSet} from '@stackomate/data-structures';
 
-const DIFFERENT = Symbol('DIFFERENT');
+import { CBidirectionalTupleSet } from './utils/CBidirectionalTupleSet';
+import { difference, allDomainsEmpty, filter, union, equals } from './utils/domain-utils';
+import { check, DIFFERENT, Operation } from './operations';
+import { Constraint, ConstraintDefinition, Domain, Domains, PropagatorTreeNode } from './classes';
+import { heuristic } from './heuristic';
+import { convertToTupleSet, convertToConstraintList } from './utils/conversions';
+import { writeGraphJSON } from './utils/write-graph-json';
+import { propagate } from './propagate';
+import { writeDataJSON } from './utils/write-data-json';
+import { graphToColorConstraints } from './utils/graphToConstraints';
+import { australiaGraph } from './utils/australia-graph';
 
-type Operation = typeof DIFFERENT;
-
-/* A class to represent a mathematical variable */
-class Variable<T> {
-    name: string;
-    domain: Set<T>;
-
-    constructor(name: string, domain: Set<T>) {
-        this.name = name;
-        this.domain = domain;
-    }
-}
-
-class PropagatorTreeNode<T> {
-    constructor(
-        public left: PropagatorTreeNode<T> | null,
-        public right: PropagatorTreeNode<T> | null,
-        public prune: Domain<T>,
-        public test: [string, T] | null
-    ) {}
-}
-
-class Constraint {
-    constructor (
-        public a: string,
-        public op: Operation,
-        public b: string
-    ) {}
-}
-
-type Domain<T> = BidirectionalTupleSet<string, T>;
-
-const propagate = <T>(constraint: Constraint, domain: Domain<T>) : Domain<T> => {
-    /* Check and remove literals */
-}
-
-const difference = <T>(d1: Domain<T>, d2: Domain<T>) : Domain<T> => {
-    
-}
-
-const union = <T>(d1: Domain<T>, d2: Domain<T>) : Domain<T> => {
-
-}
-
-const allDomainsEmpty = (domain: Domain<T>) => {
-    return domain.size === 0;
-}
-
-const heuristic = <T>(domain: Domain<T>) : [string, T] => {
-    return /* random */
-}
-
-const filter = <T>(domain: Domain<T>, fn: (a: string, b: T) => boolean) : Domain<T> => {
-
-}
-
-/* Creates a propagator tree */
-const simpleGenTree = <T>(constraint: Constraint, subDomain: Domain<T>, valsInSubDomain: Domain<T>) : PropagatorTreeNode<T> => {
-
+/* Creates a propagator tree in depth-first left-first order */
+const simpleGenTree = <T>(
+    constraint: Constraint,
+    subDomain: Domain<T>, /* values that are in Sor unknown */
+    valsInSubDomain: Domain<T> = new CBidirectionalTupleSet() /* values that are known to be in S */
+) : PropagatorTreeNode<T> => {
+    console.log(valsInSubDomain.size);
     /* Get necessary deletions from a positive GAC table propagator (GAC3 ?) */
     const deletions = propagate(constraint, subDomain);
 
@@ -80,7 +37,7 @@ const simpleGenTree = <T>(constraint: Constraint, subDomain: Domain<T>, valsInSu
     const oneItemVariables = filter(newSubDomain, (k, v) => newSubDomain.get(k).size === 1)/* (x,a)|(x,a)∈ SD′,|SD′(x)|=1 */
     const valsIn3 = union(valsIn2, oneItemVariables);
 
-    if (newSubDomain === valsIn3) {
+    if (equals(newSubDomain, valsIn3)) {
         return new PropagatorTreeNode(
             null,
             null,
@@ -91,7 +48,7 @@ const simpleGenTree = <T>(constraint: Constraint, subDomain: Domain<T>, valsInSu
 
     /* Pick a variable and value, and branch */
     const nextLiteral = heuristic(difference(newSubDomain, valsIn3));
-    const nextLiteralTupleSet = new BidirectionalTupleSet([nextLiteral]);
+    const nextLiteralTupleSet = new CBidirectionalTupleSet([nextLiteral]);
     const leftT = simpleGenTree(constraint, newSubDomain, union(valsIn3, nextLiteralTupleSet));
     const rightT = simpleGenTree(constraint, difference(newSubDomain, nextLiteralTupleSet), valsIn3);
     return new PropagatorTreeNode(
@@ -103,13 +60,52 @@ const simpleGenTree = <T>(constraint: Constraint, subDomain: Domain<T>, valsInSu
 
 }
 
+/* Creates a CSP Instance. Returns one Propagator Tree for each constraint */
+const createCSP = <T>(
+    constraints: ConstraintDefinition[], 
+    domains: Record<string, T[]>
+) => {
+    let initialDomains = new CBidirectionalTupleSet(convertToTupleSet(domains));
+    return convertToConstraintList(constraints)
+    .map(c => {
+        return simpleGenTree(
+        c,
+        filter(initialDomains, (i) => c.a === i || c.b === i) /* Include other domains or not? */
+    )});
+}
 
-/* Get the graph */
+let domains: Domains = {};
+let constraints: ConstraintDefinition[];
 
-    /* Create variables */
-const variables = [];
+const australiaExample = () => {
+    let info = graphToColorConstraints(australiaGraph.nodes, australiaGraph.edges);
+    domains = info.domains;
+    constraints = info.constraints;
+}
 
-/* Create constraints */
-const constraints = [];
+const example1 = () => {
+    domains = {
+        x: [0, 1],
+        y: [0, 1],
+        // z: [1, 3]
+    };
+    constraints = [
+        ['x', DIFFERENT, 'y'],
+        // ['y', DIFFERENT, 'z']
+    ];
+};
 
-/* Generate the tree */
+const main = async () => {
+
+    example1();
+    // australiaExample();
+
+    const csp = createCSP(constraints, domains);
+    await writeGraphJSON(csp)
+    await writeDataJSON({
+        domains, 
+        constraints
+    })
+}
+
+main();
