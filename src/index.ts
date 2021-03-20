@@ -87,18 +87,18 @@ const example1 = () => {
     domains = {
         x: [0, 1],
         y: [0, 1],
-        // z: [1, 3]
+        z: [1, 3]
     };
     constraints = [
         ['x', DIFFERENT, 'y'],
-        // ['y', DIFFERENT, 'z']
+        ['y', DIFFERENT, 'z']
     ];
 };
 
 const main = async () => {
 
-    example1();
-    // australiaExample();
+    // example1();
+    australiaExample();
 
     const csp = createCSP(constraints, domains);
     await writeGraphJSON(csp)
