@@ -97,8 +97,8 @@ const example1 = () => {
 
 const main = async () => {
 
-    // example1();
-    australiaExample();
+    example1();
+    // australiaExample();
 
     const csp = createCSP(constraints, domains);
     await writeGraphJSON(csp)
