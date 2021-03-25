@@ -1,7 +1,8 @@
 import { BidirectionalTupleSet } from '@stackomate/data-structures';
 import util from 'util';
 
-/* Hack to improve console logging for CBidirectionalTupleSet */
+/* Hack to improve console logging for CBidirectionalTupleSet.
+ * The real BidirectionalTupleSet is in @stackomate/data-structures
 /* TODO: Abstract into library */
 export class CBidirectionalTupleSet<K, V> extends BidirectionalTupleSet<K, V> {
     constructor(iterable?: Iterable<[K, V]>) {
