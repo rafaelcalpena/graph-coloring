@@ -16,5 +16,6 @@ npm start                                           # Start Site
 | ENV VAR | Description    | Options                                                                                                        |
 |---------|----------------|----------------------------------------------------------------------------------------------------------------|
 | ALG     | Algorithm Type | `normal` (genTree, default),  `simple` (simpleGenTree), `symmetric` (genTreeSym, in development)               |
-| HEU     | Heuristic Type | `alphabetical` (sort var names and values, default) `SMF` (Smallest Maybe First), `first` (get first tuple)    |
+| HEU     | Heuristic Type | `alphabetical` (sort var names and values, default), `SMF` (Smallest Maybe First), `first` (get first tuple)    |
 |         |                |                                                                                                                |
+| EX      | Problem Example | `article` (problem for article, default), `diff1`, `diff2`, `australia` (graph problem)  
