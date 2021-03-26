@@ -12,8 +12,9 @@ npm start                                           # Start Site
 ```
 
 ## Options
-| ALG | Algorithm Type | * `normal` (genTree, default),   * `simple` (simpleGenTree), * `symmetric` (genTreeSym, in development)              |
+
+| ALG | Algorithm Type | `normal` (genTree, default),   `simple` (simpleGenTree), `symmetric` (genTreeSym, in development)              |
 |-----|----------------|----------------------------------------------------------------------------------------------------------------------|
-| HEU | Heuristic Type | * `SMF` (Smallest Maybe First, default), * `first` (get first tuple),  * `alphabetical` (sort var names and values)  |
+| HEU | Heuristic Type | `SMF` (Smallest Maybe First, default), `first` (get first tuple), `alphabetical` (sort var names and values)  |
 |     |                |                                                                                                                      |
 |     |                |                                                                                                                      |
