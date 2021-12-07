@@ -1,0 +1,16 @@
+    DEBUG 1 ou 2 => Soluções "rápidas" + visualização
+    examples/example.col    (3 cores)
+    dimacs/myciel3.col    (4 cores)
+    dimacs/queen5_5_1.col    (5 cores)
+
+    DEBUG 0 => Mais demorados (Soluções "rápidas", visualização muito lenta)
+    dimacs/queen6_6.col (IMPORTANTE, 7 cores)
+
+    Lentos   
+    dimacs/queen8_8.col    
+    dimacs/le450_5d.col    
+    dimacs/jean.col
+    dimacs/myciel4.col
+    dimacs/mulsol.i.5.col    
+    dimacs/miles1000.col
+    dimacs/huck.col

@@ -8,21 +8,20 @@ import { convertToTupleSet, convertToConstraintList } from './utils/conversions'
 import { writeGraphJSON } from './utils/write-graph-json';
 import { propagate } from './propagate';
 import { writeDataJSON } from './utils/write-data-json';
-import { graphToColorConstraints } from './utils/graphToConstraints';
-import { australiaGraph } from './utils/australia-graph';
 import problems, { Problem } from './problems';
+import { solveProblem } from './solve-problem';
 
 /* Creates a propagator tree in depth-first left-first order */
 const simpleGenTree = <T>(
-    constraint: Constraint,
+    constraint: Constraint | Constraint[],
     subDomain: Domain<T>, /* values that are in Sor unknown */
     valsInSubDomain: Domain<T> = new CBidirectionalTupleSet() /* values that are known to be in S */
-) : PropagatorTreeNode<T> => {
+): PropagatorTreeNode<T> => {
     /* Get necessary deletions from a positive GAC table propagator (GAC3 ?) */
     const deletions = propagate(constraint, subDomain);
 
     /* Remove the deletions from the subdomain */
-    const newSubDomain = difference(subDomain, deletions); 
+    const newSubDomain = difference(subDomain, deletions);
 
     if (allDomainsEmpty(newSubDomain)) {
         return new PropagatorTreeNode(
@@ -62,28 +61,33 @@ const simpleGenTree = <T>(
 
 /* A constraint is entailed with respect to a subdomain list SD if every tuple 
 allowed on SD is allowed by the constraint */
-const entailed = <T>(constraint: Constraint, domain: Domain<T>) : boolean => {
+const entailed = <T>(initialConstraint: Constraint | Constraint[], domain: Domain<T>): boolean => {
     /* Check and remove literals */
-    const {a, b, op} = constraint;
-    const domainA = domain.get(a);
-    const domainB = domain.get(b);
-    for (let vA of domainA) {
-        for (let vB of domainB) {
-            if (!check[op](vA, vB)) {
-                return false;
-            }
-        }
-    }
+    let constraints = !Array.isArray(initialConstraint) ? [initialConstraint] : initialConstraint;
 
-    for (let vB of domainB) {
+    for (let constraint of constraints) {
+
+        const { a, b, op } = constraint;
+        const domainA = domain.get(a);
+        const domainB = domain.get(b);
         for (let vA of domainA) {
-            if (!check[op](vA, vB)) {
-                return false;
+            for (let vB of domainB) {
+                if (!check[op](vA, vB)) {
+                    return false;
+                }
+            }
+        }
+
+        for (let vB of domainB) {
+            for (let vA of domainA) {
+                if (!check[op](vA, vB)) {
+                    return false;
+                }
             }
         }
     }
-
     return true;
+
 }
 
 /* Improvement from simpleGenTree */
@@ -92,10 +96,10 @@ const entailed = <T>(constraint: Constraint, domain: Domain<T>) : boolean => {
 - Entailment checker.
 */
 const genTree = <T>(
-    constraint: Constraint,
+    constraint: Constraint | Constraint[],
     subDomain: Domain<T>, /* values that are in Sor unknown */
     valsInSubDomain: Domain<T> = new CBidirectionalTupleSet() /* values that are known to be in S */
-) : PropagatorTreeNode<T> | null => { /* Difference: Can return null */
+): PropagatorTreeNode<T> | null => { /* Difference: Can return null */
 
     if (entailed(constraint, subDomain)) {
         return null;
@@ -105,7 +109,7 @@ const genTree = <T>(
     const deletions = propagate(constraint, subDomain);
 
     /* Remove the deletions from the subdomain */
-    const newSubDomain = difference(subDomain, deletions); 
+    const newSubDomain = difference(subDomain, deletions);
 
     if (allDomainsEmpty(newSubDomain)) {
         return new PropagatorTreeNode(
@@ -123,7 +127,7 @@ const genTree = <T>(
     if (equals(newSubDomain, valsIn3) || entailed(constraint, newSubDomain)) { /* New feature here */
         if (deletions.size === 0) { /* New feature here */
             return null;
-        } 
+        }
         return new PropagatorTreeNode(
             null,
             null,
@@ -141,7 +145,7 @@ const genTree = <T>(
     if ((leftT === null) && (rightT === null) && (deletions.size === 0)) { /* New Feature here */
         return null;
     }
-    
+
     return new PropagatorTreeNode(
         leftT,
         rightT,
@@ -153,30 +157,51 @@ const genTree = <T>(
 
 /* Creates a CSP Instance. Returns one Propagator Tree for each constraint */
 const createCSP = <T>(
-    constraints: ConstraintDefinition[], 
+    constraints: ConstraintDefinition[],
     domains: Record<string, T[]>
 ) => {
     let initialDomains = new CBidirectionalTupleSet(convertToTupleSet(domains));
-    return convertToConstraintList(constraints)
-    .map(c => {
-        return (process.env.ALG === 'simple' ? simpleGenTree : genTree)(
-        c,
-        filter(initialDomains, (i) => c.a === i || c.b === i) /* Include other domains or not? */
-    )});
+    let result = [
+        ...convertToConstraintList(constraints)
+        .map(c => {
+            return (process.env.ALG === 'simple' ? simpleGenTree : genTree)(
+                c,
+                filter(initialDomains, (i) => c.a === i || c.b === i) /* Include other domains or not? */
+            )
+        })
+    ];
+    if(process.env.COMBINE === '1') {
+        let maybeUseCombination =         (process.env.ALG === 'simple' ? simpleGenTree : genTree)(
+            convertToConstraintList(constraints),
+            /* TODO: Loop through all sub-constraints */
+            initialDomains
+        );        
+        result.push(maybeUseCombination);
+    }
+    return result;
 }
 
 
 let ex = process.env.EX as keyof typeof problems;
-let {domains, constraints} : Problem = problems[ex || 'article'];
+let { domains, constraints }: Problem = problems[ex || 'article'];
 
 const main = async () => {
-
+    if (process.env.SKIP_SOLVER !== '1') {
+        console.time('solving problem')
+        const solutions = solveProblem({domains, constraints});
+        console.timeEnd('solving problem')
+    }
+    console.time('create csp')
     const csp = createCSP(constraints, domains);
     await writeGraphJSON(csp)
     await writeDataJSON({
-        domains, 
-        constraints
+        domains,
+        constraints: [
+            ...constraints,
+            [constraints.join(' '), '!=', '']
+        ]
     })
+    console.timeEnd('create csp')
 }
 
 main();

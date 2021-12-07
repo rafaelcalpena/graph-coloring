@@ -1,0 +1,439 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="../output/greedy-backtracking-output.js"></script>
+
+        <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+        <script src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
+        <script src="https://cytoscape.org/cytoscape.js-dagre/cytoscape-dagre.js"></script>
+        <script src="https://unpkg.com/popper.js@1.14.7/dist/umd/popper.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/cytoscape-popper@1.0.4/cytoscape-popper.min.js"></script>
+        <script src="https://unpkg.com/tippy.js@4.0.1/umd/index.all.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@4.0.1/index.css" />  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />  
+        
+        <!-- Vuetify -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+        <link href="./styles.css" rel="stylesheet">
+        <script src="./graph-viz.js"></script>        
+
+
+    </head>
+    <body>
+        <div id="app">
+            <v-app>
+                <v-navigation-drawer app v-bind:width="400">
+                    <div class="left-menu">
+                        <v-container>
+                            <v-card
+                            elevation="2"
+                            >
+                                <v-card-title>Lista de Adjacências: <v-checkbox v-model="showAdjacencyList"> </v-checkbox></v-card-title>
+                                <v-card-text v-if="showAdjacencyList">
+                                    <div v-for="(item, index) in adjList">
+                                        {{index}} : {{item}}
+                                    </div>
+                                </v-card-text>         
+                            </v-card>
+                        </v-container>
+
+                        <v-container>                    
+                            <v-card
+                            elevation="2"
+                            >
+                            <v-card-title>Número Cromático: {{numeroCromatico}}</v-card-title>   
+                            </v-card>     
+                        </v-container>   
+
+                        <v-container>                    
+                            <v-card
+                            elevation="2"
+                            >
+                            <v-card-title>Colorações Encontradas</v-card-title>
+                            <v-card-text>
+                                    <div v-for="(coloracao, index) in coloracoesOtimas" class="step" v-on:click="applyAction(getStep(coloracao))">
+                                    {{coloracao}} ({{numerosCromaticos[index]}} cores<strong v-if="isOptimal(coloracao)">, ótima</strong>)
+                                    </div>
+                                </v-card-text>         
+                            </v-card>     
+                        </v-container>                           
+
+                    <v-container>
+                        <v-card
+                        elevation="2"
+                        >
+                            <v-card-title>Execução:</v-card-title>
+                            <v-card-text>
+                                <div>Passo atual: <strong>{{currentStep + 1}}</strong></div>
+                                <div>Passo final: <strong class="clickable" v-on:click="applyAction(logs.length - 1)">{{logs.length - 1}}</strong></div>
+                                <div style="display:flex; flex-direction: row">
+                                <v-icon v-on:click="applyAction(currentStep - 1)">mdi-skip-previous</v-icon>
+                                <v-icon v-on:click="applyAction(currentStep + 1)">mdi-skip-next</v-icon>
+                            </div>
+                            Operações:
+                            <div style="display:flex; flex-direction: row">
+                                <v-slider
+                                :value="currentStep"
+                                thumb-label
+                                v-bind:max="logs.length - 1"
+                                min="-1"
+                                v-on:change="applyAction($event)"
+                                ></v-slider>
+                            </div>
+                            Velocidade (Operações/s):                            
+                            <div style="display:flex; flex-direction: row">
+                            <v-slider
+                            v-model="timer"
+                            thumb-label
+                            v-bind:max="maxOps"
+                            min="0"
+                            ></v-slider>
+                            </div>
+                            Velocidade Máxima (Operações/s):
+                            <div style="display:flex; flex-direction: row">
+                            <v-text-field
+                                v-model="maxOps"
+                                hide-details
+                                single-line
+                                type="number"
+                            />
+                            </div>       
+                            <div>Velocidade Real: {{playbackSpeed.toFixed(2)}}</div>                   
+                            </v-card-text>         
+                        </v-card>
+                    </v-container>        
+                    
+                    <v-container>                    
+                        <v-card
+                        elevation="2"
+                        >
+                            <v-card-title>Renderizar Backtracking: <v-checkbox v-model="renderBacktracking"> </v-checkbox></v-card-title>   
+                            <v-card-text>
+                            <div v-if="renderBacktracking">
+                                <v-checkbox v-bind:disabled="timer !== 0" v-model="backtrackingWithRequestAnimationFrame" label="Layout assíncrono"> </v-checkbox> 
+                                <span></span>
+                            </div>
+                            <div>Tree Vertex Count: {{backtrackingVerticesCount}}</div>
+                            <div>Tree Edge Count: {{backtrackingEdgesCount}}</div>
+                        </v-card-text>          
+                        </v-card>     
+                    </v-container>                    
+
+                    <v-container>        
+                        <v-card
+                        elevation="2"
+                        >             
+                            <v-card-title>Logs: <v-checkbox v-model="showLogs"> </v-checkbox></v-card-title> 
+                            <v-card-text>Selecione ação para atualizar carregamento parcial da lista</v-card-text>
+                            <div v-if="showLogs"
+                            id="logs"
+                            class="scrollable">                                             
+                                <div class="step" v-for="(action) in filteredLogs" v-bind:key="action.index" v-on:click="applyAction(action.index)" v-bind:data-index="action.index"
+                                    v-bind:class="{ current: action.index === currentStep }">
+                                    {{action.index + 1}}.
+                                    <v-chip
+                                        class="ma-2"
+                                        label
+                                    >
+                                        {{action.action}}
+                                    </v-chip>
+                                    <code v-if="action.action === 'set'">
+                                        {{action.key}}={{action.value}}
+                                    </code>    
+                                    <code v-if="action.action !== 'set' && action.value">
+                                        {{action.value}}
+                                    </code>
+                                </div>                            
+                            </div>
+                        </v-card>                          
+                    </v-container>    
+                    
+                    
+                    <v-container>                    
+                        <v-card
+                        elevation="2"
+                        >
+                            <v-card-title>Variáveis do Problema:</v-card-title>
+                            <v-card-text>
+                                <div v-for="(value, name) in problemData">
+                                {{name}}: {{value}}
+                                </div>
+                            </v-card-text>
+                        </v-card>     
+                    </v-container>    
+                    
+                    <v-container>                    
+                        <v-card
+                        elevation="2"
+                        >
+                            <v-card-title>Cores Disponíveis:</v-card-title>
+                            <v-card-text>
+                                <div v-for="(value, name) in colors.slice(0, (problemData && problemData.k) ? problemData.k : 0)">
+                                {{name}}: <span class="color-preview" v-bind:style="{background: value}"></span>
+                                </div>
+                            </v-card-text>         
+                        </v-card>     
+                    </v-container>
+
+                    </div>
+                  </v-navigation-drawer>
+
+                <v-main>
+                    <div id="cy"></div>
+                    <div id="cy-backtracking"></div>                    
+                </v-main>
+            </v-app>
+        </div>
+    </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>    
+    <script>
+
+        Vue.config.performance = true
+
+        let melhoresColoracoes = logs.filter(action => action.key === 'melhorColoracao').filter(action => action.value.indexOf(-1) === -1);
+        let coloracoesOrdenadas = melhoresColoracoes.slice().sort((a, b) => new Set(b.value).size - new Set(a.value).size);
+        let numerosCromaticos = coloracoesOrdenadas.map(a => new Set(a.value).size);
+
+        let redraw = (ctx) => {
+            let returnFn = () => {
+                if (ctx.timer !== 0) {
+                    ctx.animationFrameHandle = true;
+                    cyBacktracking.layout(cyBacktrackingLayout).run();
+                    cyBacktracking.fit();   
+                    window.requestAnimationFrame(returnFn);
+                } else {
+                    ctx.animationFrameHandle = false
+                }
+            }
+            return returnFn;
+        }
+
+        var app4 = new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: {
+                /* Otimizacao de performance: evitar addDep no vue para os objetos imutáveis 
+                https://reside-ic.github.io/blog/handling-long-arrays-performantly-in-vue.js/ */
+                logs: Object.freeze(logs),
+                adjList: Object.freeze(adjList),
+                colors: Object.freeze(colors),
+                coloracoesOtimas: Object.freeze(coloracoesOrdenadas.map(a => a.value)),
+                numerosCromaticos: Object.freeze(numerosCromaticos),
+
+                numeroCromatico: numerosCromaticos[numerosCromaticos.length - 1],
+                problemData: {},
+                currentStep: -1,
+                parentItem: null,
+                showLogs: false,
+                showAdjacencyList: false,
+                timer: 0,
+                timerHandle: null,
+                animationFrameHandle: false,
+                renderBacktracking: true,
+                backtrackingWithRequestAnimationFrame: false, 
+                playbackSpeed: 0,
+
+                backtrackingVerticesCount: 0,
+                backtrackingEdgesCount: 0,
+                maxOps: 10000
+            },
+            computed: {
+                filteredLogs: function() {
+                    let items = 100;
+                    let lowerBound = Math.max(0, Math.floor(this.currentStep - items / 2));
+                    let higherBound = Math.min(this.logs.length - 1, Math.floor(this.currentStep + items/ 2));
+                    return logs.slice(lowerBound, higherBound).map((l, i) => ({...l, index: i + lowerBound}));
+                }
+            },
+            methods: {
+
+                /* Both getStep and isOptimal could become computed properties */
+                isOptimal: function(coloring) {
+                    return this.numeroCromatico === new Set(coloring).size
+                },
+                getStep: function(coloring) {
+                    return this.logs.findIndex(action => action.action === 'set' && action.key === 'melhorColoracao' && action.value.toString() === coloring.toString());
+                },
+
+                applyAction: function (index, rerender = true) {
+                    if (index >= this.logs.length)  {
+                        index = this.logs.length - 1;
+                    }
+
+                    if (index < 0) return;
+
+                    if (this.currentStep > index) {
+                        this.problemData = {};
+                        this.currentStep = -1;
+
+                        if (this.renderBacktracking) {
+                            cyBacktracking.remove('*');
+                        }
+                        this.backtrackingVerticesCount = 0;                            
+                        this.backtrackingEdgesCount = 0;                        
+
+                        this.parentItem = null;
+                    }
+
+                    while (this.currentStep < index) {
+                            let action = this.logs[this.currentStep + 1];
+                            switch (action.action) {
+                                case "set":
+                                    Vue.set(this.problemData, action.key, action.value);
+                                    
+                                    if (action.key === 'cor' && action.value !== -1) {
+                                        let newNodeId = `${this.parentItem !== null ? `${this.parentItem},` : ''}${this.problemData.i}:${action.value}`;
+
+                                        if (this.renderBacktracking) {
+                                            cyBacktracking.add([
+                                                {
+                                                    group: 'nodes',
+                                                    data: {
+                                                        label: `${this.problemData.i} - cor ${action.value}`,
+                                                        color: action.value,
+                                                        id: newNodeId
+                                                    }
+                                                }
+                                            ])
+                                        }
+                                        this.backtrackingVerticesCount++;                                        
+
+                                        if (this.parentItem !== null) {
+
+                                            if (this.renderBacktracking) {
+                                                cyBacktracking.add([
+                                                    {
+                                                        group: 'edges',
+                                                        data: {
+                                                            source: this.parentItem,
+                                                            target: newNodeId,
+                                                        }
+                                                    }
+                                                ])   
+                                            }
+                                            this.backtrackingEdgesCount++;  
+
+                                        }
+
+                                        /* force redraw for cytoscape */
+                                        if (this.renderBacktracking && rerender) {
+                                            cyBacktracking.layout(cyBacktrackingLayout).run();
+                                            cyBacktracking.fit();
+                                        }
+
+                                    }
+
+                                break;
+
+                                case 'moveBackwards':
+                                        if (this.parentItem !== null) {
+                                            let possibleParent = this.parentItem.split(',').slice(0, -1).join(',');
+                                            this.parentItem = possibleParent === '' ? null : possibleParent;
+                                        }
+                                break;
+
+                                case 'moveForward':
+                                    this.parentItem = `${this.parentItem !== null ? `${this.parentItem},` : ''}${this.problemData.i}:${this.problemData.cor}`;
+                                break;
+
+                            }
+                            this.currentStep++;
+                    }
+
+                }
+            },
+            watch: {
+                renderBacktracking: function(newValue, oldValue) {
+                    if (newValue === false) {
+                        cyBacktracking.remove('*');                    
+                    } else {
+                        let currentStep = this.currentStep;
+                        this.applyAction(0);
+                        this.applyAction(currentStep);
+                    }
+                },
+                'problemData.coloracaoAtual': function (newValue, oldValue) {
+                    if (newValue === oldValue) {
+                        return;
+                    }
+                    for (let i = 0; i < newValue.length; i++) {
+                        /* Get element by id is more performant */
+                        cy.getElementById(i).data('color', newValue[i]);
+                    }
+                },
+                parentItem: function(newValue, oldValue) {
+                    if (newValue === oldValue) {
+                        return;
+                    }              
+                    if (oldValue !== null) {
+                        if (this.renderBacktracking) {
+                            cyBacktracking.getElementById(oldValue).removeClass('selected');
+                        }
+                    }
+                    if (newValue !== null) {
+                        if (this.renderBacktracking) {
+                            cyBacktracking.getElementById(newValue).addClass('selected');
+                        }
+                    }
+                },
+                currentStep: function (newValue, oldValue) {
+                    if (this.showLogs === true) {                 
+                        let logs = document.querySelector("#logs"); 
+                        let stepDiv = document.querySelector(`[data-index="${newValue}"]`)
+                        // Wait for currentStep to propagate
+                        window.requestAnimationFrame(() => {
+                            logs.scrollTop = stepDiv.offsetTop - (98 + 60); //hack, titles height
+                        })
+                    }
+                },
+                timer: function(newValue) {                          
+                    clearInterval(this.timerHandle);
+                    if (newValue !== 0) {
+                        let that = this;
+                        let comparison = performance.now() / 1000;
+                        let initialStep = this.currentStep;
+
+                        this.timerHandle = setInterval(() => {
+                            let middleComparison = performance.now() / 1000;
+                            
+                            /* Ideally, (this.currentStep - initialStep) / (middleComparison - comparison) = newValue */
+                            let deltaError = (middleComparison - comparison) * (newValue) - this.currentStep + initialStep;
+                            that.playbackSpeed = (this.currentStep - initialStep) / (middleComparison - comparison)
+
+                            /* Batch cytoscape calls for performance */
+                            cy.startBatch()
+                            that.applyAction(that.currentStep + Math.max(0, Math.round(deltaError) ), false);     
+                            if (!that.backtrackingWithRequestAnimationFrame) {
+                                cyBacktracking.layout(cyBacktrackingLayout).run();
+                                cyBacktracking.fit();
+                            }                                      
+                            cy.endBatch()
+
+                            /* Stop timer if reached final step */
+                            if (this.currentStep === this.logs.length - 1) {
+                                this.playbackSpeed = 0;
+                                this.timer = 0;
+                            }
+
+                        }, 1000 / Math.min(Number(newValue), 60));
+
+                        if (!this.animationFrameHandle) {
+                            if (this.backtrackingWithRequestAnimationFrame) {
+                                window.requestAnimationFrame(redraw(this));
+                            }
+                        } else {
+                            console.log('ja tinha')
+                        }
+                    }
+                }
+            }     
+        })
+    </script>
+
+</html>

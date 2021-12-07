@@ -1,4 +1,5 @@
 import { ConstraintDefinition, Domains } from "../classes";
+import COLORS from "../colors";
 import { DIFFERENT } from "../operations";
 
 export const graphToColorConstraints = (nodes: any[], edges: any[]) => {
@@ -8,7 +9,7 @@ export const graphToColorConstraints = (nodes: any[], edges: any[]) => {
         constraints.push([edge.from, DIFFERENT, edge.to]);
     })
     nodes.forEach(node => {
-        domains[node.id] = [0, 1, 2, 3]
+        domains[node.id] = Array.from(Array(COLORS).keys())
     })
     return {
         constraints,

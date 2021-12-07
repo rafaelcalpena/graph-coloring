@@ -2,6 +2,7 @@ import { ConstraintDefinition, Domains } from "./classes";
 import { DIFFERENT, OR } from "./operations";
 import { australiaGraph } from "./utils/australia-graph";
 import { graphToColorConstraints } from "./utils/graphToConstraints";
+import { usaGraph } from "./utils/usa-graph";
 
 export type Problem = {
     domains: Domains,
@@ -43,9 +44,12 @@ export const diff2: Problem = {
 
 export const australia: Problem = graphToColorConstraints(australiaGraph.nodes, australiaGraph.edges);
 
+export const usa : Problem = graphToColorConstraints(usaGraph.nodes, usaGraph.edges);
+
 export default {
     australia,
     diff2,
     diff1,
-    article
+    article,
+    usa
 }
