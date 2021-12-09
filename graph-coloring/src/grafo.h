@@ -31,7 +31,18 @@ namespace grafo {
                 }
             }
         }
-    }    
+    }
+
+    int grauMaximoVertices(grafo::Grafo& G) {
+        int max = 0;
+        for (int i = 0; i < G.n; i++) {
+            int grauVertice = G.listaAdj[i].size();
+            if (grauVertice > max) {
+                max = grauVertice;
+            }
+        }
+        return max;
+    }
 }
 
 #endif

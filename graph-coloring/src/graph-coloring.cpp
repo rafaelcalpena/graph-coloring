@@ -85,7 +85,16 @@ vector<int> greedyBacktracking (grafo::Grafo& G, fstream& logStream) {
 
     /* Guarda o numero de cores minimo atual; Inicia com n (pior caso) */
     int k = G.n; //grau maximo + 1 e um limitante; + DSATUR
-    debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);  
+    debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
+
+    /* Todo grafo possui limitante superior grau maximo + 1 */
+    int grauMaximo = grafo::grauMaximoVertices(G);
+    debug("{action: 'getMaximumDegree', value:" + to_string(grauMaximo) + "}", logStream);
+
+    if (grauMaximo + 1 < k) {
+        k = grauMaximo + 1;
+        debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
+    }
 
     /* Guarda a posicao atual dentro da ordenacao a ser analisada */
     int i = 0;
