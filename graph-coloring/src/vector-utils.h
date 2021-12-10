@@ -38,6 +38,15 @@ namespace vectorUtils {
         return myfile;
     }
 
+    vector<int> vetorCrescente(int qtd) {
+        vector<int> resultado(qtd, 0);
+
+        for (int y = 0; y < qtd; y++) {
+            resultado[y] = y;
+        }
+        return resultado;
+    }
+
 }
 
 #endif
