@@ -11,36 +11,6 @@ using namespace std;
 using namespace grafo;
 
 
-/* TODO: Juntar com codigo greedy */
-int obterCorExistenteParaVertice(grafo::Grafo& G, vector<int> coloracaoAtual, int i, int from, int to) {
-    /* Lista que indica se uma cor ja foi usada.
-    No pior caso, n cores serao necessarias */
-    vector<bool> coresUsadas(to, false);
-    vector<int> adj = G.listaAdj[i];
-
-    /* Passamos pela lista de adjacencia do vertice e marcamos quais cores podem ser utilizadas */
-    for (int z = 0; z < adj.size(); z++)
-    {
-        int j = adj[z];
-
-        /* Assinalar cor utilizada */
-        if (coloracaoAtual[j] != -1)
-        {
-            coresUsadas[coloracaoAtual[j]] = true;
-        }
-    }
-
-    /* Procuramos uma cor que não tenha sido usada */
-    for (int c = from; c < to; c++) {
-        if (coresUsadas[c] == false) {
-            return c;
-        }
-    }
-
-    /* Diferentemente do greedy, retornamos -1 em caso de ausencia de cores válidas */
-    return -1;
-}
-
 int obterTotalCores (vector<int> coloracao) {
     vector<bool> coresUsadas(coloracao.size(), false);
     int total = 0;
