@@ -16,39 +16,14 @@ namespace greedy {
         for (int i = 0; i < G.n; i++)
         {
 
-            /* Lista que indica se uma cor ja foi usada.
-        No pior caso, n cores serao necessarias */
-            vector<bool> coresUsadas(nCores, false);
-            vector<int> adj = G.listaAdj[i];
+            int cor = grafo::obterCorDisponivelParaVertice(G, vCores, i, 0, nCores);
 
-            /* Passamos pela lista de adjacencia do vertice e decidimos quais cores podem ser utilizadas */
-            for (int z = 0; z < adj.size(); z++)
+            if (cor == -1)
             {
-                int j = adj[z];
-
-                /* Assinalar cor utilizada */
-                if (vCores[j] != -1)
-                {
-                    coresUsadas[vCores[j]] = true;
-                }
-            }
-
-            /* Procuramos uma cor que não tenha sido usada; Se não houver, criamos uma */
-            bool usouCor = false;
-            for (int c = 0; c < coresUsadas.size(); c++)
-            {
-                if (coresUsadas[c] == false)
-                {
-                    vCores[i] = c;
-                    usouCor = true;
-                    break;
-                }
-            }
-
-            if (!usouCor)
-            {
+                vCores[i] = nCores;                
                 nCores++;
-                vCores[i] = nCores - 1;
+            } else {
+                vCores[i] = cor;
             }
         }
         return vCores;
