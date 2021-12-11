@@ -1,50 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include "grafo.h"
-#include "ler-arquivo.h"
-#include "greedy.h"
-#include "vector-utils.h"
-#include "dsatur.h"
-
-using namespace std;
-using namespace grafo;
-
-
-int obterTotalCores (vector<int> coloracao) {
-    vector<bool> coresUsadas(coloracao.size(), false);
-    int total = 0;
-
-    for (int cor: coloracao) {
-        if (cor >= 0) {
-            coresUsadas[cor] = true;
-        };
-
-    }
-
-    for (bool c: coresUsadas) {
-        if (c == true) {
-            total++;
-        }
-    }    
-    return total;
-}
-
-
-void debug (std::string message, fstream& logFile) {
-    const std::string flag = getenv("DEBUG");
-    if (flag == "2") {
-        cout << message << "\n";
-    }
-    if (flag == "1" || flag == "2") {
-        logFile << message << ",\n";
-    }
-}
-
-
 /* Algoritmo Brown */
 /* Contém o Backtracking para uma ordem de vértices arbitrária */
-vector<int> greedyBacktracking (grafo::Grafo& G, fstream& logStream) {
+vector<int> greedyBacktracking2 (grafo::Grafo& G, fstream& logStream) {
     /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
     vector<int> coloracaoAtual(G.n, -1);
     debug("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);   
@@ -66,6 +22,14 @@ vector<int> greedyBacktracking (grafo::Grafo& G, fstream& logStream) {
         debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
     }
 
+
+    /* ordenacao atual, comeca com [0, 1, ..., n - 1]; */
+    vector<int> ordenacao = vectorUtils::vetorCrescente(G.n);
+    debug("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
+
+    // No DSATUR, realizar ordenacao propria
+    // ordenar(G, ordenacao, coloracaoAtual)
+
     /* Guarda a posicao atual dentro da ordenacao a ser analisada */
     int i = 0;
     debug("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);      
@@ -77,11 +41,14 @@ vector<int> greedyBacktracking (grafo::Grafo& G, fstream& logStream) {
     while (i != -1) {
         debug("{action: 'iteration', value: " + to_string(i) + "}", logStream);
 
+        int indice = ordenacao[i];
+        debug("{action: 'set', key: 'indice', value: " + to_string(indice) + "}", logStream); 
+
         /* Tenta obter uma cor para o vertice */
-        int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, i, coloracaoAtual[i] + 1, k);
+        int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, indice, coloracaoAtual[indice] + 1, k);
         debug("{action: 'set', key: 'cor', value: " + to_string(cor) + "}", logStream);
 
-        coloracaoAtual[i] = cor;
+        coloracaoAtual[indice] = cor;
         debug("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
 
         int totalCores = obterTotalCores(coloracaoAtual);
@@ -133,100 +100,4 @@ vector<int> greedyBacktracking (grafo::Grafo& G, fstream& logStream) {
 
     debug("{action: 'finalResult', value: " + vectorUtils::serializarVetor(melhorColoracao) + "}", logStream);
     return melhorColoracao;
-}
-
-/* Algoritmo Brélaz (DSATUR exato): */
-
-
-/* Algoritmo SEWELL: */
-
-
-/* Algoritmo PASS: */
-
-
-/* Algoritmo do PGC */
-
-void adicionaListaDeAdjAoArquivo(fstream& arquivo, grafo::Grafo& grafo) {
-    arquivo << "adjList=[";
-    for (int j=0; j < grafo.listaAdj.size(); j++) {
-        arquivo << "[";
-        for (int k=0; k < grafo.listaAdj[j].size(); k++) {
-            arquivo << grafo.listaAdj[j][k];
-            if (k != grafo.listaAdj[j].size() - 1) {
-                arquivo << ","; 
-            }
-        }
-        arquivo << "]";
-        if (j != grafo.listaAdj.size() - 1) {
-            arquivo << ","; 
-        }
-    }
-    arquivo << "]; \n";
-}
-
-void salvarEmArquivo (string filename, grafo::Grafo& grafo, vector<int> cores) {
-    fstream myfile;
-    myfile.open(filename,fstream::out);
-    myfile << "dataResult = ";
-    myfile << "{\"adjList\":[";
-    for (int j=0; j < grafo.listaAdj.size(); j++) {
-        myfile << "[";
-        for (int k=0; k < grafo.listaAdj[j].size(); k++) {
-            myfile << grafo.listaAdj[j][k];
-            if (k != grafo.listaAdj[j].size() - 1) {
-                myfile << ","; 
-            }
-        }
-        myfile << "]";
-        if (j != grafo.listaAdj.size() - 1) {
-            myfile << ","; 
-        }
-    }
-    myfile << "], \"colors\": [";
-        for (int k=0; k < cores.size(); k++) {
-            myfile << cores[k];
-            if (k != cores.size() - 1) {
-                myfile << ","; 
-            }
-        }
-    myfile << "]}";
-    myfile.close();
-}
-
-/* Função principal */
-int main(int argc, char** argv) {
-    grafo::Grafo grafo = lerArquivo::lerArquivo(getenv("FILE"));
-
-    cout << "Analisando com Greedy:\n";
-    vector<int> cores = greedy::greedy(grafo);
-    grafo::verificaColoracao(grafo, cores);
-    cout << "Cores totais: " << (*max_element(cores.begin(), cores.end()) + 1) << "\n";
-    salvarEmArquivo("output/greedy-heuristic-output.js", grafo, cores);
-
-
-
-    cout << "\n";
-    cout << "Analisando com DSATUR:\n";
-    vector<int> cores2 = dsatur::DSATUR(grafo);
-    grafo::verificaColoracao(grafo, cores2);
-    cout << "Cores totais: " << (*max_element(cores2.begin(), cores2.end()) + 1) << "\n";    
-    salvarEmArquivo("output/dsatur-heuristic-output.js", grafo, cores2);
-
-
-    cout << "\n";
-    cout << "Analisando com Greedy Backtracking:\n";
-    /* Cria um arquivo log para o greedy-backtracking */
-    fstream greedyBacktrackingLog;
-    /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
-    greedyBacktrackingLog.open("output/greedy-backtracking-output.js", fstream::out);
-    adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
-    greedyBacktrackingLog << "logs = ";
-    greedyBacktrackingLog << "[";
-    vector<int> cores3 = greedyBacktracking(grafo, greedyBacktrackingLog);
-    grafo::verificaColoracao(grafo, cores3);
-    cout << "Cores totais: " << (*max_element(cores3.begin(), cores3.end()) + 1) << "\n";
-    greedyBacktrackingLog << "]";
-    greedyBacktrackingLog.close();
-
-    return 0;
 }
