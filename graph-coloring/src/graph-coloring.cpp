@@ -6,134 +6,12 @@
 #include "greedy.h"
 #include "vector-utils.h"
 #include "dsatur.h"
+#include "greedy-backtracking.h"
+#include "greedy-backtracking2.h"
+#include "dsatur-backtracking.h"
 
 using namespace std;
 using namespace grafo;
-
-
-int obterTotalCores (vector<int> coloracao) {
-    vector<bool> coresUsadas(coloracao.size(), false);
-    int total = 0;
-
-    for (int cor: coloracao) {
-        if (cor >= 0) {
-            coresUsadas[cor] = true;
-        };
-
-    }
-
-    for (bool c: coresUsadas) {
-        if (c == true) {
-            total++;
-        }
-    }    
-    return total;
-}
-
-
-void debug (std::string message, fstream& logFile) {
-    const std::string flag = getenv("DEBUG");
-    if (flag == "2") {
-        cout << message << "\n";
-    }
-    if (flag == "1" || flag == "2") {
-        logFile << message << ",\n";
-    }
-}
-
-
-/* Algoritmo Brown */
-/* Contém o Backtracking para uma ordem de vértices arbitrária */
-vector<int> greedyBacktracking (grafo::Grafo& G, fstream& logStream) {
-    /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
-    vector<int> coloracaoAtual(G.n, -1);
-    debug("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);   
-
-    /* Guarda a melhor coloracao encontrada; Inicia com cor -1 (inexistente) */
-    vector<int> melhorColoracao(G.n, -1);
-    debug("{action: 'set', key: 'melhorColoracao', value: " + vectorUtils::serializarVetor(melhorColoracao) + "}", logStream);     
-
-    /* Guarda o numero de cores minimo atual; Inicia com n (pior caso) */
-    int k = G.n; //grau maximo + 1 e um limitante; + DSATUR
-    debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
-
-    /* Todo grafo possui limitante superior grau maximo + 1 */
-    int grauMaximo = grafo::grauMaximoVertices(G);
-    debug("{action: 'getMaximumDegree', value:" + to_string(grauMaximo) + "}", logStream);
-
-    if (grauMaximo + 1 < k) {
-        k = grauMaximo + 1;
-        debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
-    }
-
-    /* Guarda a posicao atual dentro da ordenacao a ser analisada */
-    int i = 0;
-    debug("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);      
-
-    debug("{action: 'finishInitialSetup'}", logStream); 
-
-
-    /* Repete ate o final (i = -1) */
-    while (i != -1) {
-        debug("{action: 'iteration', value: " + to_string(i) + "}", logStream);
-
-        /* Tenta obter uma cor para o vertice */
-        int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, i, coloracaoAtual[i] + 1, k);
-        debug("{action: 'set', key: 'cor', value: " + to_string(cor) + "}", logStream);
-
-        coloracaoAtual[i] = cor;
-        debug("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
-
-        int totalCores = obterTotalCores(coloracaoAtual);
-        debug("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);
-
-        /* Se nenhuma cor é válida, é necessário voltar (backwards) */        
-        if (cor == -1) {
-            /* Remove coloracao atual do indice */
-            debug("{action: 'moveBackwards', value:'noValidColors'} ", logStream);
-
-            i--;
-            debug("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);  
-
-            /* Otimizacao, pois o primeiro vertice nao precisa ser testado com as cores restantes */
-            if (i == 0) {
-                debug("{action: 'stop'}", logStream);
-                break;
-            } 
-        } 
-        /* Se coloracao é pior, pular a branch */
-        else if (totalCores > k) {
-            debug("{action: 'preventSearchInSubBranches', value:'coloringWorseThanLimit "+ to_string(k) + " '} ", logStream);
-
-            /* Ainda pode existir uma ou mais cores para o vertices melhores do que a combinacao atual, portanto
-            deve-se aguardar mais uma iteracao no mesmo i (nao ha backtracking). 
-            Esse if tambem ajuda a evitar o proximo caso, ou seja, para de explorar ou sub-ramos para a iteracao atual
-            Caso esse else if seja comentado, a solucao final tera varias coloracoes nao-otimas */
-        }
-        else {
-            /* Se tiver mais vertices, continua (forward) */
-            if (i < G.n - 1) {
-                debug("{action: 'moveForward'} ", logStream);                
-
-                i++;       
-                debug("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);     
-
-            } else {
-                /* Chegou em uma nova coloracao */
-                debug("{action: 'foundColoring', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
-
-                melhorColoracao = vectorUtils::copiarVetor(coloracaoAtual);
-                debug("{action: 'set', key: 'melhorColoracao', value: " + vectorUtils::serializarVetor(melhorColoracao) + "}", logStream);
-
-                k = totalCores - 1;
-                debug("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
-            }
-        }
-    }
-
-    debug("{action: 'finalResult', value: " + vectorUtils::serializarVetor(melhorColoracao) + "}", logStream);
-    return melhorColoracao;
-}
 
 /* Algoritmo Brélaz (DSATUR exato): */
 
@@ -204,7 +82,6 @@ int main(int argc, char** argv) {
     salvarEmArquivo("output/greedy-heuristic-output.js", grafo, cores);
 
 
-
     cout << "\n";
     cout << "Analisando com DSATUR:\n";
     vector<int> cores2 = dsatur::DSATUR(grafo);
@@ -222,11 +99,29 @@ int main(int argc, char** argv) {
     adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
     greedyBacktrackingLog << "logs = ";
     greedyBacktrackingLog << "[";
-    vector<int> cores3 = greedyBacktracking(grafo, greedyBacktrackingLog);
+    /* Greedy backtracking 2 contem uma versão com variavel de ordenacao
+    Greedy backtracking (1) é um pouco mais rápida */
+    vector<int> cores3 = greedyBacktracking2::greedyBacktracking2(grafo, greedyBacktrackingLog);
     grafo::verificaColoracao(grafo, cores3);
     cout << "Cores totais: " << (*max_element(cores3.begin(), cores3.end()) + 1) << "\n";
     greedyBacktrackingLog << "]";
     greedyBacktrackingLog.close();
+
+
+    cout << "\n";
+    cout << "Analisando com DSATUR Backtracking:\n";
+    /* Cria um arquivo log para o greedy-backtracking */
+    fstream dsaturBacktrackingLog;
+    /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+    dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
+    adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
+    dsaturBacktrackingLog << "logs = ";
+    dsaturBacktrackingLog << "[";
+    vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
+    grafo::verificaColoracao(grafo, cores4);
+    cout << "Cores totais: " << (*max_element(cores4.begin(), cores4.end()) + 1) << "\n";
+    dsaturBacktrackingLog << "]";
+    dsaturBacktrackingLog.close();    
 
     return 0;
 }
