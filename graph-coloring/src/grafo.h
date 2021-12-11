@@ -73,6 +73,27 @@ namespace grafo {
         /* Retornamos -1 em caso de ausencia de cores válidas */
         return -1;
     }    
+
+    /* Retorna o numero total de cores de uma coloracao */
+    int obterTotalCores (vector<int> coloracao) {
+        vector<bool> coresUsadas(coloracao.size(), false);
+        int total = 0;
+
+        for (int cor: coloracao) {
+            if (cor >= 0) {
+                coresUsadas[cor] = true;
+            };
+
+        }
+
+        for (bool c: coresUsadas) {
+            if (c == true) {
+                total++;
+            }
+        }    
+        return total;
+    }
+
 }
 
 #endif
