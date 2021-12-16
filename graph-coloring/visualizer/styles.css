@@ -59,7 +59,7 @@ h1 {
 .step:hover {
     background: #eee;
 }
-.step.current {
+.current {
     /* background: #9dbaea; */
     background: #d8e3f7;
 }
@@ -71,4 +71,8 @@ h1 {
 }
 .clickable {
     cursor: pointer;
+}
+.visited {
+    /* text-decoration: line-through; */
+    color: #ddd;
 }
