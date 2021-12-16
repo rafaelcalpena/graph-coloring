@@ -97,6 +97,7 @@ int main(int argc, char** argv) {
     /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
     greedyBacktrackingLog.open("output/greedy-backtracking-output.js", fstream::out);
     adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
+    greedyBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";
     greedyBacktrackingLog << "logs = ";
     greedyBacktrackingLog << "[";
     /* Greedy backtracking 2 contem uma versão com variavel de ordenacao
@@ -115,6 +116,7 @@ int main(int argc, char** argv) {
     /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
     dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
     adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
+    dsaturBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";    
     dsaturBacktrackingLog << "logs = ";
     dsaturBacktrackingLog << "[";
     vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
