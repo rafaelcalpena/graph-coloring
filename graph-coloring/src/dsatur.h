@@ -35,7 +35,9 @@ namespace dsatur {
             if (
                 (proxSat > vencedorSat) || 
                 /* Desempate por maior grau do vertice */
-                ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) > grauDoVertice(ordenacao[indiceVencedor], G)))
+                ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) > grauDoVertice(ordenacao[indiceVencedor], G))) ||
+                /* Mantem os vertices em ordem crescente */
+                ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) == grauDoVertice(ordenacao[indiceVencedor], G)) && (ordenacao[prox] < ordenacao[indiceVencedor]))
             ) {
 
                 indiceVencedor = prox;
