@@ -91,6 +91,23 @@ int main(int argc, char** argv) {
 
 
     cout << "\n";
+    cout << "Analisando com DSATUR Backtracking:\n";
+    /* Cria um arquivo log para o greedy-backtracking */
+    fstream dsaturBacktrackingLog;
+    /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+    dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
+    adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
+    dsaturBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";    
+    dsaturBacktrackingLog << "logs = ";
+    dsaturBacktrackingLog << "[";
+    vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
+    grafo::verificaColoracao(grafo, cores4);
+    cout << "Cores totais: " << (*max_element(cores4.begin(), cores4.end()) + 1) << "\n";
+    dsaturBacktrackingLog << "]";
+    dsaturBacktrackingLog.close();    
+
+
+    cout << "\n";
     cout << "Analisando com Greedy Backtracking:\n";
     /* Cria um arquivo log para o greedy-backtracking */
     fstream greedyBacktrackingLog;
@@ -107,23 +124,6 @@ int main(int argc, char** argv) {
     cout << "Cores totais: " << (*max_element(cores3.begin(), cores3.end()) + 1) << "\n";
     greedyBacktrackingLog << "]";
     greedyBacktrackingLog.close();
-
-
-    cout << "\n";
-    cout << "Analisando com DSATUR Backtracking:\n";
-    /* Cria um arquivo log para o greedy-backtracking */
-    fstream dsaturBacktrackingLog;
-    /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
-    dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
-    adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
-    dsaturBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";    
-    dsaturBacktrackingLog << "logs = ";
-    dsaturBacktrackingLog << "[";
-    vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
-    grafo::verificaColoracao(grafo, cores4);
-    cout << "Cores totais: " << (*max_element(cores4.begin(), cores4.end()) + 1) << "\n";
-    dsaturBacktrackingLog << "]";
-    dsaturBacktrackingLog.close();    
 
     return 0;
 }
