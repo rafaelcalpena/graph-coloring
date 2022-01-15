@@ -6,8 +6,20 @@
     <script src="https://cytoscape.org/cytoscape.js-dagre/cytoscape-dagre.js"></script>
     <script src="https://unpkg.com/@stackomate/data-structures@1.1.0/dist/data-structures.umd.js"></script>
 
-    <script src="../output/greedy-heuristic-output.js"></script>
-    
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        var script = document.createElement('script');
+        script.onload = function () {
+            setupVue();            
+        };
+        let algorithmType = urlParams.get('algorithmType') || 'greedy-heuristic';
+        document.title = algorithmType;
+        script.src = `../output/${algorithmType}-output.js`;
+
+        document.head.appendChild(script); //or something of the likes        
+    </script>
 
     <script src="https://unpkg.com/popper.js@1.14.7/dist/umd/popper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-popper@1.0.4/cytoscape-popper.min.js"></script>
@@ -45,10 +57,8 @@
         }
     </style>
     <script>
+        const setupVue = () => {
         const colors = ["lightpink","mediumslateblue","darkolivegreen","slategray","cyan","midnightblue","darkkhaki","chocolate","fuchsia","mediumblue","ghostwhite","deepskyblue","darkorange","magenta","seagreen","lightsteelblue","navy","darkseagreen","lightgray","coral","slategrey","blueviolet","goldenrod","skyblue","antiquewhite","brown","aquamarine","crimson","yellow","bisque","lightgrey","lightcyan","palevioletred","aqua","lightskyblue","darkgoldenrod","darksalmon","thistle","burlywood","darkred","peachpuff","darkturquoise","darkslategray","chartreuse","sienna","mediumpurple","palegoldenrod","white","steelblue","olivedrab","black","mediumturquoise","hotpink","deeppink","navajowhite","darkmagenta","darkslateblue","gray","seashell","firebrick","orangered","paleturquoise","tan","darkgreen","indianred","red","darkorchid","azure","olive","lightyellow","lightgreen","maroon","darkgray","sandybrown","royalblue","lightsalmon","plum","darkviolet","springgreen","lime","ivory","lightseagreen","lightslategrey","violet","purple","darkgrey","mediumaquamarine","greenyellow","salmon","limegreen","wheat","forestgreen","palegreen","gainsboro","whitesmoke","green","silver","moccasin","lightslategray","mediumspringgreen","orange","mistyrose","mintcream","darkblue","darkcyan","peru","beige","grey","lavender","saddlebrown","mediumvioletred","lavenderblush","papayawhip","blanchedalmond","honeydew","pink","lemonchiffon","orchid","lawngreen","darkslategrey","dodgerblue","indigo","lightgoldenrodyellow","khaki","cornflowerblue","cornsilk","dimgrey","lightcoral","lightblue","teal","gold","tomato","blue","dimgray","mediumorchid","floralwhite","cadetblue","snow","rosybrown","oldlace","powderblue","mediumseagreen","linen","slateblue","turquoise","aliceblue","yellowgreen"]
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const itemIndex = parseInt(urlParams.get('s'), 10) || 0;
         const correspondency = {}
 
         let constraintsResult = [];
@@ -84,8 +94,6 @@
             })
 
         })
-
-        window.addEventListener('DOMContentLoaded', function () {
 
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -141,8 +149,7 @@
                     }
                 })
             });
-        });
-
+    }
     </script>
 </head>
 
