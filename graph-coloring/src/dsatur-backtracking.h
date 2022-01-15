@@ -54,6 +54,11 @@ namespace dsaturBacktracking {
             int tempCor = coloracaoAtual[ordenacao[i]];
             coloracaoAtual[ordenacao[i]] = -1;
             dsatur::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual);
+
+            /* Precisa ser feita antes de retornar tempCor no DSATUR, senao seria possível que i < totalCores */
+            /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
+            int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
+
             coloracaoAtual[ordenacao[i]] = tempCor;            
             debug::debug("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
@@ -61,7 +66,7 @@ namespace dsaturBacktracking {
             debug::debug("{action: 'set', key: 'indice', value: " + to_string(indice) + "}", logStream); 
 
             /* Tenta obter uma cor para o vertice */
-            int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, indice, coloracaoAtual[indice] + 1, k);
+            int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, indice, coloracaoAtual[indice] + 1, boundary);
             debug::debug("{action: 'set', key: 'cor', value: " + to_string(cor) + "}", logStream);
 
             coloracaoAtual[indice] = cor;

@@ -42,8 +42,15 @@ namespace greedyBacktracking {
         while (i != -1) {
             debug::debug("{action: 'iteration', value: " + to_string(i) + "}", logStream);
 
+            /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
+            int tempCor = coloracaoAtual[ordenacao[i]];
+            coloracaoAtual[ordenacao[i]] = -1;
+            /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
+            int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
+            coloracaoAtual[ordenacao[i]] = tempCor;
+
             /* Tenta obter uma cor para o vertice */
-            int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, i, coloracaoAtual[i] + 1, k);
+            int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, i, coloracaoAtual[i] + 1, boundary);
             debug::debug("{action: 'set', key: 'cor', value: " + to_string(cor) + "}", logStream);
 
             coloracaoAtual[i] = cor;
