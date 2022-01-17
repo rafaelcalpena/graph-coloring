@@ -1,7 +1,7 @@
 c FILE: homer.col
 c Translated from Stanford GraphBase File: homer.gb
 c Stanford GraphBase ID: book(?homer?,561,0,1,24,0,0,0)
-p edge 561 3258
+p edge 561 3256
 e 1 452
 e 1 447
 e 1 549
@@ -507,8 +507,9 @@ e 95 489
 e 95 356
 e 95 365
 e 95 202
-e 95 95
-e 95 95
+c edges below have been removed for graph coloring problem
+c 95 95
+c 95 95
 e 96 340
 e 96 452
 e 97 496
