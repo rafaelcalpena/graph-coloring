@@ -1,0 +1,16 @@
+.DS_Store
+.git
+.env
+.cache
+node_modules
+test
+.vscode
+.github
+.commitlintrc.js
+.coveralls.yml
+.prettierignore
+.prettierrc
+.stylelintrc.js
+CODEOWNERS
+codecov.yml
+README.MD
