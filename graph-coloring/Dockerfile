@@ -12,10 +12,14 @@ COPY ${SOURCE_FOLDER} .
 # -stdlib=libc++ is not present for g++
 # cannot use clear otherwise TERM environment variable not set.
 # Add to g++ compilation for stricter outputs: -Wall -Wextra -Werror 
-#RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/graph-coloring.cpp -o ./run 
-RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/gac-network/gac-network.cpp -o ./run 
+RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/graph-coloring.cpp -o ./run 
+# RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/gac-network/gac-network.cpp -o ./run 
 
 # Copy compiled binary from previous stage
 # CMD node --version && DEBUG=0 FILE="dimacs/queen7_7.col" ALG="dsatur-backtracking" ./run
-# CMD node ./testbench
-CMD ./run
+
+# Latest Algorithm
+# CMD node --version && DEBUG=1 FILE="dimacs/myciel3.col" ALG="dsatur-pass" ./run
+# CMD node --version && DEBUG=1 FILE="dimacs/myciel4.col" ALG="dsatur-sewell" ./run
+
+CMD node ./testbench
