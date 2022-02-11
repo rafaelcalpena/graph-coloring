@@ -115,7 +115,9 @@ namespace dsaturPass {
 
     /* Algoritmo Brélaz */
     /* Contém o Backtracking para uma ordem de vértices arbitrária */
-    vector<int> dsaturPass (grafo::Grafo& G, fstream& logStream) {
+    vector<int> dsaturPass (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
+        backtrackingVertices = 0;
+
         /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
         vector<int> coloracaoAtual(G.n, -1);
         debug::debug("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);   
@@ -201,6 +203,8 @@ namespace dsaturPass {
             } 
             /* Se coloracao é pior, pular a branch */
             else if (totalCores > k) {
+                backtrackingVertices++;
+
                 debug::debug("{action: 'preventSearchInSubBranches', value:'coloringWorseThanLimit "+ to_string(k) + " '} ", logStream);
 
                 /* Ainda pode existir uma ou mais cores para o vertices melhores do que a combinacao atual, portanto
@@ -210,6 +214,8 @@ namespace dsaturPass {
 
             }
             else {
+                backtrackingVertices++;
+
                 /* Se tiver mais vertices, continua (forward) */
                 if (i < G.n - 1) {
                     debug::debug("{action: 'moveForward'} ", logStream);                

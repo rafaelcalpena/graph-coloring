@@ -101,6 +101,8 @@ int main(int argc, char** argv) {
     }
 
     else if (algorithm == "dsatur-backtracking") {
+        int backtrackingVertices = 0;
+
         std::cout << "{\"dsatur-backtracking\": {\"colors\": ";
         /* Cria um arquivo log para o greedy-backtracking */
         fstream dsaturBacktrackingLog;
@@ -112,7 +114,7 @@ int main(int argc, char** argv) {
         dsaturBacktrackingLog << "[";
 
         auto start = std::chrono::high_resolution_clock::now();
-        vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
+        vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog, backtrackingVertices);
         auto stop = std::chrono::high_resolution_clock::now();
         std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
@@ -120,12 +122,16 @@ int main(int argc, char** argv) {
 
         std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
         std::cout << ", \"time\":" << duration.count();
+        std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;
+
         grafo::verificaColoracao(grafo, cores4);
         std::cout << "}}";
         dsaturBacktrackingLog.close();    
     }
 
     else if (algorithm == "dsatur-sewell") {
+        int backtrackingVertices = 0;
+
         std::cout << "{\"dsatur-sewell\": {\"colors\": ";
         /* Cria um arquivo log para o dsatur-sewell */
         fstream dsaturSewellLog;
@@ -137,7 +143,7 @@ int main(int argc, char** argv) {
         dsaturSewellLog << "[";
 
         auto start = std::chrono::high_resolution_clock::now();
-        vector<int> cores4 = dsaturSewell::dsaturSewell(grafo, dsaturSewellLog);
+        vector<int> cores4 = dsaturSewell::dsaturSewell(grafo, dsaturSewellLog, backtrackingVertices);
         auto stop = std::chrono::high_resolution_clock::now();
         std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
@@ -145,12 +151,15 @@ int main(int argc, char** argv) {
 
         std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
         std::cout << ", \"time\":" << duration.count();
+        std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;        
         grafo::verificaColoracao(grafo, cores4);
         std::cout << "}}";
         dsaturSewellLog.close();    
     }
 
     else if (algorithm == "dsatur-pass") {
+        int backtrackingVertices = 0;
+
         std::cout << "{\"dsatur-pass\": {\"colors\": ";
         /* Cria um arquivo log para o dsatur-pass */
         fstream dsaturPassLog;
@@ -162,7 +171,7 @@ int main(int argc, char** argv) {
         dsaturPassLog << "[";
 
         auto start = std::chrono::high_resolution_clock::now();
-        vector<int> cores4 = dsaturPass::dsaturPass(grafo, dsaturPassLog);
+        vector<int> cores4 = dsaturPass::dsaturPass(grafo, dsaturPassLog, backtrackingVertices);
         auto stop = std::chrono::high_resolution_clock::now();
         std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
@@ -170,12 +179,15 @@ int main(int argc, char** argv) {
 
         std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
         std::cout << ", \"time\":" << duration.count();
+        std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;        
         grafo::verificaColoracao(grafo, cores4);
         std::cout << "}}";
         dsaturPassLog.close();    
     }    
 
     else if (algorithm == "greedy-backtracking") {
+        int backtrackingVertices = 0;
+
         std::cout << "{\"greedy-backtracking\": {\"colors\": ";
         /* Cria um arquivo log para o greedy-backtracking */
         fstream greedyBacktrackingLog;
@@ -188,7 +200,7 @@ int main(int argc, char** argv) {
         /* Greedy backtracking 2 contem uma versão com variavel de ordenacao
         Greedy backtracking (1) é um pouco mais rápida */
         auto start = std::chrono::high_resolution_clock::now();
-        vector<int> cores3 = greedyBacktracking2::greedyBacktracking2(grafo, greedyBacktrackingLog);
+        vector<int> cores3 = greedyBacktracking2::greedyBacktracking2(grafo, greedyBacktrackingLog, backtrackingVertices);
         auto stop = std::chrono::high_resolution_clock::now();
         std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
         
@@ -196,6 +208,7 @@ int main(int argc, char** argv) {
         
         std::cout << (*max_element(cores3.begin(), cores3.end()) + 1);
         std::cout << ", \"time\":" << duration.count();
+        std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;
 
         grafo::verificaColoracao(grafo, cores3);
         std::cout << "}}";

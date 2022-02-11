@@ -9,7 +9,10 @@ namespace greedyBacktracking2 {
 
     /* Algoritmo Brown */
     /* Contém o Backtracking para uma ordem de vértices arbitrária */
-    vector<int> greedyBacktracking2 (grafo::Grafo& G, fstream& logStream) {
+    vector<int> greedyBacktracking2 (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
+
+        backtrackingVertices = 0;
+
         /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
         vector<int> coloracaoAtual(G.n, -1);
         debug::debug("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);   
@@ -82,6 +85,8 @@ namespace greedyBacktracking2 {
             } 
             /* Se coloracao é pior, pular a branch */
             else if (totalCores > k) {
+                backtrackingVertices++;
+
                 debug::debug("{action: 'preventSearchInSubBranches', value:'coloringWorseThanLimit "+ to_string(k) + " '} ", logStream);
 
                 /* Ainda pode existir uma ou mais cores para o vertices melhores do que a combinacao atual, portanto
@@ -91,6 +96,8 @@ namespace greedyBacktracking2 {
             }
             else {
                 /* Se tiver mais vertices, continua (forward) */
+                backtrackingVertices++;
+
                 if (i < G.n - 1) {
                     debug::debug("{action: 'moveForward'} ", logStream);                
 
