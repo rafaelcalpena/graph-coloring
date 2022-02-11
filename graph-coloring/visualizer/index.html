@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="UTF-8">
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <!-- <script src="../output/greedy-backtracking-output.js"></script> -->
 
@@ -175,8 +176,8 @@
                                     <code v-if="action.action === 'set'">
                                         {{action.key}}={{action.value}}
                                     </code>    
-                                    <code v-if="action.action !== 'set' && action.value">
-                                        {{action.value}}
+                                    <code v-if="action.action !== 'set' && 'value' in action">
+                                        {{action.key}}{{'key' in action ? ': ' : ''}}{{action.value}}
                                     </code>
                                 </div>                            
                             </div>
