@@ -5,8 +5,9 @@ namespace lerArquivo {
 
 #include <vector>
 #include "grafo.h"
+#include <string.h>
 
-grafo::Grafo lerArquivo(char nomeArquivo[]) {
+grafo::Grafo lerArquivo(std::string nomeArquivo) {
     using namespace std;
 
 	/* Cria uma stream para o ler o arquivo do grafo */
@@ -67,7 +68,7 @@ grafo::Grafo lerArquivo(char nomeArquivo[]) {
                 edgeCnt++;
 				
                 if (A[u - 1][v - 1]) {
-                    cout << "Aviso: Aresta já havia sido definida " <<  u << " " << v << " \n";
+                    // cout << "Aviso: Aresta já havia sido definida " <<  u << " " << v << " \n";
                 }
 
 				A[u - 1][v - 1] = true;
@@ -111,7 +112,7 @@ grafo::Grafo lerArquivo(char nomeArquivo[]) {
 			}
 		}
 	}
-	G.grauMaximo = *max_element(G.graus.begin(), G.graus.end());
+	G.grauMaximo = *std::max_element(G.graus.begin(), G.graus.end());
 	return(G);
 }
 
