@@ -9,20 +9,12 @@
 #include "greedy-backtracking.h"
 #include "greedy-backtracking2.h"
 #include "dsatur-backtracking.h"
+#include "dsatur-sewell.h"
+#include "dsatur-pass.h"
+#include "testbench.h"
 
 using namespace std;
 using namespace grafo;
-
-/* Algoritmo Brélaz (DSATUR exato): */
-
-
-/* Algoritmo SEWELL: */
-
-
-/* Algoritmo PASS: */
-
-
-/* Algoritmo do PGC */
 
 void adicionaListaDeAdjAoArquivo(fstream& arquivo, grafo::Grafo& grafo) {
     arquivo << "adjList=[";
@@ -75,55 +67,140 @@ void salvarEmArquivo (string filename, grafo::Grafo& grafo, vector<int> cores) {
 int main(int argc, char** argv) {
     grafo::Grafo grafo = lerArquivo::lerArquivo(getenv("FILE"));
 
-    cout << "Analisando com Greedy:\n";
-    vector<int> cores = greedy::greedy(grafo);
-    grafo::verificaColoracao(grafo, cores);
-    cout << "Cores totais: " << (*max_element(cores.begin(), cores.end()) + 1) << "\n";
-    salvarEmArquivo("output/greedy-heuristic-output.js", grafo, cores);
+    string algorithm = getenv("ALG");
 
+    if (algorithm == "greedy") {
+        std::cout << "{\"greedy\": {\"colors\": ";
+        /* https://www.geeksforgeeks.org/measure-execution-time-function-cpp/ */
 
-    cout << "\n";
-    cout << "Analisando com DSATUR:\n";
-    vector<int> cores2 = dsatur::DSATUR(grafo);
-    grafo::verificaColoracao(grafo, cores2);
-    cout << "Cores totais: " << (*max_element(cores2.begin(), cores2.end()) + 1) << "\n";    
-    salvarEmArquivo("output/dsatur-heuristic-output.js", grafo, cores2);
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores = greedy::greedy(grafo);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
+        std::cout << (*max_element(cores.begin(), cores.end()) + 1);
+        std:: cout << ", \"time\":" << duration.count();
+        grafo::verificaColoracao(grafo, cores);
+        std::cout << "}}";
+        salvarEmArquivo("output/greedy-heuristic-output.js", grafo, cores);
+    }
 
-    cout << "\n";
-    cout << "Analisando com DSATUR Backtracking:\n";
-    /* Cria um arquivo log para o greedy-backtracking */
-    fstream dsaturBacktrackingLog;
-    /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
-    dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
-    adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
-    dsaturBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";    
-    dsaturBacktrackingLog << "logs = ";
-    dsaturBacktrackingLog << "[";
-    vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
-    grafo::verificaColoracao(grafo, cores4);
-    cout << "Cores totais: " << (*max_element(cores4.begin(), cores4.end()) + 1) << "\n";
-    dsaturBacktrackingLog << "]";
-    dsaturBacktrackingLog.close();    
+    else if (algorithm == "dsatur") {
+        std::cout << "{\"dsatur\": {\"colors\": ";
 
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores2 = dsatur::DSATUR(grafo);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
-    cout << "\n";
-    cout << "Analisando com Greedy Backtracking:\n";
-    /* Cria um arquivo log para o greedy-backtracking */
-    fstream greedyBacktrackingLog;
-    /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
-    greedyBacktrackingLog.open("output/greedy-backtracking-output.js", fstream::out);
-    adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
-    greedyBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";
-    greedyBacktrackingLog << "logs = ";
-    greedyBacktrackingLog << "[";
-    /* Greedy backtracking 2 contem uma versão com variavel de ordenacao
-    Greedy backtracking (1) é um pouco mais rápida */
-    vector<int> cores3 = greedyBacktracking2::greedyBacktracking2(grafo, greedyBacktrackingLog);
-    grafo::verificaColoracao(grafo, cores3);
-    cout << "Cores totais: " << (*max_element(cores3.begin(), cores3.end()) + 1) << "\n";
-    greedyBacktrackingLog << "]";
-    greedyBacktrackingLog.close();
+        std::cout << (*max_element(cores2.begin(), cores2.end()) + 1);
+        std:: cout << ", \"time\":" << duration.count();
+        grafo::verificaColoracao(grafo, cores2);
+        std::cout << "}}";
+        salvarEmArquivo("output/dsatur-heuristic-output.js", grafo, cores2);
+    }
+
+    else if (algorithm == "dsatur-backtracking") {
+        std::cout << "{\"dsatur-backtracking\": {\"colors\": ";
+        /* Cria um arquivo log para o greedy-backtracking */
+        fstream dsaturBacktrackingLog;
+        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
+        adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
+        dsaturBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";    
+        dsaturBacktrackingLog << "logs = ";
+        dsaturBacktrackingLog << "[";
+
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores4 = dsaturBacktracking::dsaturBacktracking(grafo, dsaturBacktrackingLog);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+        dsaturBacktrackingLog << "]";
+
+        std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
+        std::cout << ", \"time\":" << duration.count();
+        grafo::verificaColoracao(grafo, cores4);
+        std::cout << "}}";
+        dsaturBacktrackingLog.close();    
+    }
+
+    else if (algorithm == "dsatur-sewell") {
+        std::cout << "{\"dsatur-sewell\": {\"colors\": ";
+        /* Cria um arquivo log para o dsatur-sewell */
+        fstream dsaturSewellLog;
+        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        dsaturSewellLog.open("output/dsatur-sewell-output.js", fstream::out);
+        adicionaListaDeAdjAoArquivo(dsaturSewellLog, grafo);
+        dsaturSewellLog << "graphFileName = '" << getenv("FILE") << "';\n";    
+        dsaturSewellLog << "logs = ";
+        dsaturSewellLog << "[";
+
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores4 = dsaturSewell::dsaturSewell(grafo, dsaturSewellLog);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+        dsaturSewellLog << "]";
+
+        std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
+        std::cout << ", \"time\":" << duration.count();
+        grafo::verificaColoracao(grafo, cores4);
+        std::cout << "}}";
+        dsaturSewellLog.close();    
+    }
+
+    else if (algorithm == "dsatur-pass") {
+        std::cout << "{\"dsatur-pass\": {\"colors\": ";
+        /* Cria um arquivo log para o dsatur-pass */
+        fstream dsaturPassLog;
+        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        dsaturPassLog.open("output/dsatur-pass-output.js", fstream::out);
+        adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
+        dsaturPassLog << "graphFileName = '" << getenv("FILE") << "';\n";    
+        dsaturPassLog << "logs = ";
+        dsaturPassLog << "[";
+
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores4 = dsaturPass::dsaturPass(grafo, dsaturPassLog);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+        dsaturPassLog << "]";
+
+        std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
+        std::cout << ", \"time\":" << duration.count();
+        grafo::verificaColoracao(grafo, cores4);
+        std::cout << "}}";
+        dsaturPassLog.close();    
+    }    
+
+    else if (algorithm == "greedy-backtracking") {
+        std::cout << "{\"greedy-backtracking\": {\"colors\": ";
+        /* Cria um arquivo log para o greedy-backtracking */
+        fstream greedyBacktrackingLog;
+        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        greedyBacktrackingLog.open("output/greedy-backtracking-output.js", fstream::out);
+        adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
+        greedyBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";
+        greedyBacktrackingLog << "logs = ";
+        greedyBacktrackingLog << "[";
+        /* Greedy backtracking 2 contem uma versão com variavel de ordenacao
+        Greedy backtracking (1) é um pouco mais rápida */
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores3 = greedyBacktracking2::greedyBacktracking2(grafo, greedyBacktrackingLog);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+        
+        greedyBacktrackingLog << "]";
+        
+        std::cout << (*max_element(cores3.begin(), cores3.end()) + 1);
+        std::cout << ", \"time\":" << duration.count();
+
+        grafo::verificaColoracao(grafo, cores3);
+        std::cout << "}}";
+        greedyBacktrackingLog.close();
+    }
 
     return 0;
 }

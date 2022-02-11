@@ -1,6 +1,8 @@
 #ifndef GRAFOH
 #define GRAFOH
 
+#include <set>
+
 namespace grafo {
 #include <vector>
     using namespace std;
@@ -73,6 +75,36 @@ namespace grafo {
         /* Retornamos -1 em caso de ausencia de cores válidas */
         return -1;
     }    
+
+    /* Usado principalmente para heurísticas pass e sewell */
+    std::set<int> obterCoresDisponiveisParaVertice(grafo::Grafo& G, vector<int> coloracaoAtual, int i, int to) {
+        /* Lista que indica se uma cor ja foi usada.
+        No pior caso, n cores serao necessarias */
+        vector<bool> coresUsadas(to, false);
+        vector<int> adj = G.listaAdj[i];
+        set<int> availableColors;
+
+        /* Passamos pela lista de adjacencia do vertice e marcamos quais cores podem ser utilizadas */
+        for (int z = 0; z < adj.size(); z++)
+        {
+            int j = adj[z];
+
+            /* Assinalar cor utilizada */
+            if (coloracaoAtual[j] != -1)
+            {
+                coresUsadas[coloracaoAtual[j]] = true;
+            }
+        }
+
+        /* Procuramos uma cor que não tenha sido usada */
+        for (int c = 0; c < to; c++) {
+            if (coresUsadas[c] == false) {
+                availableColors.insert(c);
+            }
+        }
+
+        return availableColors;
+    }
 
     /* Retorna o numero total de cores de uma coloracao */
     int obterTotalCores (vector<int> coloracao) {
