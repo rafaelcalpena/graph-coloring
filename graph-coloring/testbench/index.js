@@ -4,10 +4,10 @@ const fs = require('fs');
 const execFile = require('child_process').execFile;
 
 const SECOND = 1000; // 1000ms
-const MINUTE = 1 * SECOND;
+const MINUTE = 60 * SECOND;
 
 
-let TIME_LIMIT = 1 * MINUTE;
+let TIME_LIMIT = 10 * MINUTE;
 
 const testbench = async () => {
     let config = require('./config.js')
@@ -21,13 +21,15 @@ const testbench = async () => {
 
         let item = config[i];
 
-        let file = item;
-        console.log(file)
+        let filename = item.name;
+        console.log(filename)
         const algorithmRuns = [
             'greedy',
             'dsatur',
             'greedy-backtracking',
-            'dsatur-backtracking'
+            'dsatur-backtracking',
+            'dsatur-sewell',
+            'dsatur-pass'
         ]
         
         let promises = algorithmRuns.map(algorithm => new Promise((resolve, reject) => {
@@ -36,7 +38,7 @@ const testbench = async () => {
                 env: {
                     /* Disable debugging log */
                     DEBUG: 0,
-                    FILE: file,
+                    FILE: filename,
                     ALG: algorithm
                 }
             }, 
@@ -54,7 +56,7 @@ const testbench = async () => {
 
             setTimeout(() => {
                 if (!hasFinished) {
-                    console.log(file, algorithm, 'did not finish after', TIME_LIMIT, 'ms')
+                    console.log(filename, algorithm, 'did not finish after', TIME_LIMIT, 'ms')
                     childProcess.kill();
                     hasFinished = true;
                 }
@@ -62,14 +64,20 @@ const testbench = async () => {
         }))
 
         let results = await Promise.all(promises);
-        let finalObj = {
-            [item]: {
-                ...results[0],
-                ...results[1],
-                ...results[2],
-                ...results[3]
+        let finalObj = {}
+
+        finalObj[filename] = {
+            info: item
+        };
+
+        for (let r of results) {
+            
+            finalObj[filename] = {
+                ...finalObj[filename],
+                ...r
             }
         }
+
         stream.write(JSON.stringify(finalObj, null, 2));
         if (i + 1 < len) {
             stream.write(', ');

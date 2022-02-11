@@ -1,60 +1,60 @@
 module.exports = [
-    "./dimacs/myciel3.col", // 20 edges
-    "./dimacs/myciel4.col", // 71 edges
-    "./dimacs/myciel5.col", // 236 edges
-    "./dimacs/queen5_5.col", // 320 edges
-    "./dimacs/jean.col", // 508 edges
-    "./dimacs/queen6_6.col", // 580 edges
-    "./dimacs/huck.col", // 602 edges
-    "./dimacs/myciel6.col", // 755 edges
-    "./dimacs/miles250.col", // 774 edges
-    "./dimacs/david.col", // 812 edges
-    "./dimacs/queen7_7.col", // 952 edges
-    "./dimacs/anna.col", // 986 edges
-    "./dimacs/games120.col", // 1276 edges
-    "./dimacs/queen8_8.col", // 1456 edges
-    "./dimacs/queen9_9.col", // 2112 edges
-    "./dimacs/miles500.col", // 2340 edges
-    "./dimacs/myciel7.col", // 2360 edges
-    "./dimacs/queen8_12.col", // 2736 edges
-    "./dimacs/queen10_10.col", // 2940 edges
-    "./dimacs/homer.col", // 3256 edges
-    "./dimacs/zeroin.i.3.col", // 3540 edges
-    "./dimacs/zeroin.i.2.col", // 3541 edges
-    "./dimacs/mulsol.i.2.col", // 3885 edges
-    "./dimacs/mulsol.i.3.col", // 3916 edges
-    "./dimacs/mulsol.i.1.col", // 3925 edges
-    "./dimacs/mulsol.i.4.col", // 3946 edges
-    "./dimacs/queen11_11.col", // 3960 edges
-    "./dimacs/mulsol.i.5.col", // 3973 edges
-    "./dimacs/zeroin.i.1.col", // 4100 edges
-    "./dimacs/miles750.col", // 4226 edges
-    "./dimacs/queen12_12.col", // 5192 edges
-    "./dimacs/le450_5a.col", // 5714 edges
-    "./dimacs/le450_5b.col", // 5734 edges
-    "./dimacs/miles1000.col", // 6432 edges
-    "./dimacs/queen13_13.col", // 6656 edges
-    "./dimacs/le450_15a.col", // 8168 edges
-    "./dimacs/le450_15b.col", // 8169 edges
-    "./dimacs/le450_25a.col", // 8260 edges
-    "./dimacs/le450_25b.col", // 8263 edges
-    "./dimacs/queen14_14.col", // 8372 edges
-    "./dimacs/fpsol2.i.3.col", // 8688 edges
-    "./dimacs/fpsol2.i.2.col", // 8691 edges
-    "./dimacs/le450_5d.col", // 9757 edges
-    "./dimacs/le450_5c.col", // 9803 edges
-    "./dimacs/queen15_15.col", // 10360 edges
-    "./dimacs/miles1500.col", // 10396 edges
-    "./dimacs/fpsol2.i.1.col", // 11654 edges
-    "./dimacs/queen16_16.col", // 12640 edges
-    "./dimacs/inithx.i.3.col", // 13969 edges
-    "./dimacs/inithx.i.2.col", // 13979 edges
-    "./dimacs/school1_nsh.col", // 14612 edges
-    "./dimacs/le450_15c.col", // 16680 edges
-    "./dimacs/le450_15d.col", // 16750 edges
-    "./dimacs/le450_25c.col", // 17343 edges
-    "./dimacs/le450_25d.col", // 17425 edges
-    "./dimacs/inithx.i.1.col", // 18707 edges
-    "./dimacs/school1.col", // 19095 edges
-    "./dimacs/latin_square_10.col" // 307350 edges
+    {name: "./dimacs/myciel3.col", optimal: 4}, // 20 edges
+    {name: "./dimacs/myciel4.col", optimal: 5}, // 71 edges
+    {name: "./dimacs/myciel5.col", optimal: 6}, // 236 edges
+    {name: "./dimacs/queen5_5.col", optimal: 5}, // 320 edges
+    {name: "./dimacs/jean.col", optimal: 10}, // 508 edges
+    {name: "./dimacs/queen6_6.col", optimal: 7}, // 580 edges
+    {name: "./dimacs/huck.col", optimal: 11}, // 602 edges
+    {name: "./dimacs/myciel6.col", optimal: 7}, // 755 edges
+    {name: "./dimacs/miles250.col", optimal: 8}, // 774 edges
+    {name: "./dimacs/david.col", optimal: 11}, // 812 edges
+    {name: "./dimacs/queen7_7.col", optimal: 7}, // 952 edges
+    {name: "./dimacs/anna.col", optimal: 11}, // 986 edges
+    {name: "./dimacs/games120.col", optimal: 9}, // 1276 edges
+    {name: "./dimacs/queen8_8.col", optimal: 9}, // 1456 edges
+    {name: "./dimacs/queen9_9.col", optimal: 10}, // 2112 edges
+    {name: "./dimacs/miles500.col", optimal: 20}, // 2340 edges
+    {name: "./dimacs/myciel7.col", optimal: 8}, // 2360 edges
+    {name: "./dimacs/queen8_12.col", optimal: 12}, // 2736 edges
+    {name: "./dimacs/queen10_10.col", optimal: null}, // 2940 edges
+    {name: "./dimacs/homer.col", optimal: 13}, // 3256 edges
+    {name: "./dimacs/zeroin.i.3.col", optimal: 30}, // 3540 edges
+    {name: "./dimacs/zeroin.i.2.col", optimal: 30}, // 3541 edges
+    {name: "./dimacs/mulsol.i.2.col", optimal: 31}, // 3885 edges
+    {name: "./dimacs/mulsol.i.3.col", optimal: 31}, // 3916 edges
+    {name: "./dimacs/mulsol.i.1.col", optimal: 49}, // 3925 edges
+    {name: "./dimacs/mulsol.i.4.col", optimal: 31}, // 3946 edges
+    {name: "./dimacs/queen11_11.col", optimal: 11}, // 3960 edges
+    {name: "./dimacs/mulsol.i.5.col", optimal: 31}, // 3973 edges
+    {name: "./dimacs/zeroin.i.1.col", optimal: 49}, // 4100 edges
+    {name: "./dimacs/miles750.col", optimal: 31}, // 4226 edges
+    {name: "./dimacs/queen12_12.col", optimal: null}, // 5192 edges
+    {name: "./dimacs/le450_5a.col", optimal: 5}, // 5714 edges
+    {name: "./dimacs/le450_5b.col", optimal: 5}, // 5734 edges
+    {name: "./dimacs/miles1000.col", optimal: 42}, // 6432 edges
+    {name: "./dimacs/queen13_13.col", optimal: 13}, // 6656 edges
+    {name: "./dimacs/le450_15a.col", optimal: 15}, // 8168 edges
+    {name: "./dimacs/le450_15b.col", optimal: 15}, // 8169 edges
+    {name: "./dimacs/le450_25a.col", optimal: 25}, // 8260 edges
+    {name: "./dimacs/le450_25b.col", optimal: 25}, // 8263 edges
+    {name: "./dimacs/queen14_14.col", optimal: null}, // 8372 edges
+    {name: "./dimacs/fpsol2.i.3.col", optimal: 30}, // 8688 edges
+    {name: "./dimacs/fpsol2.i.2.col", optimal: 30}, // 8691 edges
+    {name: "./dimacs/le450_5d.col", optimal: 5}, // 9757 edges
+    {name: "./dimacs/le450_5c.col", optimal: 5}, // 9803 edges
+    {name: "./dimacs/queen15_15.col",  optimal: null},// 10360 edges
+    {name: "./dimacs/miles1500.col",  optimal: 73},// 10396 edges
+    {name: "./dimacs/fpsol2.i.1.col",  optimal: 65},// 11654 edges
+    {name: "./dimacs/queen16_16.col",  optimal: null},// 12640 edges
+    {name: "./dimacs/inithx.i.3.col",  optimal: 31},// 13969 edges
+    {name: "./dimacs/inithx.i.2.col",  optimal: 31},// 13979 edges
+    {name: "./dimacs/school1_nsh.col",  optimal: null},// 14612 edges
+    {name: "./dimacs/le450_15c.col",  optimal: 15},// 16680 edges
+    {name: "./dimacs/le450_15d.col",  optimal: 15},// 16750 edges
+    {name: "./dimacs/le450_25c.col",  optimal: 25},// 17343 edges
+    {name: "./dimacs/le450_25d.col",  optimal: 25},// 17425 edges
+    {name: "./dimacs/inithx.i.1.col",  optimal: 54},// 18707 edges
+    {name: "./dimacs/school1.col",  optimal: null},// 19095 edges
+    {name: "./dimacs/latin_square_10.col", optimal: null} // 307350 edges
 ]
