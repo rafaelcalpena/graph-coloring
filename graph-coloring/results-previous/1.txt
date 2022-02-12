@@ -1,0 +1,430 @@
+➜  graph-coloring git:(gen-tree) ✗ docker-compose up   
+Recreating graph-coloring_coloring_1 ... done
+Starting graph-coloring_web_1        ... done
+Attaching to graph-coloring_web_1, graph-coloring_coloring_1
+web_1       | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+web_1       | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+web_1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+web_1       | 10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
+web_1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+web_1       | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+web_1       | /docker-entrypoint.sh: Configuration complete; ready for start up
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: using the "epoll" event method
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: nginx/1.21.6
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: built by gcc 10.2.1 20210110 (Debian 10.2.1-6) 
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: OS: Linux 5.10.76-linuxkit
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker processes
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker process 25
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker process 26
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker process 27
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker process 28
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker process 29
+web_1       | 2022/02/10 04:03:44 [notice] 1#1: start worker process 30
+coloring_1  | ./dimacs/myciel3.col
+coloring_1  | { 'dsatur-backtracking': { colors: 4, time: 1 } }
+coloring_1  | { 'dsatur-pass': { colors: 4, time: 3 } }
+coloring_1  | { 'dsatur-sewell': { colors: 4, time: 7 } }
+coloring_1  | { 'greedy-backtracking': { colors: 4, time: 1 } }
+coloring_1  | { greedy: { colors: 4, time: 0 } }
+coloring_1  | { dsatur: { colors: 4, time: 0 } }
+coloring_1  | ./dimacs/myciel4.col
+coloring_1  | { dsatur: { colors: 5, time: 0 } }
+coloring_1  | { greedy: { colors: 5, time: 0 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 5, time: 52 } }
+coloring_1  | { 'dsatur-sewell': { colors: 5, time: 165 } }
+coloring_1  | { 'dsatur-pass': { colors: 5, time: 171 } }
+coloring_1  | { 'greedy-backtracking': { colors: 5, time: 6099 } }
+coloring_1  | ./dimacs/myciel5.col
+coloring_1  | { dsatur: { colors: 6, time: 0 } }
+coloring_1  | { greedy: { colors: 6, time: 0 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 6, time: 47307 } }
+coloring_1  | { 'dsatur-sewell': { colors: 6, time: 92987 } }
+coloring_1  | ./dimacs/myciel5.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel5.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen5_5.col
+coloring_1  | { dsatur: { colors: 5, time: 0 } }
+coloring_1  | { greedy: { colors: 8, time: 0 } }
+coloring_1  | { 'greedy-backtracking': { colors: 5, time: 3 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 5, time: 1 } }
+coloring_1  | { 'dsatur-pass': { colors: 5, time: 14 } }
+coloring_1  | { 'dsatur-sewell': { colors: 5, time: 40 } }
+coloring_1  | ./dimacs/jean.col
+coloring_1  | { dsatur: { colors: 10, time: 2 } }
+coloring_1  | { greedy: { colors: 10, time: 0 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 10, time: 380307 } }
+coloring_1  | ./dimacs/jean.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/jean.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/jean.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen6_6.col
+coloring_1  | { dsatur: { colors: 9, time: 0 } }
+coloring_1  | { greedy: { colors: 11, time: 0 } }
+coloring_1  | { 'dsatur-pass': { colors: 7, time: 67 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 7, time: 434 } }
+coloring_1  | { 'greedy-backtracking': { colors: 7, time: 1066 } }
+coloring_1  | { 'dsatur-sewell': { colors: 7, time: 2315 } }
+coloring_1  | ./dimacs/huck.col
+coloring_1  | { greedy: { colors: 11, time: 0 } }
+coloring_1  | { dsatur: { colors: 11, time: 1 } }
+coloring_1  | { 'dsatur-pass': { colors: 11, time: 127 } }
+coloring_1  | ./dimacs/huck.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/huck.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/huck.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel6.col
+coloring_1  | { greedy: { colors: 7, time: 0 } }
+coloring_1  | { dsatur: { colors: 7, time: 5 } }
+coloring_1  | ./dimacs/myciel6.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel6.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel6.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel6.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/miles250.col
+coloring_1  | { greedy: { colors: 9, time: 0 } }
+coloring_1  | { dsatur: { colors: 8, time: 4 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 8, time: 66 } }
+coloring_1  | { 'dsatur-pass': { colors: 8, time: 146 } }
+coloring_1  | { 'dsatur-sewell': { colors: 8, time: 293 } }
+coloring_1  | ./dimacs/miles250.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/david.col
+coloring_1  | { greedy: { colors: 12, time: 0 } }
+coloring_1  | { dsatur: { colors: 11, time: 3 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 11, time: 42 } }
+coloring_1  | { 'dsatur-pass': { colors: 11, time: 220 } }
+coloring_1  | { 'dsatur-sewell': { colors: 11, time: 454 } }
+coloring_1  | ./dimacs/david.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen7_7.col
+coloring_1  | { dsatur: { colors: 11, time: 1 } }
+coloring_1  | { greedy: { colors: 10, time: 0 } }
+coloring_1  | { 'dsatur-pass': { colors: 7, time: 1386 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 7, time: 2708 } }
+coloring_1  | { 'greedy-backtracking': { colors: 7, time: 5170 } }
+coloring_1  | { 'dsatur-sewell': { colors: 7, time: 10653 } }
+coloring_1  | ./dimacs/anna.col
+coloring_1  | { greedy: { colors: 12, time: 0 } }
+coloring_1  | { dsatur: { colors: 11, time: 6 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 11, time: 120 } }
+coloring_1  | { 'dsatur-pass': { colors: 11, time: 408 } }
+coloring_1  | { 'dsatur-sewell': { colors: 11, time: 708 } }
+coloring_1  | ./dimacs/anna.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/games120.col
+coloring_1  | { greedy: { colors: 9, time: 0 } }
+coloring_1  | { dsatur: { colors: 9, time: 5 } }
+coloring_1  | ./dimacs/games120.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/games120.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/games120.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/games120.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_8.col
+coloring_1  | { greedy: { colors: 13, time: 0 } }
+coloring_1  | { dsatur: { colors: 12, time: 2 } }
+coloring_1  | ./dimacs/queen8_8.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_8.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_8.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_8.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen9_9.col
+coloring_1  | { greedy: { colors: 16, time: 0 } }
+coloring_1  | { dsatur: { colors: 13, time: 4 } }
+coloring_1  | ./dimacs/queen9_9.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen9_9.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen9_9.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen9_9.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/miles500.col
+coloring_1  | { greedy: { colors: 22, time: 0 } }
+coloring_1  | { dsatur: { colors: 20, time: 6 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 20, time: 137 } }
+coloring_1  | { 'dsatur-pass': { colors: 20, time: 412 } }
+coloring_1  | { 'dsatur-sewell': { colors: 20, time: 1215 } }
+coloring_1  | ./dimacs/miles500.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel7.col
+coloring_1  | { greedy: { colors: 8, time: 0 } }
+coloring_1  | { dsatur: { colors: 8, time: 19 } }
+coloring_1  | ./dimacs/myciel7.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel7.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel7.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/myciel7.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_12.col
+coloring_1  | { greedy: { colors: 15, time: 0 } }
+coloring_1  | { dsatur: { colors: 14, time: 5 } }
+coloring_1  | { 'dsatur-pass': { colors: 12, time: 242 } }
+coloring_1  | ./dimacs/queen8_12.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_12.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen8_12.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen10_10.col
+coloring_1  | { greedy: { colors: 16, time: 0 } }
+coloring_1  | { dsatur: { colors: 14, time: 6 } }
+coloring_1  | ./dimacs/queen10_10.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen10_10.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen10_10.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen10_10.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/homer.col
+coloring_1  | { greedy: { colors: 15, time: 0 } }
+coloring_1  | { dsatur: { colors: 13, time: 92 } }
+coloring_1  | ./dimacs/homer.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/homer.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/homer.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/homer.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.3.col
+coloring_1  | { greedy: { colors: 30, time: 0 } }
+coloring_1  | { dsatur: { colors: 30, time: 24 } }
+coloring_1  | { 'dsatur-pass': { colors: 30, time: 3600 } }
+coloring_1  | ./dimacs/zeroin.i.3.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.3.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.3.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.2.col
+coloring_1  | { greedy: { colors: 30, time: 0 } }
+coloring_1  | { dsatur: { colors: 30, time: 25 } }
+coloring_1  | { 'dsatur-pass': { colors: 30, time: 3873 } }
+coloring_1  | ./dimacs/zeroin.i.2.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.2.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.2.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.2.col
+coloring_1  | { greedy: { colors: 31, time: 0 } }
+coloring_1  | { dsatur: { colors: 31, time: 24 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 31, time: 327 } }
+coloring_1  | { 'dsatur-pass': { colors: 31, time: 3707 } }
+coloring_1  | { 'dsatur-sewell': { colors: 31, time: 18215 } }
+coloring_1  | ./dimacs/mulsol.i.2.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.3.col
+coloring_1  | { greedy: { colors: 31, time: 0 } }
+coloring_1  | { dsatur: { colors: 31, time: 24 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 31, time: 312 } }
+coloring_1  | { 'dsatur-pass': { colors: 31, time: 3676 } }
+coloring_1  | { 'dsatur-sewell': { colors: 31, time: 18328 } }
+coloring_1  | ./dimacs/mulsol.i.3.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.1.col
+coloring_1  | { greedy: { colors: 49, time: 0 } }
+coloring_1  | { dsatur: { colors: 49, time: 23 } }
+coloring_1  | { 'dsatur-pass': { colors: 49, time: 13369 } }
+coloring_1  | ./dimacs/mulsol.i.1.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.1.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.1.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.4.col
+coloring_1  | { greedy: { colors: 31, time: 0 } }
+coloring_1  | { dsatur: { colors: 31, time: 26 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 31, time: 311 } }
+coloring_1  | { 'dsatur-pass': { colors: 31, time: 3739 } }
+coloring_1  | { 'dsatur-sewell': { colors: 31, time: 18621 } }
+coloring_1  | ./dimacs/mulsol.i.4.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen11_11.col
+coloring_1  | { greedy: { colors: 17, time: 0 } }
+coloring_1  | { dsatur: { colors: 15, time: 9 } }
+coloring_1  | ./dimacs/queen11_11.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen11_11.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen11_11.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen11_11.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/mulsol.i.5.col
+coloring_1  | { greedy: { colors: 31, time: 0 } }
+coloring_1  | { dsatur: { colors: 31, time: 23 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 31, time: 313 } }
+coloring_1  | { 'dsatur-pass': { colors: 31, time: 3781 } }
+coloring_1  | { 'dsatur-sewell': { colors: 31, time: 18822 } }
+coloring_1  | ./dimacs/mulsol.i.5.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/zeroin.i.1.col
+coloring_1  | { greedy: { colors: 49, time: 0 } }
+coloring_1  | { dsatur: { colors: 49, time: 27 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 49, time: 878 } }
+coloring_1  | { 'dsatur-pass': { colors: 49, time: 11426 } }
+coloring_1  | { 'dsatur-sewell': { colors: 49, time: 27889 } }
+coloring_1  | ./dimacs/zeroin.i.1.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/miles750.col
+coloring_1  | { greedy: { colors: 34, time: 0 } }
+coloring_1  | { dsatur: { colors: 31, time: 10 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 31, time: 673 } }
+coloring_1  | { 'dsatur-sewell': { colors: 31, time: 242835 } }
+coloring_1  | ./dimacs/miles750.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/miles750.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen12_12.col
+coloring_1  | { greedy: { colors: 20, time: 0 } }
+coloring_1  | { dsatur: { colors: 16, time: 17 } }
+coloring_1  | ./dimacs/queen12_12.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen12_12.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen12_12.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen12_12.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5a.col
+coloring_1  | { greedy: { colors: 14, time: 0 } }
+coloring_1  | { dsatur: { colors: 10, time: 115 } }
+coloring_1  | ./dimacs/le450_5a.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5a.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5a.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5a.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5b.col
+coloring_1  | { greedy: { colors: 13, time: 0 } }
+coloring_1  | { dsatur: { colors: 9, time: 113 } }
+coloring_1  | { 'dsatur-sewell': { colors: 5, time: 104714 } }
+coloring_1  | ./dimacs/le450_5b.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5b.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5b.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/miles1000.col
+coloring_1  | { greedy: { colors: 44, time: 0 } }
+coloring_1  | { dsatur: { colors: 42, time: 16 } }
+coloring_1  | { 'dsatur-pass': { colors: 42, time: 2740 } }
+coloring_1  | ./dimacs/miles1000.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/miles1000.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/miles1000.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen13_13.col
+coloring_1  | { greedy: { colors: 21, time: 0 } }
+coloring_1  | { dsatur: { colors: 17, time: 21 } }
+coloring_1  | ./dimacs/queen13_13.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen13_13.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen13_13.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen13_13.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15a.col
+coloring_1  | { greedy: { colors: 22, time: 0 } }
+coloring_1  | { dsatur: { colors: 17, time: 142 } }
+coloring_1  | ./dimacs/le450_15a.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15a.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15a.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15a.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15b.col
+coloring_1  | { greedy: { colors: 22, time: 0 } }
+coloring_1  | { dsatur: { colors: 16, time: 136 } }
+coloring_1  | { 'dsatur-sewell': { colors: 15, time: 323876 } }
+coloring_1  | ./dimacs/le450_15b.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15b.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15b.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25a.col
+coloring_1  | { greedy: { colors: 28, time: 0 } }
+coloring_1  | { dsatur: { colors: 25, time: 128 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 25, time: 1965 } }
+coloring_1  | { 'dsatur-pass': { colors: 25, time: 5239 } }
+coloring_1  | { 'dsatur-sewell': { colors: 25, time: 19595 } }
+coloring_1  | ./dimacs/le450_25a.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25b.col
+coloring_1  | { greedy: { colors: 27, time: 0 } }
+coloring_1  | { dsatur: { colors: 25, time: 131 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 25, time: 1948 } }
+coloring_1  | { 'dsatur-sewell': { colors: 25, time: 16662 } }
+coloring_1  | ./dimacs/le450_25b.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25b.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen14_14.col
+coloring_1  | { greedy: { colors: 23, time: 0 } }
+coloring_1  | { dsatur: { colors: 19, time: 32 } }
+coloring_1  | ./dimacs/queen14_14.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen14_14.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen14_14.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen14_14.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/fpsol2.i.3.col
+coloring_1  | { greedy: { colors: 30, time: 0 } }
+coloring_1  | { dsatur: { colors: 30, time: 136 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 30, time: 9231 } }
+coloring_1  | { 'dsatur-pass': { colors: 30, time: 33435 } }
+coloring_1  | { 'dsatur-sewell': { colors: 30, time: 154309 } }
+coloring_1  | ./dimacs/fpsol2.i.3.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/fpsol2.i.2.col
+coloring_1  | { greedy: { colors: 30, time: 0 } }
+coloring_1  | { dsatur: { colors: 30, time: 135 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 30, time: 9899 } }
+coloring_1  | { 'dsatur-pass': { colors: 30, time: 35945 } }
+coloring_1  | { 'dsatur-sewell': { colors: 30, time: 155945 } }
+coloring_1  | ./dimacs/fpsol2.i.2.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5d.col
+coloring_1  | { greedy: { colors: 18, time: 0 } }
+coloring_1  | { dsatur: { colors: 12, time: 165 } }
+coloring_1  | { 'dsatur-pass': { colors: 6, time: 12298 } }
+coloring_1  | ./dimacs/le450_5d.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5d.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5d.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5c.col
+coloring_1  | { greedy: { colors: 17, time: 0 } }
+coloring_1  | { dsatur: { colors: 10, time: 158 } }
+coloring_1  | { 'dsatur-sewell': { colors: 5, time: 168678 } }
+coloring_1  | ./dimacs/le450_5c.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5c.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_5c.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/queen15_15.col
+coloring_1  | { greedy: { colors: 25, time: 0 } }
+coloring_1  | { dsatur: { colors: 21, time: 46 } }
+coloring_1  | ./dimacs/queen15_15.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen15_15.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen15_15.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen15_15.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/miles1500.col
+coloring_1  | { greedy: { colors: 76, time: 0 } }
+coloring_1  | { dsatur: { colors: 73, time: 24 } }
+coloring_1  | { 'dsatur-pass': { colors: 73, time: 11275 } }
+coloring_1  | ./dimacs/miles1500.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/miles1500.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/miles1500.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/fpsol2.i.1.col
+coloring_1  | { greedy: { colors: 65, time: 1 } }
+coloring_1  | { dsatur: { colors: 65, time: 138 } }
+coloring_1  | { 'dsatur-pass': { colors: 65, time: 143010 } }
+coloring_1  | ./dimacs/fpsol2.i.1.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/fpsol2.i.1.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/fpsol2.i.1.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen16_16.col
+coloring_1  | { greedy: { colors: 25, time: 0 } }
+coloring_1  | { dsatur: { colors: 23, time: 58 } }
+coloring_1  | ./dimacs/queen16_16.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen16_16.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/queen16_16.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/queen16_16.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.3.col
+coloring_1  | { greedy: { colors: 31, time: 1 } }
+coloring_1  | { dsatur: { colors: 31, time: 285 } }
+coloring_1  | ./dimacs/inithx.i.3.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.3.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.3.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.3.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.2.col
+coloring_1  | { greedy: { colors: 31, time: 1 } }
+coloring_1  | { dsatur: { colors: 31, time: 294 } }
+coloring_1  | ./dimacs/inithx.i.2.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.2.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.2.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.2.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/school1_nsh.col
+coloring_1  | { greedy: { colors: 39, time: 0 } }
+coloring_1  | { dsatur: { colors: 27, time: 133 } }
+coloring_1  | { 'dsatur-pass': { colors: 15, time: 16811 } }
+coloring_1  | ./dimacs/school1_nsh.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/school1_nsh.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/school1_nsh.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15c.col
+coloring_1  | { greedy: { colors: 30, time: 1 } }
+coloring_1  | { dsatur: { colors: 23, time: 245 } }
+coloring_1  | ./dimacs/le450_15c.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15c.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15c.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15c.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15d.col
+coloring_1  | { greedy: { colors: 31, time: 1 } }
+coloring_1  | { dsatur: { colors: 24, time: 251 } }
+coloring_1  | ./dimacs/le450_15d.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15d.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15d.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_15d.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25c.col
+coloring_1  | { greedy: { colors: 37, time: 1 } }
+coloring_1  | { dsatur: { colors: 29, time: 257 } }
+coloring_1  | ./dimacs/le450_25c.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25c.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25c.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25c.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25d.col
+coloring_1  | { greedy: { colors: 35, time: 1 } }
+coloring_1  | { dsatur: { colors: 28, time: 243 } }
+coloring_1  | ./dimacs/le450_25d.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25d.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25d.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/le450_25d.col dsatur-pass did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.1.col
+coloring_1  | { greedy: { colors: 54, time: 3 } }
+coloring_1  | { dsatur: { colors: 54, time: 420 } }
+coloring_1  | { 'dsatur-pass': { colors: 54, time: 466757 } }
+coloring_1  | ./dimacs/inithx.i.1.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.1.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/inithx.i.1.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/school1.col
+coloring_1  | { greedy: { colors: 42, time: 1 } }
+coloring_1  | { dsatur: { colors: 17, time: 188 } }
+coloring_1  | { 'dsatur-backtracking': { colors: 14, time: 2444 } }
+coloring_1  | { 'dsatur-pass': { colors: 14, time: 52452 } }
+coloring_1  | { 'dsatur-sewell': { colors: 14, time: 223935 } }
+coloring_1  | ./dimacs/school1.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/latin_square_10.col
+coloring_1  | { greedy: { colors: 213, time: 50 } }
+coloring_1  | { dsatur: { colors: 132, time: 6070 } }
+coloring_1  | ./dimacs/latin_square_10.col greedy-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/latin_square_10.col dsatur-backtracking did not finish after 600000 ms
+coloring_1  | ./dimacs/latin_square_10.col dsatur-sewell did not finish after 600000 ms
+coloring_1  | ./dimacs/latin_square_10.col dsatur-pass did not finish after 600000 ms
+graph-coloring_coloring_1 exited with code 0
