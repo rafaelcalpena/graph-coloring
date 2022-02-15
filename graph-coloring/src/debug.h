@@ -2,6 +2,12 @@
 #ifndef DEBUGH
 #define DEBUGH
 
+#ifdef DEBUG
+#define DEBUG(t, l) (debug::debug(t, l))
+#else
+#define DEBUG(t, l)
+#endif
+
 namespace debug {
 
     using namespace std;
