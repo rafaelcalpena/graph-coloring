@@ -13,14 +13,14 @@ namespace vectorUtils {
         dsatur[novo] = itemAnterior;
     }
 
-    void imprimeVetor(vector<int> qualquer) {
+    void imprimeVetor(vector<int>& qualquer) {
         for (int item: qualquer) {
             cout << item << " ";
         }
         cout << "\n";
     }
 
-    void printTuples(vector<std::tuple<int, string>>qualquer, int size = 2) {
+    void printTuples(vector<std::tuple<int, string>> & qualquer, int size = 2) {
         for (std::tuple<int, string> item: qualquer) {
             cout << "(";
             cout << get<0>(item) << ", ";
@@ -49,31 +49,37 @@ namespace vectorUtils {
         return newVec;
     }    
 
-    string serializarVetor(vector<int> v) {
+    string serializarVetor(vector<int> & v) {
         string myfile;
-        myfile += "[";
-        for (int k=0; k < v.size(); k++) {
-            myfile += to_string(v[k]);
-            if (k != v.size() - 1) {
-                myfile += ","; 
+        const std::string flag = getenv("DEBUG");
+        if (flag == "1" || flag == "2") {
+            myfile += "[";
+            for (int k=0; k < v.size(); k++) {
+                myfile += to_string(v[k]);
+                if (k != v.size() - 1) {
+                    myfile += ","; 
+                }
             }
-        }
-        myfile += "]";    
+            myfile += "]";
+        }    
         return myfile;
     }
 
-    string serializarSet(set<int> v) {
+    string serializarSet(set<int> & v) {
         string myfile;
-        myfile += "[";
-        auto it = v.begin();
-        for (int k=0; k < v.size(); k++) {
-            myfile += to_string(*it);
-            if (k != v.size() - 1) {
-                myfile += ","; 
+        const std::string flag = getenv("DEBUG");
+        if (flag == "1" || flag == "2") {        
+            myfile += "[";
+            auto it = v.begin();
+            for (int k=0; k < v.size(); k++) {
+                myfile += to_string(*it);
+                if (k != v.size() - 1) {
+                    myfile += ","; 
+                }
+                it++;
             }
-            it++;
+            myfile += "]";    
         }
-        myfile += "]";    
         return myfile;
     }    
 

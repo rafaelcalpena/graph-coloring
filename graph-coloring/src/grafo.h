@@ -23,7 +23,7 @@ namespace grafo {
     }
 
     /* Verificar */
-    void verificaColoracao(grafo::Grafo& G, vector<int> cores) {
+    void verificaColoracao(grafo::Grafo& G, vector<int> & cores) {
         for (int i = 0; i < G.n; i++) {
             vector<int> adj = G.listaAdj[i];
             for (int z = 0; z < adj.size(); z++) {
@@ -47,7 +47,7 @@ namespace grafo {
     }
 
         /* TODO: Juntar com codigo greedy */
-    int obterCorDisponivelParaVertice(grafo::Grafo& G, vector<int> coloracaoAtual, int i, int from, int to) {
+    int obterCorDisponivelParaVertice(grafo::Grafo& G, vector<int> & coloracaoAtual, int i, int from, int to) {
         /* Lista que indica se uma cor ja foi usada.
         No pior caso, n cores serao necessarias */
         vector<bool> coresUsadas(to, false);
@@ -77,7 +77,7 @@ namespace grafo {
     }    
 
     /* Usado principalmente para heurísticas pass e sewell */
-    std::set<int> obterCoresDisponiveisParaVertice(grafo::Grafo& G, vector<int> coloracaoAtual, int i, int to) {
+    std::set<int> obterCoresDisponiveisParaVertice(grafo::Grafo& G, vector<int> & coloracaoAtual, int i, int to) {
         /* Lista que indica se uma cor ja foi usada.
         No pior caso, n cores serao necessarias */
         vector<bool> coresUsadas(to, false);

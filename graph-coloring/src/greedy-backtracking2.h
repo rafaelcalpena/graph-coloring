@@ -56,6 +56,7 @@ namespace greedyBacktracking2 {
             int tempCor = coloracaoAtual[ordenacao[i]];
             coloracaoAtual[ordenacao[i]] = -1;
             /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
+            /* TODO: Obter total cores apenas uma vez, atualizar valor no cache sempre que mudar coloracaoAtual */ 
             int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
             coloracaoAtual[ordenacao[i]] = tempCor;             
 
