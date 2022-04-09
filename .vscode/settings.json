@@ -71,6 +71,10 @@
         "unordered_set": "cpp",
         "utility": "cpp",
         "filesystem": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "variant": "cpp",
+        "__memory": "cpp"
     }
 }
