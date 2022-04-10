@@ -14,7 +14,7 @@ namespace csp {
         string b;
 
         Constraint(string x, string y, string z) {
-            std::cout << "Create constraint " << x << " " << y << " " << z << endl;
+            // std::cout << "Create constraint " << x << " " << y << " " << z << endl;
             a = x;
             op = y;
             b = z;
@@ -23,20 +23,20 @@ namespace csp {
         /* TODO: Does it need .Equals? */
         bool operator == (Constraint const &c1) {
             bool result = (a == c1.a) && (op == c1.op) && (b == c1.b);
-            std::cout << "Comparing == " << a << " " << op << " " << b << " to " << c1.a << " " << c1.op << " " << c1.b << " " << result << endl;
+            // std::cout << "Comparing == " << a << " " << op << " " << b << " to " << c1.a << " " << c1.op << " " << c1.b << " " << result << endl;
             return result;
         }
 
         bool operator !=(Constraint const &c1) {
             bool result = !((a == c1.a) && (op == c1.op) && (b == c1.b));
-            std::cout << "Comparing != " << a << " " << op << " " << b << " to " << c1.a << " " << c1.op << " " << c1.b << " " << result << endl;
+            // std::cout << "Comparing != " << a << " " << op << " " << b << " to " << c1.a << " " << c1.op << " " << c1.b << " " << result << endl;
             return result;
         }    
 
         /* Required for sets */ 
         bool operator <(Constraint const &c1) const {
             bool result = (a < c1.a) || (op < c1.op) || (b == c1.b);
-            std::cout << "Comparing < " << a << " " << op << " " << b << " to " << c1.a << " " << c1.op << " " << c1.b << " " << result << endl;
+            // std::cout << "Comparing < " << a << " " << op << " " << b << " to " << c1.a << " " << c1.op << " " << c1.b << " " << result << endl;
             return result;
         }        
 
