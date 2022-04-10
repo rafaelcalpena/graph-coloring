@@ -19,7 +19,9 @@ RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/graph-coloring.cpp -o ./
 # CMD node --version && DEBUG=0 FILE="dimacs/queen7_7.col" ALG="dsatur-backtracking" ./run
 
 # Latest Algorithm
+# CMD node --version && DEBUG=1 FILE="dimacs/huck.col" ALG="dsatur-backtracking" ./run
 # CMD node --version && DEBUG=1 FILE="dimacs/myciel3.col" ALG="dsatur-pass" ./run
 # CMD node --version && DEBUG=1 FILE="dimacs/myciel4.col" ALG="dsatur-sewell" ./run
+# CMD node --version && FILE="dimacs/myciel4.col" ALG="greedy-backtracking" ./run
 
 CMD node ./testbench
