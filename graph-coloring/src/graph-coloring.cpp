@@ -8,9 +8,12 @@
 #include "dsatur.h"
 #include "greedy-backtracking.h"
 #include "greedy-backtracking2.h"
+#include "./experimental/greedy-backtracking3.h"
 #include "dsatur-backtracking.h"
 #include "dsatur-sewell.h"
-#include "dsatur-pass.h"
+#include "dsatur-pass-always.h"
+#include "dsatur-pass-conditional.h"
+#include "dsatur-gac.h"
 #include "testbench.h"
 
 using namespace std;
@@ -157,21 +160,21 @@ int main(int argc, char** argv) {
         dsaturSewellLog.close();    
     }
 
-    else if (algorithm == "dsatur-pass") {
+    else if (algorithm == "dsatur-pass-always") {
         int backtrackingVertices = 0;
 
-        std::cout << "{\"dsatur-pass\": {\"colors\": ";
+        std::cout << "{\"dsatur-pass-always\": {\"colors\": ";
         /* Cria um arquivo log para o dsatur-pass */
         fstream dsaturPassLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
-        dsaturPassLog.open("output/dsatur-pass-output.js", fstream::out);
+        dsaturPassLog.open("output/dsatur-pass-always-output.js", fstream::out);
         adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
         dsaturPassLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturPassLog << "logs = ";
         dsaturPassLog << "[";
 
         auto start = std::chrono::high_resolution_clock::now();
-        vector<int> cores4 = dsaturPass::dsaturPass(grafo, dsaturPassLog, backtrackingVertices);
+        vector<int> cores4 = dsaturPassAlways::dsaturPassAlways(grafo, dsaturPassLog, backtrackingVertices);
         auto stop = std::chrono::high_resolution_clock::now();
         std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
@@ -184,6 +187,62 @@ int main(int argc, char** argv) {
         std::cout << "}}";
         dsaturPassLog.close();    
     }    
+
+    else if (algorithm == "dsatur-pass-conditional") {
+        int backtrackingVertices = 0;
+
+        std::cout << "{\"dsatur-pass-conditional\": {\"colors\": ";
+        /* Cria um arquivo log para o dsatur-pass */
+        fstream dsaturPassLog;
+        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        dsaturPassLog.open("output/dsatur-pass-conditional-output.js", fstream::out);
+        adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
+        dsaturPassLog << "graphFileName = '" << getenv("FILE") << "';\n";    
+        dsaturPassLog << "logs = ";
+        dsaturPassLog << "[";
+
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores4 = dsaturPassConditional::dsaturPassConditional(grafo, dsaturPassLog, backtrackingVertices);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+        dsaturPassLog << "]";
+
+        std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
+        std::cout << ", \"time\":" << duration.count();
+        std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;        
+        grafo::verificaColoracao(grafo, cores4);
+        std::cout << "}}";
+        dsaturPassLog.close();    
+    }        
+
+    else if (algorithm == "dsatur-gac") {
+        int backtrackingVertices = 0;
+
+        std::cout << "{\"dsatur-gac\": {\"colors\": ";
+        /* Cria um arquivo log para o dsatur-pass */
+        fstream dsaturGACLog;
+        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        dsaturGACLog.open("output/dsatur-gac-output.js", fstream::out);
+        adicionaListaDeAdjAoArquivo(dsaturGACLog, grafo);
+        dsaturGACLog << "graphFileName = '" << getenv("FILE") << "';\n";    
+        dsaturGACLog << "logs = ";
+        dsaturGACLog << "[";
+
+        auto start = std::chrono::high_resolution_clock::now();
+        vector<int> cores4 = dsaturGAC::dsaturGAC(grafo, dsaturGACLog, backtrackingVertices);
+        auto stop = std::chrono::high_resolution_clock::now();
+        std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+        dsaturGACLog << "]";
+
+        std::cout << (*max_element(cores4.begin(), cores4.end()) + 1);
+        std::cout << ", \"time\":" << duration.count();
+        std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;        
+        grafo::verificaColoracao(grafo, cores4);
+        std::cout << "}}";
+        dsaturGACLog.close();    
+    }        
 
     else if (algorithm == "greedy-backtracking") {
         int backtrackingVertices = 0;
