@@ -1,0 +1,755 @@
+{"items": [{
+  "./dimacs/myciel3.col": {
+    "info": {
+      "name": "./dimacs/myciel3.col",
+      "optimal": 4
+    },
+    "dsatur-backtracking": {
+      "colors": 4,
+      "time": 0,
+      "backtrackingVertices": 29
+    },
+    "dsatur-gac": {
+      "colors": 4,
+      "time": 11,
+      "backtrackingVertices": 21
+    }
+  }
+}, {
+  "./dimacs/myciel4.col": {
+    "info": {
+      "name": "./dimacs/myciel4.col",
+      "optimal": 5
+    },
+    "dsatur-backtracking": {
+      "colors": 5,
+      "time": 22,
+      "backtrackingVertices": 906
+    },
+    "dsatur-gac": {
+      "colors": 5,
+      "time": 3971,
+      "backtrackingVertices": 569
+    }
+  }
+}, {
+  "./dimacs/myciel5.col": {
+    "info": {
+      "name": "./dimacs/myciel5.col",
+      "optimal": 6
+    },
+    "dsatur-backtracking": {
+      "colors": 6,
+      "time": 24343,
+      "backtrackingVertices": 448650
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen5_5.col": {
+    "info": {
+      "name": "./dimacs/queen5_5.col",
+      "optimal": 5
+    },
+    "dsatur-backtracking": {
+      "colors": 5,
+      "time": 0,
+      "backtrackingVertices": 25
+    },
+    "dsatur-gac": {
+      "colors": 5,
+      "time": 54,
+      "backtrackingVertices": 25
+    }
+  }
+}, {
+  "./dimacs/jean.col": {
+    "info": {
+      "name": "./dimacs/jean.col",
+      "optimal": 10
+    },
+    "dsatur-backtracking": {
+      "colors": 10,
+      "time": 204679,
+      "backtrackingVertices": 2261607
+    },
+    "dsatur-gac": {
+      "colors": 10,
+      "time": 204900,
+      "backtrackingVertices": 2261607
+    }
+  }
+}, {
+  "./dimacs/queen6_6.col": {
+    "info": {
+      "name": "./dimacs/queen6_6.col",
+      "optimal": 7
+    },
+    "dsatur-backtracking": {
+      "colors": 7,
+      "time": 220,
+      "backtrackingVertices": 4987
+    },
+    "dsatur-gac": {
+      "colors": 7,
+      "time": 235924,
+      "backtrackingVertices": 3614
+    }
+  }
+}, {
+  "./dimacs/huck.col": {
+    "info": {
+      "name": "./dimacs/huck.col",
+      "optimal": 11
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/myciel6.col": {
+    "info": {
+      "name": "./dimacs/myciel6.col",
+      "optimal": 7
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/miles250.col": {
+    "info": {
+      "name": "./dimacs/miles250.col",
+      "optimal": 8
+    },
+    "dsatur-backtracking": {
+      "colors": 8,
+      "time": 26,
+      "backtrackingVertices": 503
+    },
+    "dsatur-gac": {
+      "colors": 8,
+      "time": 1063,
+      "backtrackingVertices": 503
+    }
+  }
+}, {
+  "./dimacs/david.col": {
+    "info": {
+      "name": "./dimacs/david.col",
+      "optimal": 11
+    },
+    "dsatur-backtracking": {
+      "colors": 11,
+      "time": 17,
+      "backtrackingVertices": 432
+    },
+    "dsatur-gac": {
+      "colors": 11,
+      "time": 1961,
+      "backtrackingVertices": 432
+    }
+  }
+}, {
+  "./dimacs/queen7_7.col": {
+    "info": {
+      "name": "./dimacs/queen7_7.col",
+      "optimal": 7
+    },
+    "dsatur-backtracking": {
+      "colors": 7,
+      "time": 1529,
+      "backtrackingVertices": 22130
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/anna.col": {
+    "info": {
+      "name": "./dimacs/anna.col",
+      "optimal": 11
+    },
+    "dsatur-backtracking": {
+      "colors": 11,
+      "time": 55,
+      "backtrackingVertices": 873
+    },
+    "dsatur-gac": {
+      "colors": 11,
+      "time": 3448,
+      "backtrackingVertices": 873
+    }
+  }
+}, {
+  "./dimacs/games120.col": {
+    "info": {
+      "name": "./dimacs/games120.col",
+      "optimal": 9
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen8_8.col": {
+    "info": {
+      "name": "./dimacs/queen8_8.col",
+      "optimal": 9
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen9_9.col": {
+    "info": {
+      "name": "./dimacs/queen9_9.col",
+      "optimal": 10
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/miles500.col": {
+    "info": {
+      "name": "./dimacs/miles500.col",
+      "optimal": 20
+    },
+    "dsatur-backtracking": {
+      "colors": 20,
+      "time": 61,
+      "backtrackingVertices": 1171
+    },
+    "dsatur-gac": {
+      "colors": 20,
+      "time": 28918,
+      "backtrackingVertices": 1171
+    }
+  }
+}, {
+  "./dimacs/myciel7.col": {
+    "info": {
+      "name": "./dimacs/myciel7.col",
+      "optimal": 8
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen8_12.col": {
+    "info": {
+      "name": "./dimacs/queen8_12.col",
+      "optimal": 12
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen10_10.col": {
+    "info": {
+      "name": "./dimacs/queen10_10.col",
+      "optimal": null
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/homer.col": {
+    "info": {
+      "name": "./dimacs/homer.col",
+      "optimal": 13
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/zeroin.i.3.col": {
+    "info": {
+      "name": "./dimacs/zeroin.i.3.col",
+      "optimal": 30
+    },
+    "dsatur-backtracking": {
+      "colors": 30,
+      "time": 466764,
+      "backtrackingVertices": 904477
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/zeroin.i.2.col": {
+    "info": {
+      "name": "./dimacs/zeroin.i.2.col",
+      "optimal": 30
+    },
+    "dsatur-backtracking": {
+      "colors": 30,
+      "time": 471557,
+      "backtrackingVertices": 904621
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/mulsol.i.2.col": {
+    "info": {
+      "name": "./dimacs/mulsol.i.2.col",
+      "optimal": 31
+    },
+    "dsatur-backtracking": {
+      "colors": 31,
+      "time": 182,
+      "backtrackingVertices": 1635
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/mulsol.i.3.col": {
+    "info": {
+      "name": "./dimacs/mulsol.i.3.col",
+      "optimal": 31
+    },
+    "dsatur-backtracking": {
+      "colors": 31,
+      "time": 176,
+      "backtrackingVertices": 1486
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/mulsol.i.1.col": {
+    "info": {
+      "name": "./dimacs/mulsol.i.1.col",
+      "optimal": 49
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/mulsol.i.4.col": {
+    "info": {
+      "name": "./dimacs/mulsol.i.4.col",
+      "optimal": 31
+    },
+    "dsatur-backtracking": {
+      "colors": 31,
+      "time": 179,
+      "backtrackingVertices": 1488
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen11_11.col": {
+    "info": {
+      "name": "./dimacs/queen11_11.col",
+      "optimal": 11
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/mulsol.i.5.col": {
+    "info": {
+      "name": "./dimacs/mulsol.i.5.col",
+      "optimal": 31
+    },
+    "dsatur-backtracking": {
+      "colors": 31,
+      "time": 180,
+      "backtrackingVertices": 1492
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/zeroin.i.1.col": {
+    "info": {
+      "name": "./dimacs/zeroin.i.1.col",
+      "optimal": 49
+    },
+    "dsatur-backtracking": {
+      "colors": 49,
+      "time": 384,
+      "backtrackingVertices": 5234
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/miles750.col": {
+    "info": {
+      "name": "./dimacs/miles750.col",
+      "optimal": 31
+    },
+    "dsatur-backtracking": {
+      "colors": 31,
+      "time": 431,
+      "backtrackingVertices": 2740
+    },
+    "dsatur-gac": {
+      "colors": 31,
+      "time": 133839,
+      "backtrackingVertices": 2740
+    }
+  }
+}, {
+  "./dimacs/queen12_12.col": {
+    "info": {
+      "name": "./dimacs/queen12_12.col",
+      "optimal": null
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_5a.col": {
+    "info": {
+      "name": "./dimacs/le450_5a.col",
+      "optimal": 5
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_5b.col": {
+    "info": {
+      "name": "./dimacs/le450_5b.col",
+      "optimal": 5
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/miles1000.col": {
+    "info": {
+      "name": "./dimacs/miles1000.col",
+      "optimal": 42
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen13_13.col": {
+    "info": {
+      "name": "./dimacs/queen13_13.col",
+      "optimal": 13
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_15a.col": {
+    "info": {
+      "name": "./dimacs/le450_15a.col",
+      "optimal": 15
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_15b.col": {
+    "info": {
+      "name": "./dimacs/le450_15b.col",
+      "optimal": 15
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_25a.col": {
+    "info": {
+      "name": "./dimacs/le450_25a.col",
+      "optimal": 25
+    },
+    "dsatur-backtracking": {
+      "colors": 25,
+      "time": 1153,
+      "backtrackingVertices": 3905
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_25b.col": {
+    "info": {
+      "name": "./dimacs/le450_25b.col",
+      "optimal": 25
+    },
+    "dsatur-backtracking": {
+      "colors": 25,
+      "time": 1167,
+      "backtrackingVertices": 3811
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen14_14.col": {
+    "info": {
+      "name": "./dimacs/queen14_14.col",
+      "optimal": null
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/fpsol2.i.3.col": {
+    "info": {
+      "name": "./dimacs/fpsol2.i.3.col",
+      "optimal": 30
+    },
+    "dsatur-backtracking": {
+      "colors": 30,
+      "time": 6985,
+      "backtrackingVertices": 8445
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/fpsol2.i.2.col": {
+    "info": {
+      "name": "./dimacs/fpsol2.i.2.col",
+      "optimal": 30
+    },
+    "dsatur-backtracking": {
+      "colors": 30,
+      "time": 7211,
+      "backtrackingVertices": 9196
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_5d.col": {
+    "info": {
+      "name": "./dimacs/le450_5d.col",
+      "optimal": 5
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/le450_5c.col": {
+    "info": {
+      "name": "./dimacs/le450_5c.col",
+      "optimal": 5
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen15_15.col": {
+    "info": {
+      "name": "./dimacs/queen15_15.col",
+      "optimal": null
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/miles1500.col": {
+    "info": {
+      "name": "./dimacs/miles1500.col",
+      "optimal": 73
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/fpsol2.i.1.col": {
+    "info": {
+      "name": "./dimacs/fpsol2.i.1.col",
+      "optimal": 65
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}, {
+  "./dimacs/queen16_16.col": {
+    "info": {
+      "name": "./dimacs/queen16_16.col",
+      "optimal": null
+    },
+    "dsatur-backtracking": {
+      "timeout": true,
+      "time": 600000
+    },
+    "dsatur-gac": {
+      "timeout": true,
+      "time": 600000
+    }
+  }
+}]
+}
