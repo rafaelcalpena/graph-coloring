@@ -19,3 +19,5 @@ Instruções:
 Configure o Docker para usar um numero de CPUs >= 6 para paralelismo
 ```docker-compose build```
 ```docker-compose up```
+
+Edite o testbench/config.js
