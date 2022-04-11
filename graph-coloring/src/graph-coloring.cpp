@@ -1,12 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <algorithm>
+#include <chrono>
 #include "grafo.h"
 #include "ler-arquivo.h"
 #include "greedy.h"
 #include "vector-utils.h"
 #include "dsatur.h"
-#include "greedy-backtracking.h"
 #include "greedy-backtracking2.h"
 #include "./experimental/greedy-backtracking3.h"
 #include "dsatur-backtracking.h"
@@ -14,7 +15,6 @@
 #include "dsatur-pass-always.h"
 #include "dsatur-pass-conditional.h"
 #include "dsatur-gac.h"
-#include "testbench.h"
 
 using namespace std;
 using namespace grafo;
