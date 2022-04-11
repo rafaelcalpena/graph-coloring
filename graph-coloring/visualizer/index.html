@@ -22,7 +22,6 @@
         <link href="./styles.css" rel="stylesheet">
         <script src="./graph-viz.js"></script>        
 
-
     </head>
     <body>
         <div id="app">
@@ -162,7 +161,7 @@
                             <v-card-title>Logs: <v-checkbox v-model="showLogs"> </v-checkbox></v-card-title> 
                             <v-card-text>Selecione ação para atualizar carregamento parcial da lista</v-card-text>
                             <div v-if="showLogs"
-                            id="logs"
+                            id="logs-list"
                             class="scrollable">                                             
                                 <div class="step" v-for="(action) in filteredLogs" v-bind:key="action.index" v-on:click="applyAction(action.index)" v-bind:data-index="action.index"
                                     v-bind:class="{ current: action.index === currentStep }">

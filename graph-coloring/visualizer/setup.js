@@ -6,13 +6,26 @@ const queryString = window.location.search;
             setupVue();            
             setupCytoscape();            
         };
+        script.onerror = function () {
+            alert(`Não consegui carregar ${script.src}`);
+        };
+
         let algorithmType = urlParams.get('algorithmType') || 'greedy-backtracking';
         script.src = `../output/${algorithmType}-output.js`;
 
         document.head.appendChild(script); //or something of the likes
 
-
     function setupVue () {
+
+        if (!window.logs) {
+            let msg = `Logs não encontrados em ${script.src}`;
+            alert(msg);
+            throw new Error(msg);
+        };
+
+        /* Fallback on errors */
+        logs = logs || [];
+
         Vue.config.performance = true
 
         const colors = ["lightpink","mediumslateblue","darkolivegreen","slategray","cyan","midnightblue","darkkhaki","chocolate","fuchsia","mediumblue","ghostwhite","deepskyblue","darkorange","magenta","seagreen","lightsteelblue","navy","darkseagreen","lightgray","coral","slategrey","blueviolet","goldenrod","skyblue","antiquewhite","brown","aquamarine","crimson","yellow","bisque","lightgrey","lightcyan","palevioletred","aqua","lightskyblue","darkgoldenrod","darksalmon","thistle","burlywood","darkred","peachpuff","darkturquoise","darkslategray","chartreuse","sienna","mediumpurple","palegoldenrod","white","steelblue","olivedrab","black","mediumturquoise","hotpink","deeppink","navajowhite","darkmagenta","darkslateblue","gray","seashell","firebrick","orangered","paleturquoise","tan","darkgreen","indianred","red","darkorchid","azure","olive","lightyellow","lightgreen","maroon","darkgray","sandybrown","royalblue","lightsalmon","plum","darkviolet","springgreen","lime","ivory","lightseagreen","lightslategrey","violet","purple","darkgrey","mediumaquamarine","greenyellow","salmon","limegreen","wheat","forestgreen","palegreen","gainsboro","whitesmoke","green","silver","moccasin","lightslategray","mediumspringgreen","orange","mistyrose","mintcream","darkblue","darkcyan","peru","beige","grey","lavender","saddlebrown","mediumvioletred","lavenderblush","papayawhip","blanchedalmond","honeydew","pink","lemonchiffon","orchid","lawngreen","darkslategrey","dodgerblue","indigo","lightgoldenrodyellow","khaki","cornflowerblue","cornsilk","dimgrey","lightcoral","lightblue","teal","gold","tomato","blue","dimgray","mediumorchid","floralwhite","cadetblue","snow","rosybrown","oldlace","powderblue","mediumseagreen","linen","slateblue","turquoise","aliceblue","yellowgreen"]
@@ -251,7 +264,7 @@ const queryString = window.location.search;
                 },
                 currentStep: function (newValue, oldValue) {
                     if (this.showLogs === true) {                 
-                        let logs = document.querySelector("#logs"); 
+                        let logs = document.querySelector("#logs-list"); 
                         let stepDiv = document.querySelector(`[data-index="${newValue}"]`)
                         // Wait for currentStep to propagate
                         window.requestAnimationFrame(() => {
