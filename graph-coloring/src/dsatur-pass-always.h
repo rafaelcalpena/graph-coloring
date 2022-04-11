@@ -25,7 +25,7 @@ namespace dsaturPassAlways {
             /* Only apply for tied */
             if (tied.find(pos) == tied.end()) {
                 continue;
-            }            
+            }
 
             set<int> coresDisponiveisVizinho = grafo::obterCoresDisponiveisParaVertice(G, cores, pos, k);
             DEBUG("{action: 'get_available_colors', key: " + to_string(pos) + ", value: " + vectorUtils::serializarSet(coresDisponiveisVizinho) + " }", logStream);
@@ -81,7 +81,7 @@ namespace dsaturPassAlways {
 
                 empateMax = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
 
-                tied.insert(ordenacao[prox]);                
+                tied.insert(ordenacao[prox]);
 
             } else if (proxSat == vencedorSat) {
                 DEBUG("{action: 'tie' , key: " + to_string(ordenacao[prox]) + ", value: " + to_string(ordenacao[indiceVencedor]) + "}", logStream);
@@ -169,7 +169,6 @@ namespace dsaturPassAlways {
             /* Precisa ser feita antes de retornar tempCor no DSATUR, senao seria possível que i < totalCores */
             /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
             int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
-
             coloracaoAtual[ordenacao[i]] = tempCor;            
             DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
@@ -199,7 +198,6 @@ namespace dsaturPassAlways {
                     DEBUG("{action: 'stop'}", logStream);
                     break;
                 } 
-
             } 
             /* Se coloracao é pior, pular a branch */
             else if (totalCores > k) {
@@ -211,12 +209,11 @@ namespace dsaturPassAlways {
                 deve-se aguardar mais uma iteracao no mesmo i (nao ha backtracking). 
                 Esse if tambem ajuda a evitar o proximo caso, ou seja, para de explorar ou sub-ramos para a iteracao atual
                 Caso esse else if seja comentado, a solucao final tera varias coloracoes nao-otimas */
-
             }
             else {
+                /* Se tiver mais vertices, continua (forward) */
                 backtrackingVertices++;
 
-                /* Se tiver mais vertices, continua (forward) */
                 if (i < G.n - 1) {
                     DEBUG("{action: 'moveForward'} ", logStream);                
 
@@ -233,7 +230,6 @@ namespace dsaturPassAlways {
                     k = totalCores - 1;
                     DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
                 }
-
             }
         }
 

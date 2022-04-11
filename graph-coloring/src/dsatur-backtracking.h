@@ -41,7 +41,7 @@ namespace dsaturBacktracking {
 
         /* Guarda a posicao atual dentro da ordenacao a ser analisada */
         int i = 0;
-        DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream); 
+        DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);
 
         dsatur::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual);            
         DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);             
@@ -52,7 +52,6 @@ namespace dsaturBacktracking {
         while (i != -1) {
             DEBUG("{action: 'iteration', value: " + to_string(i) + "}", logStream);
 
-            /* TODO: Usar coloracaoAtual ao inves de tempColoracao */
             /* Para que a ordenacao seja feita de forma correta, é necessário ignorar a coloracao atual para o index i */
             int tempCor = coloracaoAtual[ordenacao[i]];
             coloracaoAtual[ordenacao[i]] = -1;
@@ -61,7 +60,6 @@ namespace dsaturBacktracking {
             /* Precisa ser feita antes de retornar tempCor no DSATUR, senao seria possível que i < totalCores */
             /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
             int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
-
             coloracaoAtual[ordenacao[i]] = tempCor;            
             DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
@@ -76,7 +74,7 @@ namespace dsaturBacktracking {
             DEBUG("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
 
             int totalCores = grafo::obterTotalCores(coloracaoAtual);
-            DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);          
+            DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);
 
             /* Se nenhuma cor é válida, é necessário voltar (backwards) */        
             if (cor == -1) {
@@ -91,7 +89,6 @@ namespace dsaturBacktracking {
                     DEBUG("{action: 'stop'}", logStream);
                     break;
                 } 
-
             } 
             /* Se coloracao é pior, pular a branch */
             else if (totalCores > k) {
@@ -103,7 +100,6 @@ namespace dsaturBacktracking {
                 deve-se aguardar mais uma iteracao no mesmo i (nao ha backtracking). 
                 Esse if tambem ajuda a evitar o proximo caso, ou seja, para de explorar ou sub-ramos para a iteracao atual
                 Caso esse else if seja comentado, a solucao final tera varias coloracoes nao-otimas */
-
             }
             else {
                 /* Se tiver mais vertices, continua (forward) */
@@ -125,7 +121,6 @@ namespace dsaturBacktracking {
                     k = totalCores - 1;
                     DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
                 }
-
             }
         }
 

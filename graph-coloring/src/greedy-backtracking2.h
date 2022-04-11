@@ -7,7 +7,6 @@ namespace greedyBacktracking2 {
 
     using namespace std;
 
-    /* Algoritmo Brown */
     /* Contém o Backtracking para uma ordem de vértices arbitrária */
     vector<int> greedyBacktracking2 (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
 
@@ -22,7 +21,7 @@ namespace greedyBacktracking2 {
         DEBUG("{action: 'set', key: 'melhorColoracao', value: " + vectorUtils::serializarVetor(melhorColoracao) + "}", logStream);     
 
         /* Guarda o numero de cores minimo atual; Inicia com n (pior caso) */
-        int k = G.n; //grau maximo + 1 e um limitante; + DSATUR
+        int k = G.n; //grau maximo + 1 é um limitante
         DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
 
         /* Todo grafo possui limitante superior grau maximo + 1 */
@@ -34,17 +33,15 @@ namespace greedyBacktracking2 {
             DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
         }
 
-
         /* ordenacao atual, comeca com [0, 1, ..., n - 1]; */
         vector<int> ordenacao = vectorUtils::vetorCrescente(G.n);
         DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
         /* Guarda a posicao atual dentro da ordenacao a ser analisada */
         int i = 0;
-        DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);      
+        DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);
 
         DEBUG("{action: 'finishInitialSetup'}", logStream); 
-
 
         /* Repete ate o final (i = -1) */
         while (i != -1) {
