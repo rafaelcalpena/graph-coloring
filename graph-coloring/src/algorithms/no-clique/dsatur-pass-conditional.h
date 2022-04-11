@@ -1,5 +1,5 @@
-#include "debug.h"
-#include "dsatur.h"
+#include "../../utils/debug.h"
+#include "./dsatur.h"
 #include <set>
 
 #ifndef DSATURPASSCONDITIONALH

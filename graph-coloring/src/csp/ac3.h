@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <set>
 #include <map>
-#include "../vector-utils.h"
+#include "../utils/vector-utils.h"
 #include "./constraint.h"
 #include "./csp.h"
 #include "./csp-utils.h"

@@ -12,6 +12,7 @@ COPY ${SOURCE_FOLDER} .
 # -stdlib=libc++ is not present for g++
 # cannot use clear otherwise TERM environment variable not set.
 # Add to g++ compilation for stricter outputs: -Wall -Wextra -Werror 
+# ADD -DDEBUG for visualizer
 RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/graph-coloring.cpp -o ./run 
 # RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/gac-network/gac-network.cpp -o ./run 
 
@@ -20,7 +21,7 @@ RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/graph-coloring.cpp -o ./
 
 # Latest Algorithm
 # CMD node --version && DEBUG=1 FILE="dimacs/huck.col" ALG="dsatur-backtracking" ./run
-# CMD node --version && DEBUG=1 FILE="dimacs/myciel3.col" ALG="dsatur-pass" ./run
+# CMD node --version && DEBUG=1 FILE="dimacs/myciel3.col" ALG="dsatur-pass-always" ./run
 # CMD node --version && DEBUG=1 FILE="dimacs/myciel4.col" ALG="dsatur-sewell" ./run
 # CMD node --version && FILE="dimacs/myciel4.col" ALG="greedy-backtracking" ./run
 

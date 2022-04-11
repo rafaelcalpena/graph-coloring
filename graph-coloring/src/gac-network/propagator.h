@@ -1,1 +1,0 @@
-/* The propagator will create a tree with each literal reachable from the initial domain */

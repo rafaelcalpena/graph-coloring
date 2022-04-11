@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "../../utils/debug.h"
 
 #ifndef GREEDYBACKTRACKING2H
 #define GREEDYBACKTRACKING2H

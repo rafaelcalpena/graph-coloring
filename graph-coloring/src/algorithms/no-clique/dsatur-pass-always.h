@@ -1,67 +1,121 @@
-#include "debug.h"
-#include "dsatur.h"
+#include "../../utils/debug.h"
+#include "./dsatur.h"
 #include <set>
-#include <map>
-#include "./gac-network/csp.h"
-#include "./gac-network/ac3.h"
-#include <math.h>       /* floor */
 
-#ifndef DSATURGACH
-#define DSATURGACH
+#ifndef DSATURPASSALWAYSH
+#define DSATURPASSALWAYSH
 
-namespace dsaturGAC {
+namespace dsaturPassAlways {
 
     using namespace std;
 
-    map< string, vector<int> > getCSPDomains(vector<int>& ordenacao, vector<int>& coloracaoAtual, int upperBound) {
-        map<string, vector<int>> domains;
+    /* Break ties by choosing vertex with the maximum number of 
+    common available colors in the neighborhood of tied vertices. */
+    int passRule(int vertexIndex, grafo::Grafo& G, vector<int> & cores, set<int> & tied, int k, fstream& logStream) {
+        DEBUG("{action: 'begin_pass', value: " + to_string(vertexIndex) + "}", logStream);
 
-        for (int i = 0; i < ordenacao.size(); i++) {
-            int v = ordenacao[i];
-            if (coloracaoAtual[v] != -1) {
-                /* Adiciona apenas uma cor no dominio */
-                domains.insert({ to_string(v), {coloracaoAtual[v]} });
-            } else {
-                /* TODO: Valores aqui */
-                vector<int> ordenacaoParcial = vectorUtils::copiarSubvetor(ordenacao, 0, i);
-                // vectorUtils::imprimeVetor(ordenacaoParcial);
-                /* Analisa a cor de cada vertice na ordenacao parcial */
-                vector<int> coloracaoParcial;
-                for (int a: ordenacaoParcial) {
-                    coloracaoParcial.push_back(coloracaoAtual[a]);
-                }
-                int ub = std::min(std::min(upperBound, i + 1), (grafo::obterTotalCores(coloracaoParcial) + 1));
-                // int ub = std::min(upperBound, i + 1);
+        /*  Get available colors for tied vertex */
+        set<int> coresDisponiveis = grafo::obterCoresDisponiveisParaVertice(G, cores, vertexIndex, k);
+        DEBUG("{action: 'get_available_colors', key: " + to_string(vertexIndex) + ", value: " + vectorUtils::serializarSet(coresDisponiveis) + " }", logStream);
 
-                vector<int> values = vectorUtils::vetorCrescente(ub);
+        int sum = 0;
 
-                domains.insert({ to_string(v), values });
+        for (int pos: G.listaAdj[vertexIndex]) {
+
+            /* Only apply for tied */
+            if (tied.find(pos) == tied.end()) {
+                continue;
             }
-            
+
+            set<int> coresDisponiveisVizinho = grafo::obterCoresDisponiveisParaVertice(G, cores, pos, k);
+            DEBUG("{action: 'get_available_colors', key: " + to_string(pos) + ", value: " + vectorUtils::serializarSet(coresDisponiveisVizinho) + " }", logStream);
+
+
+            /* why does set_intersection requires a vector? */
+            vector<int> intersection;
+
+            set_intersection(
+                coresDisponiveis.begin(),
+                coresDisponiveis.end(),
+                coresDisponiveisVizinho.begin(),
+                coresDisponiveisVizinho.end(), 
+                std::back_inserter(intersection)
+            );
+            DEBUG("{action: 'get_intersection', value: " + to_string(intersection.size()) + " }", logStream);
+            sum += intersection.size();
         }
-        return domains;
+
+        /* for each of its neighbors in the tied set
+            sum the length of intersection between both sets of available colorings */
+
+        DEBUG("{action: 'end_pass', key: " + to_string(vertexIndex) + ", value: " + to_string(sum) +  "}", logStream);
+        return sum;
     }
 
-    vector<vector<string>> getCSPConstraints(grafo::Grafo& G) {
-        vector<vector<string>> lines;
-        for (int i = 0; i < G.listaAdj.size(); i++) {
-            for (int j: G.listaAdj[i]) {
-                if (i < j) {
-                    vector<string> c {to_string(i), "!=", to_string(j)};
-                    lines.push_back(c);
+    /* Reordenação adaptada a heurística Pass
+    Como criterio de desempate não utiliza grau do vértice */
+    int reordenarProximoIndice(vector<int>& ordenacao, int i, grafo::Grafo& G, vector<int> vCores, int k, fstream& logStream) {
+
+        /* Reordenação: */
+        /* Encontrar o item com maior grau de saturacao na lista de adjacencia */
+        int indiceVencedor = i;
+        int vencedorSat = dsatur::grauDeSaturacao(ordenacao[indiceVencedor], G, vCores);
+
+        /* Separa os indices de vértices originais que nao foram coloridos */
+        set<int> tied;
+        DEBUG("{action: 'get_tied', value: " + to_string(tied.size()) + " }", logStream);
+
+        /* Guarda o valor máximo da regra Pass obtida, comecando com o indice vencedor */
+        int empateMax = passRule(ordenacao[indiceVencedor], G, vCores, tied, k, logStream);
+
+
+        for (int prox = i+1; prox < G.n; prox++) {
+            int proxSat = dsatur::grauDeSaturacao(ordenacao[prox], G, vCores);
+
+            if (proxSat > vencedorSat) {
+
+                indiceVencedor = prox;
+                vencedorSat = proxSat;
+
+                tied.clear();
+
+                empateMax = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
+
+                tied.insert(ordenacao[prox]);
+
+            } else if (proxSat == vencedorSat) {
+                DEBUG("{action: 'tie' , key: " + to_string(ordenacao[prox]) + ", value: " + to_string(ordenacao[indiceVencedor]) + "}", logStream);
+
+                tied.insert(ordenacao[prox]);
+
+                /* Desempate pela regra Pass */
+                int passProx = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
+                /* Para cada empate, verificar se passRule para o vertice 
+                em analise supera passRule para o vencedor atual.
+                Se superar, o candidato se torna o novo vencedor e atualiza o recorde pass 
+                */
+                if (
+                    passProx > empateMax
+                ) {
+                    indiceVencedor = prox;
+                    empateMax = passProx;
                 }
             }
         }
-        return lines;      
+
+        /* Reordena apenas o item atual em DSATUR */
+
+        int indice = ordenacao[indiceVencedor];
+
+        vectorUtils::trocar(ordenacao, i, indiceVencedor);
+
+        return indice;
     }
 
-    /* Algoritmo com GAC */
+
+    /* Algoritmo Brélaz */
     /* Contém o Backtracking para uma ordem de vértices arbitrária */
-    vector<int> dsaturGAC (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
-
-        /* Consistencia de arco generalizada */
-        bool gacEnabled = false;
-
+    vector<int> dsaturPassAlways (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
         backtrackingVertices = 0;
 
         /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
@@ -93,7 +147,9 @@ namespace dsaturGAC {
         int i = 0;
         DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream); 
 
-        dsatur::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual);            
+        /* Diferença para o DSATUR original */
+        dsaturPassAlways::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream);            
+
         DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);             
 
         DEBUG("{action: 'finishInitialSetup'}", logStream); 
@@ -106,12 +162,13 @@ namespace dsaturGAC {
             /* Para que a ordenacao seja feita de forma correta, é necessário ignorar a coloracao atual para o index i */
             int tempCor = coloracaoAtual[ordenacao[i]];
             coloracaoAtual[ordenacao[i]] = -1;
-            dsatur::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual);
+
+            /* Diferença para o DSATUR original */
+            dsaturPassAlways::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream);
 
             /* Precisa ser feita antes de retornar tempCor no DSATUR, senao seria possível que i < totalCores */
             /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
             int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
-
             coloracaoAtual[ordenacao[i]] = tempCor;            
             DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
@@ -126,41 +183,7 @@ namespace dsaturGAC {
             DEBUG("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
 
             int totalCores = grafo::obterTotalCores(coloracaoAtual);
-            DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);       
-
-            /* Guarda se todos os dominio sao nao vazios no gac */ 
-            bool gacValidDomains = true;
-            /* Roda o GAC para verificar */
-            /* Usa o meio do caminho para o pruning */
-            if (gacEnabled && (k - totalCores == 2 )) {
-            // if (gacEnabled && (k - totalCores == 1 )) {
-            // if (gacEnabled) {
-            // if (gacEnabled && (i == floor(G.n / 2))) {
-            // if (gacEnabled && (i == floor(G.n * 0.75))) {
-            // if (gacEnabled && (i == floor(G.n * 0.25))) {
-                /* Cria o csp para o estado atual */
-                /* TODO: Optimizar, criar apenas uma vez se possivel */
-                map< string, vector<int> > domains = dsaturGAC::getCSPDomains(ordenacao, coloracaoAtual, k);
-                vector< vector<string> > constraints = getCSPConstraints(G);
-                csp::CSP test(domains, constraints);
-                gacValidDomains = ac3::ac3(test);
-                if (!gacValidDomains) {
-                // if (gacEmptyDomain && (totalCores < k)) {
-                    // cout << "cancelar totalCores=" << totalCores << ", k=" << k << endl;
-                }
-                // gacEmptyDomain = false;
-                // cout << "gac ativado para " << i << endl;
-
-                /* Checa se a cor estava no dominio do gac */
-                // if (cor != -1) {
-                //     cout << "GAC enabled, cor=" << cor << ", dominio: "; //<< endl;
-                //     for (int n: test.domains.at(to_string(indice))) {
-                //         cout << n << ";";
-                //     }
-                //     cout << ", indice " << indice << " => " << (test.domains.at(to_string(indice)).find(cor) != test.domains.at(to_string(indice)).end() ? "s" : "n") << endl;
-                // }
-
-            }
+            DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);          
 
             /* Se nenhuma cor é válida, é necessário voltar (backwards) */        
             if (cor == -1) {
@@ -175,7 +198,6 @@ namespace dsaturGAC {
                     DEBUG("{action: 'stop'}", logStream);
                     break;
                 } 
-
             } 
             /* Se coloracao é pior, pular a branch */
             else if (totalCores > k) {
@@ -187,18 +209,6 @@ namespace dsaturGAC {
                 deve-se aguardar mais uma iteracao no mesmo i (nao ha backtracking). 
                 Esse if tambem ajuda a evitar o proximo caso, ou seja, para de explorar ou sub-ramos para a iteracao atual
                 Caso esse else if seja comentado, a solucao final tera varias coloracoes nao-otimas */
-
-            }
-            /* Se o GAC indicou dominio vazio, é necessário pular */
-            else if (!gacValidDomains) {
-                // cout << "pruned at i=" << i << " of " << G.n << ", " << ((float) i / (float) G.n) * 100 << "%" << ", k=" << k << ", " << ((float) i / (float) k) * 100 << "%" << endl;
-                if (k - totalCores > 1) {
-                    cout << "DELTA = " << k - totalCores << " pruned at i=" << i << ", totalCores=" << totalCores << " of " << G.n << ", " << ((float) totalCores / (float) G.n) * 100 << "%" << ", k=" << k << ", " << ((float) totalCores / (float) k) * 100 << "%" << endl;
-                }
-
-                backtrackingVertices++;
-
-                DEBUG("{action: 'preventSearchInSubBranches', value:'gacEmptyDomain "+ to_string(k) + " '} ", logStream);
             }
             else {
                 /* Se tiver mais vertices, continua (forward) */
@@ -219,11 +229,7 @@ namespace dsaturGAC {
 
                     k = totalCores - 1;
                     DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
-
-                    /* Ativa o GAC a partir da primeira solucao */
-                    gacEnabled = true;
                 }
-
             }
         }
 

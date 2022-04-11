@@ -3,68 +3,24 @@
 #include <fstream>
 #include <algorithm>
 #include <chrono>
-#include "grafo.h"
-#include "ler-arquivo.h"
-#include "greedy.h"
-#include "vector-utils.h"
-#include "dsatur.h"
-#include "greedy-backtracking2.h"
-#include "./experimental/greedy-backtracking3.h"
-#include "dsatur-backtracking.h"
-#include "dsatur-sewell.h"
-#include "dsatur-pass-always.h"
-#include "dsatur-pass-conditional.h"
-#include "dsatur-gac.h"
+#include "./utils/grafo.h"
+#include "./utils/ler-arquivo.h"
+#include "./utils/vector-utils.h"
+#include "./utils/adj-list-file.h"
+#include "./utils/salvar-arquivo.h"
+// #include "./experimental/greedy-backtracking3.h"
+#include "./algorithms/no-clique/greedy.h"
+#include "./algorithms/no-clique/dsatur.h"
+#include "./algorithms/no-clique/greedy-backtracking2.h"
+#include "./algorithms/no-clique/dsatur-backtracking.h"
+#include "./algorithms/no-clique/dsatur-sewell.h"
+#include "./algorithms/no-clique/dsatur-pass-always.h"
+#include "./algorithms/no-clique/dsatur-pass-conditional.h"
+#include "./algorithms/no-clique/dsatur-gac.h"
+
 
 using namespace std;
 using namespace grafo;
-
-void adicionaListaDeAdjAoArquivo(fstream& arquivo, grafo::Grafo& grafo) {
-    arquivo << "adjList=[";
-    for (int j=0; j < grafo.listaAdj.size(); j++) {
-        arquivo << "[";
-        for (int k=0; k < grafo.listaAdj[j].size(); k++) {
-            arquivo << grafo.listaAdj[j][k];
-            if (k != grafo.listaAdj[j].size() - 1) {
-                arquivo << ","; 
-            }
-        }
-        arquivo << "]";
-        if (j != grafo.listaAdj.size() - 1) {
-            arquivo << ","; 
-        }
-    }
-    arquivo << "]; \n";
-}
-
-void salvarEmArquivo (string filename, grafo::Grafo& grafo, vector<int> cores) {
-    fstream myfile;
-    myfile.open(filename,fstream::out);
-    myfile << "dataResult = ";
-    myfile << "{\"adjList\":[";
-    for (int j=0; j < grafo.listaAdj.size(); j++) {
-        myfile << "[";
-        for (int k=0; k < grafo.listaAdj[j].size(); k++) {
-            myfile << grafo.listaAdj[j][k];
-            if (k != grafo.listaAdj[j].size() - 1) {
-                myfile << ","; 
-            }
-        }
-        myfile << "]";
-        if (j != grafo.listaAdj.size() - 1) {
-            myfile << ","; 
-        }
-    }
-    myfile << "], \"colors\": [";
-        for (int k=0; k < cores.size(); k++) {
-            myfile << cores[k];
-            if (k != cores.size() - 1) {
-                myfile << ","; 
-            }
-        }
-    myfile << "]}";
-    myfile.close();
-}
 
 /* Função principal */
 int main(int argc, char** argv) {
@@ -85,7 +41,7 @@ int main(int argc, char** argv) {
         std:: cout << ", \"time\":" << duration.count();
         grafo::verificaColoracao(grafo, cores);
         std::cout << "}}";
-        salvarEmArquivo("output/greedy-heuristic-output.js", grafo, cores);
+        salvarArquivo::salvarEmArquivo("output/greedy-heuristic-output.js", grafo, cores);
     }
 
     else if (algorithm == "dsatur") {
@@ -100,7 +56,7 @@ int main(int argc, char** argv) {
         std:: cout << ", \"time\":" << duration.count();
         grafo::verificaColoracao(grafo, cores2);
         std::cout << "}}";
-        salvarEmArquivo("output/dsatur-heuristic-output.js", grafo, cores2);
+        salvarArquivo::salvarEmArquivo("output/dsatur-heuristic-output.js", grafo, cores2);
     }
 
     else if (algorithm == "dsatur-backtracking") {
@@ -111,7 +67,7 @@ int main(int argc, char** argv) {
         fstream dsaturBacktrackingLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
         dsaturBacktrackingLog.open("output/dsatur-backtracking-output.js", fstream::out);
-        adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
+        adjlist::adicionaListaDeAdjAoArquivo(dsaturBacktrackingLog, grafo);
         dsaturBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturBacktrackingLog << "logs = ";
         dsaturBacktrackingLog << "[";
@@ -140,7 +96,7 @@ int main(int argc, char** argv) {
         fstream dsaturSewellLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
         dsaturSewellLog.open("output/dsatur-sewell-output.js", fstream::out);
-        adicionaListaDeAdjAoArquivo(dsaturSewellLog, grafo);
+        adjlist::adicionaListaDeAdjAoArquivo(dsaturSewellLog, grafo);
         dsaturSewellLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturSewellLog << "logs = ";
         dsaturSewellLog << "[";
@@ -168,7 +124,7 @@ int main(int argc, char** argv) {
         fstream dsaturPassLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
         dsaturPassLog.open("output/dsatur-pass-always-output.js", fstream::out);
-        adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
+        adjlist::adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
         dsaturPassLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturPassLog << "logs = ";
         dsaturPassLog << "[";
@@ -196,7 +152,7 @@ int main(int argc, char** argv) {
         fstream dsaturPassLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
         dsaturPassLog.open("output/dsatur-pass-conditional-output.js", fstream::out);
-        adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
+        adjlist::adicionaListaDeAdjAoArquivo(dsaturPassLog, grafo);
         dsaturPassLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturPassLog << "logs = ";
         dsaturPassLog << "[";
@@ -224,7 +180,7 @@ int main(int argc, char** argv) {
         fstream dsaturGACLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
         dsaturGACLog.open("output/dsatur-gac-output.js", fstream::out);
-        adicionaListaDeAdjAoArquivo(dsaturGACLog, grafo);
+        adjlist::adicionaListaDeAdjAoArquivo(dsaturGACLog, grafo);
         dsaturGACLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturGACLog << "logs = ";
         dsaturGACLog << "[";
@@ -252,7 +208,7 @@ int main(int argc, char** argv) {
         fstream greedyBacktrackingLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
         greedyBacktrackingLog.open("output/greedy-backtracking-output.js", fstream::out);
-        adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
+        adjlist::adicionaListaDeAdjAoArquivo(greedyBacktrackingLog, grafo);
         greedyBacktrackingLog << "graphFileName = '" << getenv("FILE") << "';\n";
         greedyBacktrackingLog << "logs = ";
         greedyBacktrackingLog << "[";
