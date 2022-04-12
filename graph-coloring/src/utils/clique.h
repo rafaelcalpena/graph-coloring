@@ -1,0 +1,6 @@
+namespace clique {
+    void detectClique() {
+
+    }
+}
+

@@ -22,16 +22,13 @@ namespace dsaturGAC {
                 /* Adiciona apenas uma cor no dominio */
                 domains.insert({ to_string(v), {coloracaoAtual[v]} });
             } else {
-                /* TODO: Valores aqui */
                 vector<int> ordenacaoParcial = vectorUtils::copiarSubvetor(ordenacao, 0, i);
-                // vectorUtils::imprimeVetor(ordenacaoParcial);
                 /* Analisa a cor de cada vertice na ordenacao parcial */
                 vector<int> coloracaoParcial;
                 for (int a: ordenacaoParcial) {
                     coloracaoParcial.push_back(coloracaoAtual[a]);
                 }
                 int ub = std::min(std::min(upperBound, i + 1), (grafo::obterTotalCores(coloracaoParcial) + 1));
-                // int ub = std::min(upperBound, i + 1);
 
                 vector<int> values = vectorUtils::vetorCrescente(ub);
 
@@ -130,36 +127,17 @@ namespace dsaturGAC {
 
             /* Guarda se todos os dominio sao nao vazios no gac */ 
             bool gacValidDomains = true;
-            /* Roda o GAC para verificar */
-            /* Usa o meio do caminho para o pruning */
+
+            /* Roda o GAC para verificar se existe pruning total disponivel */
+            /* k - totalCores costuma ser 0 (muito comum), 1 (comum) ou 2 (raro) */
+            /* Podera tambem utilizar "i" junto para definir um limite de profundidade */
             if (gacEnabled && (k - totalCores == 2 )) {
-            // if (gacEnabled && (k - totalCores == 1 )) {
-            // if (gacEnabled) {
-            // if (gacEnabled && (i == floor(G.n / 2))) {
-            // if (gacEnabled && (i == floor(G.n * 0.75))) {
-            // if (gacEnabled && (i == floor(G.n * 0.25))) {
                 /* Cria o csp para o estado atual */
                 /* TODO: Optimizar, criar apenas uma vez se possivel */
                 map< string, vector<int> > domains = dsaturGAC::getCSPDomains(ordenacao, coloracaoAtual, k);
                 vector< vector<string> > constraints = getCSPConstraints(G);
                 csp::CSP test(domains, constraints);
                 gacValidDomains = ac3::ac3(test);
-                if (!gacValidDomains) {
-                // if (gacEmptyDomain && (totalCores < k)) {
-                    // cout << "cancelar totalCores=" << totalCores << ", k=" << k << endl;
-                }
-                // gacEmptyDomain = false;
-                // cout << "gac ativado para " << i << endl;
-
-                /* Checa se a cor estava no dominio do gac */
-                // if (cor != -1) {
-                //     cout << "GAC enabled, cor=" << cor << ", dominio: "; //<< endl;
-                //     for (int n: test.domains.at(to_string(indice))) {
-                //         cout << n << ";";
-                //     }
-                //     cout << ", indice " << indice << " => " << (test.domains.at(to_string(indice)).find(cor) != test.domains.at(to_string(indice)).end() ? "s" : "n") << endl;
-                // }
-
             }
 
             /* Se nenhuma cor é válida, é necessário voltar (backwards) */        
@@ -191,11 +169,6 @@ namespace dsaturGAC {
             }
             /* Se o GAC indicou dominio vazio, é necessário pular */
             else if (!gacValidDomains) {
-                // cout << "pruned at i=" << i << " of " << G.n << ", " << ((float) i / (float) G.n) * 100 << "%" << ", k=" << k << ", " << ((float) i / (float) k) * 100 << "%" << endl;
-                if (k - totalCores > 1) {
-                    // cout << "DELTA = " << k - totalCores << " pruned at i=" << i << ", totalCores=" << totalCores << " of " << G.n << ", " << ((float) totalCores / (float) G.n) * 100 << "%" << ", k=" << k << ", " << ((float) totalCores / (float) k) * 100 << "%" << endl;
-                }
-
                 backtrackingVertices++;
 
                 DEBUG("{action: 'preventSearchInSubBranches', value:'gacEmptyDomain "+ to_string(k) + " '} ", logStream);

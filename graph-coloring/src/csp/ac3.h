@@ -11,6 +11,7 @@
 #include "./csp.h"
 #include "./csp-utils.h"
 #include "./ops.h"
+#include "../utils/debug-csp.h"
 
 namespace ac3 {
 
@@ -31,7 +32,7 @@ namespace ac3 {
             csp::Constraint c = *itr;
             bool isDirty = false;
 
-            // cout << "Check constraint " << c.toString() << endl;
+            DEBUGCSP("Check constraint " + c.toString());
             /* for each value in the left side of the constraint, check if valid */
             
             
@@ -59,26 +60,26 @@ namespace ac3 {
                 }
             } else {
                 for (int v: cspUtils::domain(csp, c.a)) {
-                    // std::cout << "checking variable " << c.a << " = " << v << endl;
-                        /* if value is not valid, remove it from the domain, and mark domain as changed */
+                    DEBUGCSP("checking variable " + c.a + " = " + v);
+                    /* if value is not valid, remove it from the domain, and mark domain as changed */
+                    
                     if (!cspUtils::valueConsistent(csp, c, c.a, v)) {
                         isDirty = true;
-                        // std::cout << c.a << "=" << v << " is not consistent" << endl;
+                        DEBUGCSP(c.a + "=" + v + " is not consistent");
                         /* remove value */
-                        // cout << "v2 outer " << csp.domains.at(c.a).size() << endl;
                         cspUtils::removeValue(csp, c.a, v);
-                        // cout << "v2 outer after " << csp.domains.at(c.a).size() << endl;
-                        /* TODO: Stop earlier if some variable domain becomes empty! */
-                        // std::cout << "removed inconsistent value" << endl;
+                        /* Stop earlier if some variable domain becomes empty */
+                        DEBUGCSP("removed inconsistent value");
+
                         if (csp.domains.at(c.a).size() == 0) {
-                            // cout << c.a << " EMPTY size" << endl;
+                            DEBUGCSP(c.a + " EMPTY size");
                             return false;
                         }
                     }
                 }
             }
 
-            // std::cout << "removed arc from agenda" << endl;        
+            DEBUGCSP("removed arc from agenda" + c.toString());
 
             if (isDirty) {
                 cspUtils::markVariableDirty(constraintList, c.a, initialConstraintList);
@@ -86,9 +87,6 @@ namespace ac3 {
 
             /* Remove arc from agenda, needs to come after mark dirty to avoid loops */
             cspUtils::removeArcFromAgenda(constraintList, c); 
-
-            // cspUtils::printDomains(csp);       
-
         }
 
         return true;
