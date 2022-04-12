@@ -1,13 +1,11 @@
 #include "../../utils/debug.h"
-#include "./dsatur.h"
+#include "../heuristics/dsatur.h"
 #include <set>
 
-#ifndef DSATURPASSCONDITIONALH
-#define DSATURPASSCONDITIONALH
+#ifndef DSATURPASSALWAYSH
+#define DSATURPASSALWAYSH
 
-int THRESHOLD = 3;
-
-namespace dsaturPassConditional {
+namespace dsaturPassAlways {
 
     using namespace std;
 
@@ -56,7 +54,7 @@ namespace dsaturPassConditional {
 
     /* Reordenação adaptada a heurística Pass
     Como criterio de desempate não utiliza grau do vértice */
-    int reordenarProximoIndice(vector<int>& ordenacao, int i, grafo::Grafo& G, vector<int> vCores, int k, fstream& logStream, int totalCores) {
+    int reordenarProximoIndice(vector<int>& ordenacao, int i, grafo::Grafo& G, vector<int> vCores, int k, fstream& logStream) {
 
         /* Reordenação: */
         /* Encontrar o item com maior grau de saturacao na lista de adjacencia */
@@ -74,10 +72,6 @@ namespace dsaturPassConditional {
         for (int prox = i+1; prox < G.n; prox++) {
             int proxSat = dsatur::grauDeSaturacao(ordenacao[prox], G, vCores);
 
-            /* mi = numero de cores na coloracao - grau de saturacao dos vertices empatados */
-            /* totalCores - proxSat */
-            int mi = totalCores - proxSat;
-
             if (proxSat > vencedorSat) {
 
                 indiceVencedor = prox;
@@ -94,30 +88,17 @@ namespace dsaturPassConditional {
 
                 tied.insert(ordenacao[prox]);
 
-                if (mi <= THRESHOLD) {
-                    /* Desempate pela regra Pass */
-                    int passProx = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
-                    /* Para cada empate, verificar se passRule para o vertice 
-                    em analise supera passRule para o vencedor atual.
-                    Se superar, o candidato se torna o novo vencedor e atualiza o recorde pass 
-                    */
-                    if (
-                        passProx > empateMax
-                    ) {
-                        DEBUG("{action: 'use_pass_heuristic'}", logStream);
-                        indiceVencedor = prox;
-                        empateMax = passProx;
-                    }
-                } else {
-                    /* Desempate por dsatur original grau do vertice, e mantem em ordem crescente */
-                    if (
-                        ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) > grauDoVertice(ordenacao[indiceVencedor], G))) ||
-                        /* Mantem os vertices em ordem crescente */
-                        ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) == grauDoVertice(ordenacao[indiceVencedor], G)) && (ordenacao[prox] < ordenacao[indiceVencedor]))                        
-                    ) {
-                        DEBUG("{action: 'use_dsatur_heuristic'}", logStream);
-                        indiceVencedor = prox;                      
-                    }
+                /* Desempate pela regra Pass */
+                int passProx = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
+                /* Para cada empate, verificar se passRule para o vertice 
+                em analise supera passRule para o vencedor atual.
+                Se superar, o candidato se torna o novo vencedor e atualiza o recorde pass 
+                */
+                if (
+                    passProx > empateMax
+                ) {
+                    indiceVencedor = prox;
+                    empateMax = passProx;
                 }
             }
         }
@@ -134,7 +115,7 @@ namespace dsaturPassConditional {
 
     /* Algoritmo Brélaz */
     /* Contém o Backtracking para uma ordem de vértices arbitrária */
-    vector<int> dsaturPassConditional (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
+    vector<int> dsaturPassAlways (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices) {
         backtrackingVertices = 0;
 
         /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
@@ -166,10 +147,8 @@ namespace dsaturPassConditional {
         int i = 0;
         DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream); 
 
-        int totalCores = grafo::obterTotalCores(coloracaoAtual);
-
         /* Diferença para o DSATUR original */
-        dsaturPassConditional::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream, totalCores);            
+        dsaturPassAlways::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream);            
 
         DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);             
 
@@ -184,14 +163,12 @@ namespace dsaturPassConditional {
             int tempCor = coloracaoAtual[ordenacao[i]];
             coloracaoAtual[ordenacao[i]] = -1;
 
-            totalCores = grafo::obterTotalCores(coloracaoAtual);
-
             /* Diferença para o DSATUR original */
-            dsaturPassConditional::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream, totalCores);
+            dsaturPassAlways::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream);
 
             /* Precisa ser feita antes de retornar tempCor no DSATUR, senao seria possível que i < totalCores */
             /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
-            int boundary = min(k, totalCores + 1);
+            int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
             coloracaoAtual[ordenacao[i]] = tempCor;            
             DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
@@ -205,7 +182,7 @@ namespace dsaturPassConditional {
             coloracaoAtual[indice] = cor;
             DEBUG("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
 
-            totalCores = grafo::obterTotalCores(coloracaoAtual);
+            int totalCores = grafo::obterTotalCores(coloracaoAtual);
             DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);          
 
             /* Se nenhuma cor é válida, é necessário voltar (backwards) */        

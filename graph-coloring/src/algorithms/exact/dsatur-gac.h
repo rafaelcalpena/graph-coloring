@@ -1,5 +1,5 @@
 #include "../../utils/debug.h"
-#include "./dsatur.h"
+#include "../heuristics/dsatur.h"
 #include <set>
 #include <map>
 #include "../../csp/csp.h"

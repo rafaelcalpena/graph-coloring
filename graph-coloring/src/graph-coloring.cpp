@@ -9,14 +9,14 @@
 #include "./utils/adj-list-file.h"
 #include "./utils/salvar-arquivo.h"
 // #include "./experimental/greedy-backtracking3.h"
-#include "./algorithms/no-clique/greedy.h"
-#include "./algorithms/no-clique/dsatur.h"
-#include "./algorithms/no-clique/greedy-backtracking2.h"
-#include "./algorithms/no-clique/dsatur-backtracking.h"
-#include "./algorithms/no-clique/dsatur-sewell.h"
-#include "./algorithms/no-clique/dsatur-pass-always.h"
-#include "./algorithms/no-clique/dsatur-pass-conditional.h"
-#include "./algorithms/no-clique/dsatur-gac.h"
+#include "./algorithms/heuristics/greedy.h"
+#include "./algorithms/heuristics/dsatur.h"
+#include "./algorithms/exact/greedy-backtracking2.h"
+#include "./algorithms/exact/dsatur-backtracking.h"
+#include "./algorithms/exact/dsatur-sewell.h"
+#include "./algorithms/exact/dsatur-pass-always.h"
+#include "./algorithms/exact/dsatur-pass-conditional.h"
+#include "./algorithms/exact/dsatur-gac.h"
 
 
 using namespace std;
