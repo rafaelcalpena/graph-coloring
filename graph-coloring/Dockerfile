@@ -17,6 +17,7 @@ RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/graph-coloring.cpp -o ./
 # RUN g++ --version && g++ -std=c++2a -fmax-errors=5  src/gac-network/gac-network.cpp -o ./run 
 
 # Copy compiled binary from previous stage
+# CMD node --version && DEBUG=0 FILE="dimacs/jean.col" ALG="dsatur-backtracking" ./run
 # CMD node --version && DEBUG=0 FILE="dimacs/queen7_7.col" ALG="dsatur-backtracking" ./run
 
 # Latest Algorithm
