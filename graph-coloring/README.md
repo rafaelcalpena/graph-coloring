@@ -34,3 +34,4 @@ docker build -t test-pulumi --progress=plain .
 Adicionar também iam:CreateRole, ecr:CreateRepository, logs:CreateLogGroup, AmazonECS_FullAccess
 usei IAMFullAccess, CloudWatchLogsFullAccess, AmazonEC2ContainerRegistryFullAccess, AWSLambda_FullAccess, AmazonAPIGatewayAdministrator, AmazonElasticFileSystemFullAccess, AWSBatchFullAccess, AWSDataSyncFullAccess
 - Guardar as chaves geradas e passar no docker run acima
+- Para uma execução mais rápida, aumentar o limite do Fargate on-Demand Resource Count para ~600 https://us-east-1.console.aws.amazon.com/servicequotas/home/services/fargate/quotas/L-790AF391

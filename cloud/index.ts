@@ -67,7 +67,7 @@ export const resultsBucketName = resultsBucket.bucket;
 const graphColoringEnvironment = new aws.batch.ComputeEnvironment("graphColoringEnvironment", {
     computeEnvironmentName: "graphColoringEnvironment",
     computeResources: {
-        maxVcpus: 16,
+        maxVcpus: 1024,
         securityGroupIds: [sg.id],
         subnets: [publicSubnet],
         type: "FARGATE",
