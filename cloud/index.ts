@@ -141,7 +141,13 @@ const graphColoringJobDefinition = new aws.batch.JobDefinition("graphColoringJob
             "transitEncryption": "ENABLED"
             }
         }
-    ]  
+    ],
+  "environment": [
+      {
+          "name": "TIMEOUT",
+          "value": "3600"
+      }
+  ]
 }
 `,
 });

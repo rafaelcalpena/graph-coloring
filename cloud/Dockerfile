@@ -34,7 +34,7 @@ RUN ls -a
 
 RUN pnpm install -r --offline
 
-RUN chmod +x ./concatenate.sh ./start.sh
+RUN chmod +x ./concatenate.sh ./start.sh ./datasync.sh
 
 # save state locally in mounted volume
 # https://www.pulumi.com/docs/intro/concepts/state/#logging-into-the-local-filesystem-backend
