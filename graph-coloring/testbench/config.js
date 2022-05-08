@@ -67,6 +67,8 @@ module.exports = {
         {name: 'dsatur-sewell'},
         {name: 'dsatur-pass-always'},
         {name: 'dsatur-pass-conditional'},
-        {name: 'dsatur-gac-1'}
+        {name: 'dsatur-gac-0'},
+        {name: 'dsatur-gac-1'},
+        {name: 'dsatur-gac-2'}
     ]
 }
