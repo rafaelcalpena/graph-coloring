@@ -16,7 +16,7 @@
 #include "./algorithms/exact/dsatur-sewell.h"
 #include "./algorithms/exact/dsatur-pass-always.h"
 #include "./algorithms/exact/dsatur-pass-conditional.h"
-#include "./algorithms/exact/dsatur-gac.h"
+#include "./algorithms/exact/dsatur-gac-1.h"
 
 
 using namespace std;
@@ -172,14 +172,14 @@ int main(int argc, char** argv) {
         dsaturPassLog.close();    
     }        
 
-    else if (algorithm == "dsatur-gac") {
+    else if (algorithm == "dsatur-gac-1") {
         int backtrackingVertices = 0;
 
-        std::cout << "{\"dsatur-gac\": {\"colors\": ";
+        std::cout << "{\"dsatur-gac-1\": {\"colors\": ";
         /* Cria um arquivo log para o dsatur-pass */
         fstream dsaturGACLog;
         /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
-        dsaturGACLog.open("output/dsatur-gac-output.js", fstream::out);
+        dsaturGACLog.open("output/dsatur-gac-1-output.js", fstream::out);
         adjlist::adicionaListaDeAdjAoArquivo(dsaturGACLog, grafo);
         dsaturGACLog << "graphFileName = '" << getenv("FILE") << "';\n";    
         dsaturGACLog << "logs = ";

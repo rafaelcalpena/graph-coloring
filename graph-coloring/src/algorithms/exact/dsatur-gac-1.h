@@ -131,7 +131,7 @@ namespace dsaturGAC {
             /* Roda o GAC para verificar se existe pruning total disponivel */
             /* k - totalCores costuma ser 0 (muito comum), 1 (comum) ou 2 (raro) */
             /* Podera tambem utilizar "i" junto para definir um limite de profundidade */
-            if (gacEnabled && (k - totalCores == 2 )) {
+            if (gacEnabled && (k - totalCores == 1 )) {
                 /* Cria o csp para o estado atual */
                 /* TODO: Optimizar, criar apenas uma vez se possivel */
                 map< string, vector<int> > domains = dsaturGAC::getCSPDomains(ordenacao, coloracaoAtual, k);

@@ -14,7 +14,7 @@ const allAlgorithms = [
     {name: 'dsatur-sewell', exact: true},
     {name: 'dsatur-pass-always', exact: true},
     {name: 'dsatur-pass-conditional', exact: true},
-    {name: 'dsatur-gac', exact: true}
+    {name: 'dsatur-gac-1', exact: true}
 ];
 
 let TIME_LIMIT = (process.env.TIMEOUT * 1000) || (10 * MINUTE);
