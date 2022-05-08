@@ -6,16 +6,63 @@ const execFile = require('child_process').execFile;
 const SECOND = 1000; // 1000ms
 const MINUTE = 60 * SECOND;
 
+const allAlgorithms = [
+    {name: 'greedy', exact: false},
+    {name: 'dsatur', exact: false},
+    {name: 'greedy-backtracking', exact: true},
+    {name: 'dsatur-backtracking', exact: true},
+    {name: 'dsatur-sewell', exact: true},
+    {name: 'dsatur-pass-always', exact: true},
+    {name: 'dsatur-pass-conditional', exact: true},
+    {name: 'dsatur-gac', exact: true}
+];
 
-let TIME_LIMIT = 10 * MINUTE;
+let TIME_LIMIT = (process.env.TIMEOUT * 1000) || (10 * MINUTE);
+console.log('TIME_LIMIT in ms', TIME_LIMIT)
 
 const testbench = async () => {
     let {graphs, algorithms} = require('./config.js')
+
+    if (process.env.FILES) {
+        let filteredGraphs = process.env.FILES.split(',').map(g => g.trim());
+        console.log('Filtering graphs: ', filteredGraphs);
+        graphs = graphs.filter(g => filteredGraphs.includes(g.name));
+    }
+
     let date = new Date();
-    let summaryFile = `${__dirname}/../output/summary-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}.json`;
+    let jobId = process.env.AWS_BATCH_JOB_ID ? `job-${process.env.AWS_BATCH_JOB_ID.replace(/:/g, '_')}-${process.env.AWS_BATCH_JOB_ARRAY_INDEX}-` : ``;
+    let basePath = process.env.AWS_BATCH_JOB_ID ? '/mount/efs' : `${__dirname}/../output`;
+    let summaryFile = `${basePath}/${jobId}summary-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}_${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}.json`;
 
     var stream = fs.createWriteStream(summaryFile, {flags:'a'});
     stream.write('{"items": [');
+
+    let filteredAlgorithms = process.env.ALGORITHMS ? process.env.ALGORITHMS.split(',').map(a => a.trim()) : [];
+
+    let algorithmRuns = (process.env.ALGORITHMS ? 
+        allAlgorithms.filter(a => filteredAlgorithms.includes(a.name))
+        :
+        allAlgorithms
+    ).filter(i => algorithms.find(j => j.name === i.name))
+
+    /* If running on AWS Batch Job array, filter to only specific job array index */
+    if (process.env.AWS_BATCH_JOB_ARRAY_INDEX) {
+
+        if (process.env.AWS_BATCH_JOB_ARRAY_INDEX >= (algorithmRuns.length * graphs.length)) {
+            throw new Error('Index for job array is out of range');
+        }
+
+        /* Has to come before algorithmRuns because it will have its ordering changed */
+        let graphIndex = Math.floor(process.env.AWS_BATCH_JOB_ARRAY_INDEX / algorithmRuns.length);
+        graphs = [ graphs[graphIndex] ];
+        console.log('graphIndex', graphIndex);
+        console.log("AWS BATCH graph", graphs);
+
+        let algIndex = process.env.AWS_BATCH_JOB_ARRAY_INDEX % algorithmRuns.length;
+        algorithmRuns = [ algorithmRuns[algIndex] ];
+        console.log('algorithmIndex', algIndex)
+        console.log("AWS BATCH algorithm", algorithmRuns);
+    }                
 
     for (let i = 0, len = graphs.length; i < len; i++) {
 
@@ -25,18 +72,14 @@ const testbench = async () => {
 
         let filename = item.name;
         console.log(filename)
-        const algorithmRuns = ([
-            {name: 'greedy', exact: false},
-            {name: 'dsatur', exact: false},
-            {name: 'greedy-backtracking', exact: true},
-            {name: 'dsatur-backtracking', exact: true},
-            {name: 'dsatur-sewell', exact: true},
-            {name: 'dsatur-pass-always', exact: true},
-            {name: 'dsatur-pass-conditional', exact: true},
-            {name: 'dsatur-gac', exact: true}
-        ]).filter(i => algorithms.find(j => j.name === i.name))
         
+        if (process.env.ALGORITHMS) {
+            console.log('Filtering Algorithms: ', algorithmRuns.map(a => a.name));
+        }
+
+
         let promises = algorithmRuns.map(algorithm => new Promise((resolve, reject) => {
+            console.log('executing', algorithm.name)
             let hasFinished = false;
             let timeoutHandle = null;
             let childProcess = execFile('./run', {

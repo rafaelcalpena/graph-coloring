@@ -66,7 +66,7 @@ module.exports = {
         {name: 'dsatur-backtracking'},
         {name: 'dsatur-sewell'},
         {name: 'dsatur-pass-always'},
-        {name: 'dsatur-pass-conditional'}
+        {name: 'dsatur-pass-conditional'},
         {name: 'dsatur-gac'}
     ]
 }
