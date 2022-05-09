@@ -61,13 +61,9 @@ namespace dsaturPassAlways {
         int indiceVencedor = i;
         int vencedorSat = dsatur::grauDeSaturacao(ordenacao[indiceVencedor], G, vCores);
 
-        /* Separa os indices de vértices originais que nao foram coloridos */
+        /* Separa os indices de vértices empatados */
         set<int> tied;
         DEBUG("{action: 'get_tied', value: " + to_string(tied.size()) + " }", logStream);
-
-        /* Guarda o valor máximo da regra Pass obtida, comecando com o indice vencedor */
-        int empateMax = passRule(ordenacao[indiceVencedor], G, vCores, tied, k, logStream);
-
 
         for (int prox = i+1; prox < G.n; prox++) {
             int proxSat = dsatur::grauDeSaturacao(ordenacao[prox], G, vCores);
@@ -78,16 +74,23 @@ namespace dsaturPassAlways {
                 vencedorSat = proxSat;
 
                 tied.clear();
-
-                empateMax = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
-
                 tied.insert(ordenacao[prox]);
 
-            } else if (proxSat == vencedorSat) {
+            }
+            else if (proxSat == vencedorSat) {
                 DEBUG("{action: 'tie' , key: " + to_string(ordenacao[prox]) + ", value: " + to_string(ordenacao[indiceVencedor]) + "}", logStream);
 
                 tied.insert(ordenacao[prox]);
+            }
+        }
 
+        /* Guarda o valor máximo da regra Pass obtida, comecando com o indice vencedor */
+        int empateMax = passRule(ordenacao[indiceVencedor], G, vCores, tied, k, logStream);
+
+        for (int prox = i+1; prox < G.n; prox++) {
+            int proxSat = dsatur::grauDeSaturacao(ordenacao[prox], G, vCores);
+
+            if (proxSat == vencedorSat) {
                 /* Desempate pela regra Pass */
                 int passProx = passRule(ordenacao[prox], G, vCores, tied, k, logStream);
                 /* Para cada empate, verificar se passRule para o vertice 
