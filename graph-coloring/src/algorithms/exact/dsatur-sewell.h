@@ -139,10 +139,10 @@ namespace dsaturSewell {
 
         /* Guarda a posicao atual dentro da ordenacao a ser analisada */
         int i = 0;
-        DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream); 
+        DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);
 
         /* Diferença para o DSATUR original */
-        dsaturSewell::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream);            
+        dsaturSewell::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual, k, logStream);
 
         DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);             
 
@@ -177,7 +177,7 @@ namespace dsaturSewell {
             DEBUG("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
 
             int totalCores = grafo::obterTotalCores(coloracaoAtual);
-            DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);          
+            DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);
 
             /* Se nenhuma cor é válida, é necessário voltar (backwards) */        
             if (cor == -1) {
