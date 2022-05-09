@@ -19,7 +19,13 @@ const postProcess = async () => {
         let mergedContent = batchJobOutputs.get(batchJobId) || {};
         batchJobOutputs.set(batchJobId, mergedContent);
 
-        let graphsInFile = require(`./graph-results/${file}`).items;
+        let graphsInFile;
+        try {
+            graphsInFile = require(`./graph-results/${file}`).items;
+        } catch (e) {
+            console.log(`Could not parse ./graph-results/${file}`, e);
+            graphsInFile = [];
+        }
         
         /* Merge results */
         for (let g of graphsInFile) {
