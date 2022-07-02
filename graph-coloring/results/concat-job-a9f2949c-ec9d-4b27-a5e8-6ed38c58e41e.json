@@ -1,0 +1,2832 @@
+{
+  "items": [
+    {
+      "./dimacs/myciel3.col": {
+        "info": {
+          "name": "./dimacs/myciel3.col",
+          "optimal": 4
+        },
+        "greedy": {
+          "colors": 4,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 4,
+          "time": 0
+        },
+        "greedy-backtracking": {
+          "colors": 4,
+          "time": 76,
+          "backtrackingVertices": 80
+        },
+        "dsatur-backtracking": {
+          "colors": 4,
+          "time": 0,
+          "backtrackingVertices": 29
+        },
+        "dsatur-sewell": {
+          "colors": 4,
+          "time": 2,
+          "backtrackingVertices": 24
+        },
+        "dsatur-pass-always": {
+          "colors": 4,
+          "time": 1,
+          "backtrackingVertices": 25
+        },
+        "dsatur-pass-conditional": {
+          "colors": 4,
+          "time": 1,
+          "backtrackingVertices": 25
+        },
+        "dsatur-gac-0": {
+          "colors": 4,
+          "time": 15,
+          "backtrackingVertices": 17
+        },
+        "dsatur-gac-1": {
+          "colors": 4,
+          "time": 5,
+          "backtrackingVertices": 29
+        },
+        "dsatur-gac-2": {
+          "colors": 4,
+          "time": 2,
+          "backtrackingVertices": 29
+        }
+      },
+      "./dimacs/myciel4.col": {
+        "info": {
+          "name": "./dimacs/myciel4.col",
+          "optimal": 5
+        },
+        "greedy": {
+          "colors": 5,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 5,
+          "time": 0
+        },
+        "greedy-backtracking": {
+          "colors": 5,
+          "time": 8296,
+          "backtrackingVertices": 220476
+        },
+        "dsatur-backtracking": {
+          "colors": 5,
+          "time": 106,
+          "backtrackingVertices": 906
+        },
+        "dsatur-sewell": {
+          "colors": 5,
+          "time": 304,
+          "backtrackingVertices": 614
+        },
+        "dsatur-pass-always": {
+          "colors": 5,
+          "time": 298,
+          "backtrackingVertices": 755
+        },
+        "dsatur-pass-conditional": {
+          "colors": 5,
+          "time": 294,
+          "backtrackingVertices": 755
+        },
+        "dsatur-gac-0": {
+          "colors": 5,
+          "time": 21090,
+          "backtrackingVertices": 327
+        },
+        "dsatur-gac-1": {
+          "colors": 5,
+          "time": 2397,
+          "backtrackingVertices": 892
+        },
+        "dsatur-gac-2": {
+          "colors": 5,
+          "time": 216,
+          "backtrackingVertices": 906
+        }
+      },
+      "./dimacs/queen7_7.col": {
+        "info": {
+          "name": "./dimacs/queen7_7.col",
+          "optimal": 7
+        },
+        "greedy": {
+          "colors": 10,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 11,
+          "time": 1
+        },
+        "greedy-backtracking": {
+          "colors": 7,
+          "time": 7513,
+          "backtrackingVertices": 119682
+        },
+        "dsatur-backtracking": {
+          "colors": 7,
+          "time": 7188,
+          "backtrackingVertices": 22130
+        },
+        "dsatur-sewell": {
+          "colors": 7,
+          "time": 23192,
+          "backtrackingVertices": 11490
+        },
+        "dsatur-pass-always": {
+          "colors": 7,
+          "time": 591,
+          "backtrackingVertices": 449
+        },
+        "dsatur-pass-conditional": {
+          "colors": 7,
+          "time": 4790,
+          "backtrackingVertices": 5236
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "colors": 7,
+          "time": 1416924,
+          "backtrackingVertices": 22052
+        },
+        "dsatur-gac-2": {
+          "colors": 7,
+          "time": 99717,
+          "backtrackingVertices": 24306
+        }
+      },
+      "./dimacs/anna.col": {
+        "info": {
+          "name": "./dimacs/anna.col",
+          "optimal": 11
+        },
+        "greedy": {
+          "colors": 12,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 11,
+          "time": 7
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 11,
+          "time": 213,
+          "backtrackingVertices": 873
+        },
+        "dsatur-sewell": {
+          "colors": 11,
+          "time": 1701,
+          "backtrackingVertices": 873
+        },
+        "dsatur-pass-always": {
+          "colors": 11,
+          "time": 1318,
+          "backtrackingVertices": 870
+        },
+        "dsatur-pass-conditional": {
+          "colors": 11,
+          "time": 1016,
+          "backtrackingVertices": 871
+        },
+        "dsatur-gac-0": {
+          "colors": 11,
+          "time": 31097,
+          "backtrackingVertices": 868
+        },
+        "dsatur-gac-1": {
+          "colors": 11,
+          "time": 32900,
+          "backtrackingVertices": 871
+        },
+        "dsatur-gac-2": {
+          "colors": 11,
+          "time": 13604,
+          "backtrackingVertices": 868
+        }
+      },
+      "./dimacs/games120.col": {
+        "info": {
+          "name": "./dimacs/games120.col",
+          "optimal": 9
+        },
+        "greedy": {
+          "colors": 9,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 9,
+          "time": 86
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 9,
+          "time": 77610,
+          "backtrackingVertices": 55830
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen8_8.col": {
+        "info": {
+          "name": "./dimacs/queen8_8.col",
+          "optimal": 9
+        },
+        "greedy": {
+          "colors": 13,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 12,
+          "time": 2
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 9,
+          "time": 3269886,
+          "backtrackingVertices": 7161560
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 9,
+          "time": 794112,
+          "backtrackingVertices": 633809
+        },
+        "dsatur-pass-conditional": {
+          "colors": 9,
+          "time": 988191,
+          "backtrackingVertices": 818489
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen9_9.col": {
+        "info": {
+          "name": "./dimacs/queen9_9.col",
+          "optimal": 10
+        },
+        "greedy": {
+          "colors": 16,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 13,
+          "time": 80
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/miles500.col": {
+        "info": {
+          "name": "./dimacs/miles500.col",
+          "optimal": 20
+        },
+        "greedy": {
+          "colors": 22,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 20,
+          "time": 7
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 20,
+          "time": 380,
+          "backtrackingVertices": 1171
+        },
+        "dsatur-sewell": {
+          "colors": 20,
+          "time": 3018,
+          "backtrackingVertices": 1168
+        },
+        "dsatur-pass-always": {
+          "colors": 20,
+          "time": 1697,
+          "backtrackingVertices": 1159
+        },
+        "dsatur-pass-conditional": {
+          "colors": 20,
+          "time": 1510,
+          "backtrackingVertices": 1151
+        },
+        "dsatur-gac-0": {
+          "colors": 20,
+          "time": 185494,
+          "backtrackingVertices": 1166
+        },
+        "dsatur-gac-1": {
+          "colors": 20,
+          "time": 199602,
+          "backtrackingVertices": 1169
+        },
+        "dsatur-gac-2": {
+          "colors": 20,
+          "time": 78791,
+          "backtrackingVertices": 1166
+        }
+      },
+      "./dimacs/myciel7.col": {
+        "info": {
+          "name": "./dimacs/myciel7.col",
+          "optimal": 8
+        },
+        "greedy": {
+          "colors": 8,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 8,
+          "time": 100
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen8_12.col": {
+        "info": {
+          "name": "./dimacs/queen8_12.col",
+          "optimal": 12
+        },
+        "greedy": {
+          "colors": 15,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 14,
+          "time": 10
+        },
+        "greedy-backtracking": {
+          "colors": 12,
+          "time": 1536801,
+          "backtrackingVertices": 13395034
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 12,
+          "time": 1807,
+          "backtrackingVertices": 726
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen10_10.col": {
+        "info": {
+          "name": "./dimacs/queen10_10.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 16,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 14,
+          "time": 85
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/homer.col": {
+        "info": {
+          "name": "./dimacs/homer.col",
+          "optimal": 13
+        },
+        "greedy": {
+          "colors": 15,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 13,
+          "time": 489
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/myciel5.col": {
+        "info": {
+          "name": "./dimacs/myciel5.col",
+          "optimal": 6
+        },
+        "greedy": {
+          "colors": 6,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 6,
+          "time": 77
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 6,
+          "time": 121198,
+          "backtrackingVertices": 448650
+        },
+        "dsatur-sewell": {
+          "colors": 6,
+          "time": 191121,
+          "backtrackingVertices": 181474
+        },
+        "dsatur-pass-always": {
+          "colors": 6,
+          "time": 299905,
+          "backtrackingVertices": 470021
+        },
+        "dsatur-pass-conditional": {
+          "colors": 6,
+          "time": 271884,
+          "backtrackingVertices": 439559
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "colors": 6,
+          "time": 1699102,
+          "backtrackingVertices": 447611
+        },
+        "dsatur-gac-2": {
+          "colors": 6,
+          "time": 146712,
+          "backtrackingVertices": 448026
+        }
+      },
+      "./dimacs/zeroin.i.3.col": {
+        "info": {
+          "name": "./dimacs/zeroin.i.3.col",
+          "optimal": 30
+        },
+        "greedy": {
+          "colors": 30,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 30,
+          "time": 190
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 30,
+          "time": 2215410,
+          "backtrackingVertices": 904477
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 30,
+          "time": 31306,
+          "backtrackingVertices": 2381
+        },
+        "dsatur-pass-conditional": {
+          "colors": 30,
+          "time": 29200,
+          "backtrackingVertices": 2377
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "colors": 30,
+          "time": 2742210,
+          "backtrackingVertices": 904477
+        }
+      },
+      "./dimacs/zeroin.i.2.col": {
+        "info": {
+          "name": "./dimacs/zeroin.i.2.col",
+          "optimal": 30
+        },
+        "greedy": {
+          "colors": 30,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 30,
+          "time": 183
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 30,
+          "time": 2218195,
+          "backtrackingVertices": 904621
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 30,
+          "time": 32909,
+          "backtrackingVertices": 2525
+        },
+        "dsatur-pass-conditional": {
+          "colors": 30,
+          "time": 28503,
+          "backtrackingVertices": 2521
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "colors": 30,
+          "time": 2812521,
+          "backtrackingVertices": 904621
+        }
+      },
+      "./dimacs/mulsol.i.2.col": {
+        "info": {
+          "name": "./dimacs/mulsol.i.2.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 106
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 31,
+          "time": 893,
+          "backtrackingVertices": 1635
+        },
+        "dsatur-sewell": {
+          "colors": 31,
+          "time": 50616,
+          "backtrackingVertices": 1635
+        },
+        "dsatur-pass-always": {
+          "colors": 31,
+          "time": 28405,
+          "backtrackingVertices": 1635
+        },
+        "dsatur-pass-conditional": {
+          "colors": 31,
+          "time": 23789,
+          "backtrackingVertices": 1635
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "colors": 31,
+          "time": 428702,
+          "backtrackingVertices": 1635
+        },
+        "dsatur-gac-2": {
+          "colors": 31,
+          "time": 431998,
+          "backtrackingVertices": 1635
+        }
+      },
+      "./dimacs/mulsol.i.3.col": {
+        "info": {
+          "name": "./dimacs/mulsol.i.3.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 102
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 31,
+          "time": 892,
+          "backtrackingVertices": 1486
+        },
+        "dsatur-sewell": {
+          "colors": 31,
+          "time": 51314,
+          "backtrackingVertices": 1486
+        },
+        "dsatur-pass-always": {
+          "colors": 31,
+          "time": 28003,
+          "backtrackingVertices": 1486
+        },
+        "dsatur-pass-conditional": {
+          "colors": 31,
+          "time": 25409,
+          "backtrackingVertices": 1486
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "colors": 31,
+          "time": 431601,
+          "backtrackingVertices": 1486
+        },
+        "dsatur-gac-2": {
+          "colors": 31,
+          "time": 436610,
+          "backtrackingVertices": 1486
+        }
+      },
+      "./dimacs/mulsol.i.1.col": {
+        "info": {
+          "name": "./dimacs/mulsol.i.1.col",
+          "optimal": 49
+        },
+        "greedy": {
+          "colors": 49,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 49,
+          "time": 105
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/mulsol.i.4.col": {
+        "info": {
+          "name": "./dimacs/mulsol.i.4.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 107
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 31,
+          "time": 894,
+          "backtrackingVertices": 1488
+        },
+        "dsatur-sewell": {
+          "colors": 31,
+          "time": 52620,
+          "backtrackingVertices": 1488
+        },
+        "dsatur-pass-always": {
+          "colors": 31,
+          "time": 28802,
+          "backtrackingVertices": 1488
+        },
+        "dsatur-pass-conditional": {
+          "colors": 31,
+          "time": 24099,
+          "backtrackingVertices": 1488
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "colors": 31,
+          "time": 449920,
+          "backtrackingVertices": 1488
+        },
+        "dsatur-gac-2": {
+          "colors": 31,
+          "time": 438003,
+          "backtrackingVertices": 1488
+        }
+      },
+      "./dimacs/queen11_11.col": {
+        "info": {
+          "name": "./dimacs/queen11_11.col",
+          "optimal": 11
+        },
+        "greedy": {
+          "colors": 17,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 15,
+          "time": 73
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/mulsol.i.5.col": {
+        "info": {
+          "name": "./dimacs/mulsol.i.5.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 186
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 31,
+          "time": 813,
+          "backtrackingVertices": 1492
+        },
+        "dsatur-sewell": {
+          "colors": 31,
+          "time": 56293,
+          "backtrackingVertices": 1492
+        },
+        "dsatur-pass-always": {
+          "colors": 31,
+          "time": 28792,
+          "backtrackingVertices": 1492
+        },
+        "dsatur-pass-conditional": {
+          "colors": 31,
+          "time": 24673,
+          "backtrackingVertices": 1492
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "colors": 31,
+          "time": 453506,
+          "backtrackingVertices": 1492
+        },
+        "dsatur-gac-2": {
+          "colors": 31,
+          "time": 436298,
+          "backtrackingVertices": 1492
+        }
+      },
+      "./dimacs/zeroin.i.1.col": {
+        "info": {
+          "name": "./dimacs/zeroin.i.1.col",
+          "optimal": 49
+        },
+        "greedy": {
+          "colors": 49,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 49,
+          "time": 120
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 49,
+          "time": 1804,
+          "backtrackingVertices": 5234
+        },
+        "dsatur-sewell": {
+          "colors": 49,
+          "time": 73501,
+          "backtrackingVertices": 5234
+        },
+        "dsatur-pass-always": {
+          "colors": 49,
+          "time": 65500,
+          "backtrackingVertices": 5104
+        },
+        "dsatur-pass-conditional": {
+          "colors": 49,
+          "time": 49492,
+          "backtrackingVertices": 5104
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/miles750.col": {
+        "info": {
+          "name": "./dimacs/miles750.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 34,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 87
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 31,
+          "time": 2107,
+          "backtrackingVertices": 2740
+        },
+        "dsatur-sewell": {
+          "colors": 31,
+          "time": 752696,
+          "backtrackingVertices": 261094
+        },
+        "dsatur-pass-always": {
+          "colors": 31,
+          "time": 5988,
+          "backtrackingVertices": 1392
+        },
+        "dsatur-pass-conditional": {
+          "colors": 31,
+          "time": 6087,
+          "backtrackingVertices": 1412
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen5_5.col": {
+        "info": {
+          "name": "./dimacs/queen5_5.col",
+          "optimal": 5
+        },
+        "greedy": {
+          "colors": 8,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 5,
+          "time": 0
+        },
+        "greedy-backtracking": {
+          "colors": 5,
+          "time": 1,
+          "backtrackingVertices": 114
+        },
+        "dsatur-backtracking": {
+          "colors": 5,
+          "time": 1,
+          "backtrackingVertices": 25
+        },
+        "dsatur-sewell": {
+          "colors": 5,
+          "time": 183,
+          "backtrackingVertices": 28
+        },
+        "dsatur-pass-always": {
+          "colors": 5,
+          "time": 14,
+          "backtrackingVertices": 26
+        },
+        "dsatur-pass-conditional": {
+          "colors": 5,
+          "time": 90,
+          "backtrackingVertices": 26
+        },
+        "dsatur-gac-0": {
+          "colors": 5,
+          "time": 102,
+          "backtrackingVertices": 25
+        },
+        "dsatur-gac-1": {
+          "colors": 5,
+          "time": 280,
+          "backtrackingVertices": 25
+        },
+        "dsatur-gac-2": {
+          "colors": 5,
+          "time": 109,
+          "backtrackingVertices": 25
+        }
+      },
+      "./dimacs/queen12_12.col": {
+        "info": {
+          "name": "./dimacs/queen12_12.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 20,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 16,
+          "time": 94
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_5a.col": {
+        "info": {
+          "name": "./dimacs/le450_5a.col",
+          "optimal": 5
+        },
+        "greedy": {
+          "colors": 14,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 10,
+          "time": 515
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 5,
+          "time": 141517,
+          "backtrackingVertices": 17320
+        },
+        "dsatur-pass-conditional": {
+          "colors": 5,
+          "time": 143104,
+          "backtrackingVertices": 17320
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_5b.col": {
+        "info": {
+          "name": "./dimacs/le450_5b.col",
+          "optimal": 5
+        },
+        "greedy": {
+          "colors": 13,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 9,
+          "time": 593
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "colors": 5,
+          "time": 246814,
+          "backtrackingVertices": 13795
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/miles1000.col": {
+        "info": {
+          "name": "./dimacs/miles1000.col",
+          "optimal": 42
+        },
+        "greedy": {
+          "colors": 44,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 42,
+          "time": 93
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 42,
+          "time": 18995,
+          "backtrackingVertices": 1375
+        },
+        "dsatur-pass-conditional": {
+          "colors": 42,
+          "time": 18709,
+          "backtrackingVertices": 1385
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen13_13.col": {
+        "info": {
+          "name": "./dimacs/queen13_13.col",
+          "optimal": 13
+        },
+        "greedy": {
+          "colors": 21,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 17,
+          "time": 186
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_15a.col": {
+        "info": {
+          "name": "./dimacs/le450_15a.col",
+          "optimal": 15
+        },
+        "greedy": {
+          "colors": 22,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 17,
+          "time": 688
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_15b.col": {
+        "info": {
+          "name": "./dimacs/le450_15b.col",
+          "optimal": 15
+        },
+        "greedy": {
+          "colors": 22,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 16,
+          "time": 691
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "colors": 15,
+          "time": 886303,
+          "backtrackingVertices": 93453
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "colors": 15,
+          "time": 69102,
+          "backtrackingVertices": 8839
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_25a.col": {
+        "info": {
+          "name": "./dimacs/le450_25a.col",
+          "optimal": 25
+        },
+        "greedy": {
+          "colors": 28,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 25,
+          "time": 608
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 25,
+          "time": 5793,
+          "backtrackingVertices": 3905
+        },
+        "dsatur-sewell": {
+          "colors": 25,
+          "time": 56207,
+          "backtrackingVertices": 3909
+        },
+        "dsatur-pass-always": {
+          "colors": 25,
+          "time": 24394,
+          "backtrackingVertices": 3836
+        },
+        "dsatur-pass-conditional": {
+          "colors": 25,
+          "time": 23305,
+          "backtrackingVertices": 3929
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_25b.col": {
+        "info": {
+          "name": "./dimacs/le450_25b.col",
+          "optimal": 25
+        },
+        "greedy": {
+          "colors": 27,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 25,
+          "time": 606
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 25,
+          "time": 5816,
+          "backtrackingVertices": 3811
+        },
+        "dsatur-sewell": {
+          "colors": 25,
+          "time": 44810,
+          "backtrackingVertices": 3817
+        },
+        "dsatur-pass-always": {
+          "colors": 25,
+          "time": 23499,
+          "backtrackingVertices": 3828
+        },
+        "dsatur-pass-conditional": {
+          "colors": 25,
+          "time": 21795,
+          "backtrackingVertices": 3792
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen14_14.col": {
+        "info": {
+          "name": "./dimacs/queen14_14.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 23,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 19,
+          "time": 115
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/jean.col": {
+        "info": {
+          "name": "./dimacs/jean.col",
+          "optimal": 10
+        },
+        "greedy": {
+          "colors": 10,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 10,
+          "time": 79
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 10,
+          "time": 1045891,
+          "backtrackingVertices": 2261607
+        },
+        "dsatur-sewell": {
+          "colors": 10,
+          "time": 2109206,
+          "backtrackingVertices": 2261607
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "colors": 10,
+          "time": 1834187,
+          "backtrackingVertices": 2261123
+        }
+      },
+      "./dimacs/fpsol2.i.3.col": {
+        "info": {
+          "name": "./dimacs/fpsol2.i.3.col",
+          "optimal": 30
+        },
+        "greedy": {
+          "colors": 30,
+          "time": 83
+        },
+        "dsatur": {
+          "colors": 30,
+          "time": 607
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 30,
+          "time": 32912,
+          "backtrackingVertices": 8445
+        },
+        "dsatur-sewell": {
+          "colors": 30,
+          "time": 423713,
+          "backtrackingVertices": 8429
+        },
+        "dsatur-pass-always": {
+          "colors": 30,
+          "time": 194802,
+          "backtrackingVertices": 12273
+        },
+        "dsatur-pass-conditional": {
+          "colors": 30,
+          "time": 174712,
+          "backtrackingVertices": 12273
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/fpsol2.i.2.col": {
+        "info": {
+          "name": "./dimacs/fpsol2.i.2.col",
+          "optimal": 30
+        },
+        "greedy": {
+          "colors": 30,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 30,
+          "time": 618
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 30,
+          "time": 34006,
+          "backtrackingVertices": 9196
+        },
+        "dsatur-sewell": {
+          "colors": 30,
+          "time": 423793,
+          "backtrackingVertices": 9180
+        },
+        "dsatur-pass-always": {
+          "colors": 30,
+          "time": 204602,
+          "backtrackingVertices": 13024
+        },
+        "dsatur-pass-conditional": {
+          "colors": 30,
+          "time": 176716,
+          "backtrackingVertices": 13024
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_5d.col": {
+        "info": {
+          "name": "./dimacs/le450_5d.col",
+          "optimal": 5
+        },
+        "greedy": {
+          "colors": 18,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 12,
+          "time": 801
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },        
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_5c.col": {
+        "info": {
+          "name": "./dimacs/le450_5c.col",
+          "optimal": 5
+        },
+        "greedy": {
+          "colors": 17,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 10,
+          "time": 801
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "colors": 5,
+          "time": 377606,
+          "backtrackingVertices": 5668
+        },
+        "dsatur-pass-always": {
+          "colors": 5,
+          "time": 56996,
+          "backtrackingVertices": 3056
+        },
+        "dsatur-pass-conditional": {
+          "colors": 5,
+          "time": 58365,
+          "backtrackingVertices": 3056
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen15_15.col": {
+        "info": {
+          "name": "./dimacs/queen15_15.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 25,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 21,
+          "time": 206
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/miles1500.col": {
+        "info": {
+          "name": "./dimacs/miles1500.col",
+          "optimal": 73
+        },
+        "greedy": {
+          "colors": 76,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 73,
+          "time": 102
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 73,
+          "time": 83202,
+          "backtrackingVertices": 1595
+        },
+        "dsatur-pass-conditional": {
+          "colors": 73,
+          "time": 84089,
+          "backtrackingVertices": 1593
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/fpsol2.i.1.col": {
+        "info": {
+          "name": "./dimacs/fpsol2.i.1.col",
+          "optimal": 65
+        },
+        "greedy": {
+          "colors": 65,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 65,
+          "time": 690
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen16_16.col": {
+        "info": {
+          "name": "./dimacs/queen16_16.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 25,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 23,
+          "time": 293
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/inithx.i.3.col": {
+        "info": {
+          "name": "./dimacs/inithx.i.3.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 1409
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/inithx.i.2.col": {
+        "info": {
+          "name": "./dimacs/inithx.i.2.col",
+          "optimal": 31
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 31,
+          "time": 1402
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/queen6_6.col": {
+        "info": {
+          "name": "./dimacs/queen6_6.col",
+          "optimal": 7
+        },
+        "greedy": {
+          "colors": 11,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 9,
+          "time": 0
+        },
+        "greedy-backtracking": {
+          "colors": 7,
+          "time": 1506,
+          "backtrackingVertices": 29325
+        },
+        "dsatur-backtracking": {
+          "colors": 7,
+          "time": 1095,
+          "backtrackingVertices": 4987
+        },
+        "dsatur-sewell": {
+          "colors": 7,
+          "time": 4793,
+          "backtrackingVertices": 3488
+        },
+        "dsatur-pass-always": {
+          "colors": 7,
+          "time": 498,
+          "backtrackingVertices": 580
+        },
+        "dsatur-pass-conditional": {
+          "colors": 7,
+          "time": 418,
+          "backtrackingVertices": 580
+        },
+        "dsatur-gac-0": {
+          "colors": 7,
+          "time": 2430318,
+          "backtrackingVertices": 1647
+        },
+        "dsatur-gac-1": {
+          "colors": 7,
+          "time": 230802,
+          "backtrackingVertices": 4942
+        },
+        "dsatur-gac-2": {
+          "colors": 7,
+          "time": 30121,
+          "backtrackingVertices": 4957
+        }
+      },
+      "./dimacs/school1_nsh.col": {
+        "info": {
+          "name": "./dimacs/school1_nsh.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 39,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 27,
+          "time": 698
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 14,
+          "time": 99192,
+          "backtrackingVertices": 1102
+        },
+        "dsatur-pass-conditional": {
+          "colors": 14,
+          "time": 96807,
+          "backtrackingVertices": 1102
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_15c.col": {
+        "info": {
+          "name": "./dimacs/le450_15c.col",
+          "optimal": 15
+        },
+        "greedy": {
+          "colors": 30,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 23,
+          "time": 1196
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_15d.col": {
+        "info": {
+          "name": "./dimacs/le450_15d.col",
+          "optimal": 15
+        },
+        "greedy": {
+          "colors": 31,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 24,
+          "time": 1192
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_25c.col": {
+        "info": {
+          "name": "./dimacs/le450_25c.col",
+          "optimal": 25
+        },
+        "greedy": {
+          "colors": 37,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 29,
+          "time": 1201
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/le450_25d.col": {
+        "info": {
+          "name": "./dimacs/le450_25d.col",
+          "optimal": 25
+        },
+        "greedy": {
+          "colors": 35,
+          "time": 81
+        },
+        "dsatur": {
+          "colors": 28,
+          "time": 1122
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/inithx.i.1.col": {
+        "info": {
+          "name": "./dimacs/inithx.i.1.col",
+          "optimal": 54
+        },
+        "greedy": {
+          "colors": 54,
+          "time": 2
+        },
+        "dsatur": {
+          "colors": 54,
+          "time": 1911
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "colors": 54,
+          "time": 2413091,
+          "backtrackingVertices": 80606
+        },
+        "dsatur-pass-conditional": {
+          "colors": 54,
+          "time": 1940781,
+          "backtrackingVertices": 80606
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/school1.col": {
+        "info": {
+          "name": "./dimacs/school1.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 42,
+          "time": 1
+        },
+        "dsatur": {
+          "colors": 17,
+          "time": 904
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 14,
+          "time": 8695,
+          "backtrackingVertices": 2765
+        },
+        "dsatur-sewell": {
+          "colors": 14,
+          "time": 635988,
+          "backtrackingVertices": 3082
+        },
+        "dsatur-pass-always": {
+          "colors": 14,
+          "time": 665700,
+          "backtrackingVertices": 610
+        },
+        "dsatur-pass-conditional": {
+          "colors": 14,
+          "time": 634198,
+          "backtrackingVertices": 610
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/latin_square_10.col": {
+        "info": {
+          "name": "./dimacs/latin_square_10.col",
+          "optimal": null
+        },
+        "greedy": {
+          "colors": 213,
+          "time": 92
+        },
+        "dsatur": {
+          "colors": 132,
+          "time": 30191
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/huck.col": {
+        "info": {
+          "name": "./dimacs/huck.col",
+          "optimal": 11
+        },
+        "greedy": {
+          "colors": 11,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 11,
+          "time": 83
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/myciel6.col": {
+        "info": {
+          "name": "./dimacs/myciel6.col",
+          "optimal": 7
+        },
+        "greedy": {
+          "colors": 7,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 7,
+          "time": 6
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-sewell": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-always": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-pass-conditional": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-0": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-1": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-gac-2": {
+          "timeout": true,
+          "time": 3600000
+        }
+      },
+      "./dimacs/miles250.col": {
+        "info": {
+          "name": "./dimacs/miles250.col",
+          "optimal": 8
+        },
+        "greedy": {
+          "colors": 9,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 8,
+          "time": 82
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 8,
+          "time": 190,
+          "backtrackingVertices": 503
+        },
+        "dsatur-sewell": {
+          "colors": 8,
+          "time": 610,
+          "backtrackingVertices": 504
+        },
+        "dsatur-pass-always": {
+          "colors": 8,
+          "time": 336,
+          "backtrackingVertices": 505
+        },
+        "dsatur-pass-conditional": {
+          "colors": 8,
+          "time": 308,
+          "backtrackingVertices": 503
+        },
+        "dsatur-gac-0": {
+          "colors": 8,
+          "time": 7695,
+          "backtrackingVertices": 502
+        },
+        "dsatur-gac-1": {
+          "colors": 8,
+          "time": 1016,
+          "backtrackingVertices": 503
+        },
+        "dsatur-gac-2": {
+          "colors": 8,
+          "time": 813,
+          "backtrackingVertices": 503
+        }
+      },
+      "./dimacs/david.col": {
+        "info": {
+          "name": "./dimacs/david.col",
+          "optimal": 11
+        },
+        "greedy": {
+          "colors": 12,
+          "time": 0
+        },
+        "dsatur": {
+          "colors": 11,
+          "time": 3
+        },
+        "greedy-backtracking": {
+          "timeout": true,
+          "time": 3600000
+        },
+        "dsatur-backtracking": {
+          "colors": 11,
+          "time": 98,
+          "backtrackingVertices": 432
+        },
+        "dsatur-sewell": {
+          "colors": 11,
+          "time": 1117,
+          "backtrackingVertices": 432
+        },
+        "dsatur-pass-always": {
+          "colors": 11,
+          "time": 811,
+          "backtrackingVertices": 437
+        },
+        "dsatur-pass-conditional": {
+          "colors": 11,
+          "time": 790,
+          "backtrackingVertices": 439
+        },
+        "dsatur-gac-0": {
+          "colors": 11,
+          "time": 2392,
+          "backtrackingVertices": 432
+        },
+        "dsatur-gac-1": {
+          "colors": 11,
+          "time": 2494,
+          "backtrackingVertices": 432
+        },
+        "dsatur-gac-2": {
+          "colors": 11,
+          "time": 2495,
+          "backtrackingVertices": 432
+        }
+      }
+    }
+  ]
+}
