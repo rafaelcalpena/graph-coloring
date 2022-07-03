@@ -1,6 +1,7 @@
 const {execSync} = require('child_process')
 const fs = require('fs');
 
+/* This script will concatenate json files from multiple jobs into a single one */
 const postProcess = async () => {
     
     /* Copy s3 contents to docker container */

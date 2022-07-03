@@ -1,3 +1,4 @@
+/* This script will convert a json file into csv format */
 const { Parser } = require('json2csv');
 
 /* Concatenated file in JSON format to be analyzed */

@@ -7,15 +7,15 @@ RUN apt-get install -y curl
 RUN curl -fsSL https://get.docker.com -o get-docker.sh
 RUN sh get-docker.sh
 
-# When running this container, remember to provide access key environment variables
-# AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-# PULUMI_CONFIG_PASSPHRASE
+# When running this container, it's necessary to provide access key environment variables
+# AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and PULUMI_CONFIG_PASSPHRASE
 # Also mount volume to ~/.pulumi for local access
 
 RUN npm i -g pnpm
 
 # Install aws cli
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+# Install unzip
 RUN apt-get install unzip
 RUN unzip awscliv2.zip
 RUN ./aws/install
