@@ -129,7 +129,6 @@ const queryString = window.location.search;
                     return this.logs.findIndex(action => action.action === 'set' && action.key === 'melhorColoracao' && action.value.toString() === coloring.toString());
                 },
 
-                /* TODO: Optimize */
                 isMaxDegreeRestante: function(index) {
                     return this.adjList[index].length === this.grauMaximoRestante;
                 },

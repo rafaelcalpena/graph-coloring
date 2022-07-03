@@ -169,7 +169,6 @@ const efsLocation = new aws.datasync.EfsLocation("efsLocation", {
     efsFileSystemArn: privateMountTarget.fileSystemArn,
     ec2Config: {
         securityGroupArns: [sg.securityGroup.arn],
-        /* TODO: Typing */
         subnetArn: pulumi.output(vpc.publicSubnets)[0].apply(s => s.subnet.arn),
     },
 });
