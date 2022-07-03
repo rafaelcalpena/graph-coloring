@@ -60,15 +60,15 @@ module.exports = {
         {name: "./dimacs/latin_square_10.col", optimal: null} // 307350 edges
     ],
     algorithms: [
-        // {name: 'greedy'},
-        // {name: 'dsatur'},
-        // {name: 'greedy-backtracking'},
-        // {name: 'dsatur-backtracking'},
-        // {name: 'dsatur-sewell'},
+        {name: 'greedy'},
+        {name: 'dsatur'},
+        {name: 'greedy-backtracking'},
+        {name: 'dsatur-backtracking'},
+        {name: 'dsatur-sewell'},
         {name: 'dsatur-pass-always'},
         {name: 'dsatur-pass-conditional'},
-        // {name: 'dsatur-gac-0'},
-        // {name: 'dsatur-gac-1'},
-        // {name: 'dsatur-gac-2'}
+        {name: 'dsatur-gac-0'},
+        {name: 'dsatur-gac-1'},
+        {name: 'dsatur-gac-2'}
     ]
 }
