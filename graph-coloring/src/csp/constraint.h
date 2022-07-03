@@ -21,7 +21,6 @@ namespace csp {
             b = z;
         }
 
-        /* TODO: Does it need .Equals? */
         bool operator == (Constraint const &c1) {
             bool result = (a == c1.a) && (op == c1.op) && (b == c1.b);
             DEBUGCSP("Comparing == " + a + " " + op + " " + b + " to " + c1.a + " " + c1.op + " " + c1.b + " " + result);

@@ -7,7 +7,7 @@ namespace dsatur {
     int grauDeSaturacao(int indice, grafo::Grafo& G, vector<int> vCores) {
         vector<int> adjacentes = G.listaAdj[indice];
         int saturacao = 0;
-        /* Cores encontradas nos vizinhos do indice */
+        /* Colors found on vertex index neighbors */
         vector<bool> coresUsadas(G.n, false);    
 
         for (int i = 0; i < adjacentes.size(); i++) {
@@ -24,8 +24,8 @@ namespace dsatur {
 
     int reordenarProximoIndice(vector<int>& ordenacao, int i, grafo::Grafo& G, vector<int> vCores) {
 
-        /* Reordenação: */
-        /* Encontrar o item com maior grau de saturacao na lista de adjacencia */
+        /* Reordering:*/
+        /* Find item with highest saturation degree in adjacency list */
         int indiceVencedor = i;
         int vencedorSat = dsatur::grauDeSaturacao(ordenacao[indiceVencedor], G, vCores);
 
@@ -34,9 +34,9 @@ namespace dsatur {
 
             if (
                 (proxSat > vencedorSat) || 
-                /* Desempate por maior grau do vertice */
+                /* Break ties by largest vertex degree */
                 ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) > grauDoVertice(ordenacao[indiceVencedor], G))) ||
-                /* Mantem os vertices em ordem crescente */
+                /* Keep vertices in ascending order */
                 ((proxSat == vencedorSat) && (grauDoVertice(ordenacao[prox], G) == grauDoVertice(ordenacao[indiceVencedor], G)) && (ordenacao[prox] < ordenacao[indiceVencedor]))
             ) {
 
@@ -46,7 +46,7 @@ namespace dsatur {
             }
         }
 
-        /* Reordena apenas o item atual em DSATUR */
+        /* Only reorder current item for DSATUR */
 
         int indice = ordenacao[indiceVencedor];
 
@@ -56,22 +56,20 @@ namespace dsatur {
     }
 
 
-    /* TODO: Usar o greedy atual */
-    /* Algoritmo DSATUR (apenas heurística): */
+    /* DSATUR Heuristic */
     vector<int> DSATUR (grafo::Grafo& G) {
-        /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
+        /* Associates used vertices and colors; Begins with -1 color (non-existent) */
         vector<int> vCores(G.n, -1);
-        /* Inicialmente, o numero de cores é 0 */
+        /* Initial number of colors used is zero */
         int nCores = 0;
 
-        /* IMPORTANTE: */
-        /* Diferentemente do greedy, DSATUR ordena por grau de saturacao, com desempate pelo grau do vertice */
-        /* Iniciamos com dsatur = indices da lista de adjacencia, e reordenamos a cada passo */
+        /* Unlike greedy, DSATUR orders by saturation degree, breaking ties by vertex degree  */
+        /* We begin with dsatur = adjacency list indexes, and reorder on each step */
         vector<int> dsatur = vectorUtils::vetorCrescente(G.n);
 
-        /* para cada vertice do grafo, tenta adicionar uma cor */
+        /* Tries to add a color for each vertex of the graph */
         
-        /* dsi representa o indice na lista dsatur acima */
+        /* dsi represents the index in the dsatur list */
         for (int dsi = 0; dsi < G.n; dsi++) {
 
             int indice = reordenarProximoIndice(dsatur, dsi, G, vCores);

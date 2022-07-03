@@ -11,12 +11,10 @@ namespace csp {
     /* Constraint satisfaction problem */
     struct CSP {
         map< string, set<int> > domains;
-        /* If possible, use set instead (must keep iteration order on removals) */
         vector<csp::Constraint> constraints;
 
         CSP (map < string, vector<int> > const& initialDomains, vector<vector<string> > const& initialConstraints) {
 
-            /* TODO: Use (or not) const here? */
             for (auto const& [key, val] :initialDomains) {
                 set<int> numbers;
                 for (int v: val) {

@@ -10,7 +10,8 @@ namespace lerArquivo {
 grafo::Grafo lerArquivo(std::string nomeArquivo) {
     using namespace std;
 
-	/* Cria uma stream para o ler o arquivo do grafo */
+	/* This code is slightly similar to the one in the book */
+	/* Creates a stream to read the graph file */
 	ifstream inStream;
 	inStream.open(nomeArquivo);
 	if (inStream.fail()) {
@@ -23,20 +24,20 @@ grafo::Grafo lerArquivo(std::string nomeArquivo) {
 	vector<vector<bool> > A;
 	grafo::Grafo G;
 	try {
-        /* Para cada linha do arquivo */
+        /* For each line in the file */
 		while (!inStream.eof()) {
 			line++;
 			inStream.get(c);
 			if (inStream.eof()) break;
-            /* Analisa o tipo da linha (1o caractere c, p, ou e) */
+            /* Analyze type of line (1st char c, p, or e) */
 			switch (c) {
 			case 'c':
-				/* Ignorar comentarios */
+				/* Ignore comments */
 				inStream.putback('c');
 				inStream.get(str, 999, '\n');
 				break;
 			case 'p':
-                /* Obter informacoes do problema */
+                /* Obtain information about the problem */
 				inStream.get(c);
 				inStream.getline(str, 999, ' ');
 				if (G.n != 0 || G.m != 0) {
@@ -47,17 +48,17 @@ grafo::Grafo lerArquivo(std::string nomeArquivo) {
                     cout << "O arquivo do problema deve conter a palavra edge";
                     exit(1);
                 }
-                /* Atribui os valores de numero de vertices e arestas para G.n e G.m, respectivamente */
+                /* Apply number of vertices and edges to G.n and G.m, respectively */
 				inStream >> G.n >> G.m;
                 /* Remove os elementos da matriz de adjacencia */
 				A.clear();
-                /* Redimensiona a matriz de adjacencia para ter o numero de vertices */
+                /* Resize adjacency matrix to obtain number of vertices */
 				A.resize(G.n, vector<bool>(G.n, false));
-                /* Marca as diagonais com 1 */
+                /* Assign diagonals with 1 values  */
 				for (u = 0; u < G.n; u++) A[u][u] = true;
 				break;
 			case 'e':
-				/* Ler uma aresta */
+				/* Read an edge */
 				inStream >> u >> v;
 
 				if (u < 1 || u > G.n || v < 1 || v > G.n || u == v) {
@@ -68,7 +69,7 @@ grafo::Grafo lerArquivo(std::string nomeArquivo) {
                 edgeCnt++;
 				
                 if (A[u - 1][v - 1]) {
-                    // cout << "Aviso: Aresta já havia sido definida " <<  u << " " << v << " \n";
+					/* Edge had already been defined */
                 }
 
 				A[u - 1][v - 1] = true;
@@ -80,7 +81,7 @@ grafo::Grafo lerArquivo(std::string nomeArquivo) {
 			inStream.get();
 		}
 
-        /* Fechar leitura do arquivo */
+        /* Close file read stream */
 		inStream.close();
 		if (edgeCnt != G.m) {
             cout << "Número de arestas do problema incompatível com a definicao";
@@ -93,13 +94,13 @@ grafo::Grafo lerArquivo(std::string nomeArquivo) {
 	}
 	inStream.close();
 
-	/* Se grafo nao tiver arestas, a solucao e apenas 1 cor */
+	/* If graph has not edges, exit */
 	if (G.m <= 0) {
 		cout << "Grafo nao possui arestas";
         exit(1);
 	}
 
-	/* Constroi a lista de adjacencia e graus a partir da matriz de adjacencia */
+	/* Create adjacency list and degrees from adjacency matrix */
 	G.graus.clear();
 	G.listaAdj.clear();
 	G.graus.resize(G.n, 0);

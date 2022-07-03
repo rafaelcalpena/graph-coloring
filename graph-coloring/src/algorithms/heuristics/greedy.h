@@ -4,15 +4,15 @@
 namespace greedy {
     using namespace std;
     
-    /* Algoritmo Greedy: */
-    /* Recebe um grafo (referencia) e retorna um vetor de colorações */
+    /* Greedy Algorithm: */
+    /* Receives a graph and returns a coloring vector */
     vector<int> greedy(grafo::Grafo &G) {
-        /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
+        /* Associates used vertices and colors; Begins with -1 color (non-existent) */
         vector<int> vCores(G.n, -1);
-        /* Inicialmente, o numero de cores é 0 */
+        /* Initial number of colors used is zero */
         int nCores = 0;
 
-        /* para cada vertice do grafo, tenta adicionar uma cor */
+        /* Tries to add a color for each vertex of the graph */
         for (int i = 0; i < G.n; i++)
         {
 

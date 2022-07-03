@@ -10,7 +10,6 @@
 using namespace std;
 
 /* Main function for constraint solver */
-/*  */
 int main(int argc, char** argv) {
 
     map< string, vector<int> > domains = {

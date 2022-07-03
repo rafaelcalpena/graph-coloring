@@ -8,6 +8,7 @@ using namespace std;
 
 namespace adjlist {
 
+    /* Writes out adjacency list of a graph to a file */
     void adicionaListaDeAdjAoArquivo(fstream& arquivo, grafo::Grafo& grafo) {
         arquivo << "adjList=[";
         for (int j=0; j < grafo.listaAdj.size(); j++) {

@@ -20,7 +20,6 @@ namespace ac3 {
     /* Return true if consistent, false if some variable had domain emptied */
     bool ac3 (csp::CSP & csp) {
         /* Run AC3 algorithm to make the network arc-consistent */
-        /* TODO: May be converted into set as long as loop behaves predictably */
         vector<csp::Constraint> initialConstraintList = cspUtils::getInitialConstraintsList(csp.constraints);
         vector<csp::Constraint> constraintList = vectorUtils::copiarVetor(initialConstraintList);
 
@@ -33,7 +32,7 @@ namespace ac3 {
             bool isDirty = false;
 
             DEBUGCSP("Check constraint " + c.toString());
-            /* for each value in the left side of the constraint, check if valid */
+            /* For each value in the left side of the constraint, check if valid */
             
             
             /* Optimization */

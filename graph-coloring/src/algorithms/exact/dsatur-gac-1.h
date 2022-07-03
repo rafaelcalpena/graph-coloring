@@ -19,11 +19,11 @@ namespace dsaturGAC {
         for (int i = 0; i < ordenacao.size(); i++) {
             int v = ordenacao[i];
             if (coloracaoAtual[v] != -1) {
-                /* Adiciona apenas uma cor no dominio */
+                /* Adds a single color to the domain */
                 domains.insert({ to_string(v), {coloracaoAtual[v]} });
             } else {
                 vector<int> ordenacaoParcial = vectorUtils::copiarSubvetor(ordenacao, 0, i);
-                /* Analisa a cor de cada vertice na ordenacao parcial */
+                /* Analyzes the color of each vertex in the partial ordering */
                 vector<int> coloracaoParcial;
                 for (int a: ordenacaoParcial) {
                     coloracaoParcial.push_back(coloracaoAtual[a]);
@@ -52,28 +52,27 @@ namespace dsaturGAC {
         return lines;      
     }
 
-    /* Algoritmo com GAC */
-    /* Contém o Backtracking para uma ordem de vértices arbitrária */
+    /* DSATUR with GAC Algorithm */
     vector<int> dsaturGAC (grafo::Grafo& G, fstream& logStream, int & backtrackingVertices, int delta) {
 
-        /* Consistencia de arco generalizada */
+        /* Flag for enabling generalized arc consistency checks */
         bool gacEnabled = false;
 
         backtrackingVertices = 0;
 
-        /* Associa indice do vertice com cor usada; Inicia com cor -1 (inexistente) */
+        /* Associates used vertices and colors; Begins with -1 color (non-existent) */
         vector<int> coloracaoAtual(G.n, -1);
         DEBUG("{action: 'set', key: 'coloracaoAtual', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);   
 
-        /* Guarda a melhor coloracao encontrada; Inicia com cor -1 (inexistente) */
+        /* Stores best coloring found; Begins with -1 color (non-existent) */
         vector<int> melhorColoracao(G.n, -1);
         DEBUG("{action: 'set', key: 'melhorColoracao', value: " + vectorUtils::serializarVetor(melhorColoracao) + "}", logStream);     
 
-        /* Guarda o numero de cores minimo atual; Inicia com n (pior caso) */
-        int k = G.n; //grau maximo + 1 é um limitante
+        /* Stores the current minimum number of colors; Begins with n (worst-case) */
+        int k = G.n; 
         DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
 
-        /* Todo grafo possui limitante superior grau maximo + 1 */
+        /* Every graph has an upper bound of maximum degree + 1 */
         int grauMaximo = grafo::grauMaximoVertices(G);
         DEBUG("{action: 'getMaximumDegree', value:" + to_string(grauMaximo) + "}", logStream);
 
@@ -82,11 +81,11 @@ namespace dsaturGAC {
             DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
         }
 
-        /* ordenacao atual, comeca com [0, 1, ..., n - 1]; */
+        /* Current ordering, begins with [0, 1, ..., n - 1]; */
         vector<int> ordenacao = vectorUtils::vetorCrescente(G.n);
         DEBUG("{action: 'set', key: 'ordenacao', value: " + vectorUtils::serializarVetor(ordenacao) + "}", logStream);
 
-        /* Guarda a posicao atual dentro da ordenacao a ser analisada */
+        /* Stores current position of ordering to be analyzed */
         int i = 0;
         DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream); 
 
@@ -95,18 +94,18 @@ namespace dsaturGAC {
 
         DEBUG("{action: 'finishInitialSetup'}", logStream); 
 
-        /* Repete ate o final (i = -1) */
+        /* Repeats until there are no more branches to be analyzed */
         while (i != -1) {
             DEBUG("{action: 'iteration', value: " + to_string(i) + "}", logStream);
 
-            /* TODO: Usar coloracaoAtual ao inves de tempColoracao */
-            /* Para que a ordenacao seja feita de forma correta, é necessário ignorar a coloracao atual para o index i */
+
+            /* It is necessary to ignore the current coloring for i so that reordering vertices is done correctly */
             int tempCor = coloracaoAtual[ordenacao[i]];
             coloracaoAtual[ordenacao[i]] = -1;
             dsatur::reordenarProximoIndice(ordenacao, i, G, coloracaoAtual);
 
-            /* Precisa ser feita antes de retornar tempCor no DSATUR, senao seria possível que i < totalCores */
-            /* Definicao de tight coloring do Brown, para evitar buscas em branches desnecessárias (permutações) */
+            /* This must be done before reordering tempCor, otherwise it could be that i < totalCores */
+            /* Brown's tight coloring definition, which avoids searching in unnecessary branches (excludes permutations) */
             int boundary = min(k, grafo::obterTotalCores(coloracaoAtual) + 1);
 
             coloracaoAtual[ordenacao[i]] = tempCor;            
@@ -115,7 +114,7 @@ namespace dsaturGAC {
             int indice = ordenacao[i];
             DEBUG("{action: 'set', key: 'indice', value: " + to_string(indice) + "}", logStream); 
 
-            /* Tenta obter uma cor para o vertice */
+            /* Tries to obtain a current coloring for the vertex */
             int cor = grafo::obterCorDisponivelParaVertice(G, coloracaoAtual, indice, coloracaoAtual[indice] + 1, boundary);
             DEBUG("{action: 'set', key: 'cor', value: " + to_string(cor) + "}", logStream);
 
@@ -125,56 +124,54 @@ namespace dsaturGAC {
             int totalCores = grafo::obterTotalCores(coloracaoAtual);
             DEBUG("{action: 'getColoringNumber', value: " + to_string(totalCores) + "}", logStream);       
 
-            /* Guarda se todos os dominio sao nao vazios no gac */ 
+            /* Stores whether all gac domains are not empty */ 
             bool gacValidDomains = true;
 
-            /* Roda o GAC para verificar se existe pruning total disponivel */
-            /* k - totalCores costuma ser 0 (muito comum), 1 (comum) ou 2 (raro) */
-            /* Podera tambem utilizar "i" junto para definir um limite de profundidade */
+            /* Runs GAC to check if a full pruning is possible */
+            /* k - totalCores is usually 0 (very common), 1 (common) or 2 (rare) */
             if (gacEnabled && (k - totalCores == delta )) {
-                /* Cria o csp para o estado atual */
-                /* TODO: Optimizar, criar apenas uma vez se possivel */
+                /* Creates the CSP instance for the current state */
                 map< string, vector<int> > domains = dsaturGAC::getCSPDomains(ordenacao, coloracaoAtual, k);
                 vector< vector<string> > constraints = getCSPConstraints(G);
                 csp::CSP test(domains, constraints);
                 gacValidDomains = ac3::ac3(test);
             }
 
-            /* Se nenhuma cor é válida, é necessário voltar (backwards) */        
+            /* If no colorings are valid, it is necessary to go backwards */        
             if (cor == -1) {
-                /* Remove coloracao atual do indice */
+                /* Removes current index coloring */
                 DEBUG("{action: 'moveBackwards', value:'noValidColors'} ", logStream);
 
                 i--;
                 DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);  
 
-                /* Otimizacao, pois o primeiro vertice nao precisa ser testado com as cores restantes */
+                /* Optimization: first vertex will always be assigned a single color */
                 if (i == 0) {
                     DEBUG("{action: 'stop'}", logStream);
                     break;
                 } 
 
             } 
-            /* Se coloracao é pior, pular a branch */
+            /* If coloring found is worse, skip branch */
             else if (totalCores > k) {
                 backtrackingVertices++;
 
                 DEBUG("{action: 'preventSearchInSubBranches', value:'coloringWorseThanLimit "+ to_string(k) + " '} ", logStream);
 
-                /* Ainda pode existir uma ou mais cores para o vertices melhores do que a combinacao atual, portanto
-                deve-se aguardar mais uma iteracao no mesmo i (nao ha backtracking). 
-                Esse if tambem ajuda a evitar o proximo caso, ou seja, para de explorar ou sub-ramos para a iteracao atual
-                Caso esse else if seja comentado, a solucao final tera varias coloracoes nao-otimas */
+                /* There could stil be one or more better colorings for the vertices, so 
+                we should wait for one more iteration in the same i vertex (there is no backtracking in this case) 
+                This if condition also stops exploring sub-branches for the current iteration, 
+                and when uncommented will lead to many more non-optimal solutions being found.  */
 
             }
-            /* Se o GAC indicou dominio vazio, é necessário pular */
+            /* Skip branch if some GAC domain is empty */
             else if (!gacValidDomains) {
                 backtrackingVertices++;
 
                 DEBUG("{action: 'preventSearchInSubBranches', value:'gacEmptyDomain "+ to_string(k) + " '} ", logStream);
             }
             else {
-                /* Se tiver mais vertices, continua (forward) */
+                /* If there are more vertices, continue forward */
                 backtrackingVertices++;
 
                 if (i < G.n - 1) {
@@ -184,7 +181,7 @@ namespace dsaturGAC {
                     DEBUG("{action: 'set', key: 'i', value: " + to_string(i) + "}", logStream);     
 
                 } else {
-                    /* Chegou em uma nova coloracao */
+                    /* It has found a new coloring */
                     DEBUG("{action: 'foundColoring', value: " + vectorUtils::serializarVetor(coloracaoAtual) + "}", logStream);
 
                     melhorColoracao = vectorUtils::copiarVetor(coloracaoAtual);
@@ -193,7 +190,7 @@ namespace dsaturGAC {
                     k = totalCores - 1;
                     DEBUG("{action: 'set', key: 'k', value: " + to_string(k) + "}", logStream);
 
-                    /* Ativa o GAC a partir da primeira solucao */
+                    /* Activates GAC after the first solution is found */
                     gacEnabled = true;
                 }
 

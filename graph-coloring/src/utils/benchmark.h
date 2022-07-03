@@ -8,10 +8,10 @@ namespace benchmarkUtils {
 
         std::cout << "{\"" << algorithm << "\": {\"colors\": ";
         
-        /* Cria um arquivo log para o backtracking */
+        /* Creates a log file for backtracking */
         fstream backtrackingLog;    
 
-        /* TODO: Pasta deve estar criada para abertura do arquivo funcionar */
+        /* Directory must exist for open file call to work */
         backtrackingLog.open("output/" + algorithm + "-output.js", fstream::out);    
         adjlist::adicionaListaDeAdjAoArquivo(backtrackingLog, grafo);
 
@@ -42,7 +42,7 @@ namespace benchmarkUtils {
     void runHeuristicBenchmark(string algorithm, grafo::Grafo & grafo, std::vector<int> (*func)(grafo::Grafo &)) {
         std::cout << "{\"" << algorithm << "\": {\"colors\": ";
 
-    /* https://www.geeksforgeeks.org/measure-execution-time-function-cpp/ */
+        /* https://www.geeksforgeeks.org/measure-execution-time-function-cpp/ */
         auto start = std::chrono::high_resolution_clock::now();
         vector<int> cores = func(grafo);
         auto stop = std::chrono::high_resolution_clock::now();

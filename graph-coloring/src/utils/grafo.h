@@ -7,11 +7,11 @@ namespace grafo {
 #include <vector>
     using namespace std;
 
-    /* Carregar Grafo no formato DIMACS */
+    /* Loads graph from DIMACS format */
     struct Grafo {
-        /* n representa o numero de vértices */
+        /* n represents the number of vertices */
         int n = 0;
-        /* m representa o numero de arestas */
+        /* m represents the number of edges */
         int m = 0;
         int grauMaximo = 0;
         vector<vector<int> > listaAdj;
@@ -22,7 +22,7 @@ namespace grafo {
         return G.listaAdj[indice].size();
     }
 
-    /* Verificar */
+    /* Checks that some given coloring is valid */
     void verificaColoracao(grafo::Grafo& G, vector<int> & cores) {
         for (int i = 0; i < G.n; i++) {
             vector<int> adj = G.listaAdj[i];
@@ -46,57 +46,56 @@ namespace grafo {
         return max;
     }
 
-        /* TODO: Juntar com codigo greedy */
     int obterCorDisponivelParaVertice(grafo::Grafo& G, vector<int> & coloracaoAtual, int i, int from, int to) {
-        /* Lista que indica se uma cor ja foi usada.
-        No pior caso, n cores serao necessarias */
+        /* List that indicates if some color has already been used
+        In the worst case n colors will be required */
         vector<bool> coresUsadas(to, false);
         vector<int> adj = G.listaAdj[i];
 
-        /* Passamos pela lista de adjacencia do vertice e marcamos quais cores podem ser utilizadas */
+        /* We loop through the adjacency list and select which colors may be used */
         for (int z = 0; z < adj.size(); z++)
         {
             int j = adj[z];
 
-            /* Assinalar cor utilizada */
+            /* Assigns used color */
             if (coloracaoAtual[j] != -1)
             {
                 coresUsadas[coloracaoAtual[j]] = true;
             }
         }
 
-        /* Procuramos uma cor que não tenha sido usada */
+        /* Looks for a color that has not been used yet */
         for (int c = from; c < to; c++) {
             if (coresUsadas[c] == false) {
                 return c;
             }
         }
 
-        /* Retornamos -1 em caso de ausencia de cores válidas */
+        /* Return -1 is there are no valid colors */
         return -1;
     }    
 
-    /* Usado principalmente para heurísticas pass e sewell */
+    /* Used mostly for Pass and Sewell heuristics */
     std::set<int> obterCoresDisponiveisParaVertice(grafo::Grafo& G, vector<int> & coloracaoAtual, int i, int to) {
-        /* Lista que indica se uma cor ja foi usada.
-        No pior caso, n cores serao necessarias */
+        /* List that indicates if some color has already been used
+        In the worst case n colors will be required */
         vector<bool> coresUsadas(to, false);
         vector<int> adj = G.listaAdj[i];
         set<int> availableColors;
 
-        /* Passamos pela lista de adjacencia do vertice e marcamos quais cores podem ser utilizadas */
+        /* We loop through the adjacency list and select which colors may be used */
         for (int z = 0; z < adj.size(); z++)
         {
             int j = adj[z];
 
-            /* Assinalar cor utilizada */
+            /* Assigns used color */
             if (coloracaoAtual[j] != -1)
             {
                 coresUsadas[coloracaoAtual[j]] = true;
             }
         }
 
-        /* Procuramos uma cor que não tenha sido usada */
+        /* Looks for a color that has not been used yet */
         for (int c = 0; c < to; c++) {
             if (coresUsadas[c] == false) {
                 availableColors.insert(c);
@@ -106,7 +105,7 @@ namespace grafo {
         return availableColors;
     }
 
-    /* Retorna o numero total de cores de uma coloracao */
+    /* Returns total number of colors used in some coloring */
     int obterTotalCores (vector<int> coloracao) {
         vector<bool> coresUsadas(coloracao.size(), false);
         int total = 0;

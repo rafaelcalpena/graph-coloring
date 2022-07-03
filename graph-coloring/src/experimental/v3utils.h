@@ -25,7 +25,6 @@ void remove_sorted(std::vector<int> &vec, int value)
 int getNextCandidateColor(const std::vector<int> & v, int previous, int end) {
 
     for (int i = previous + 1; i < end; i++) {
-        /* TODO: This may be optimized */
         /* If invalidatedColors do not contain the color, it may be used */
         if (!binary_search(v.begin(), v.end(), i)) {
             return i;
