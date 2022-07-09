@@ -26,6 +26,11 @@ using namespace grafo;
 
 /* Função principal */
 int main(int argc, char** argv) {
+
+    if ( (*getenv("FILE") == NULL) || (*getenv("ALG") == NULL) ) {
+        throw std::invalid_argument("Program requires both FILE and ALG environment variables to be set");
+    }
+
     grafo::Grafo grafo = lerArquivo::lerArquivo(getenv("FILE"));
 
     string algorithm = getenv("ALG");

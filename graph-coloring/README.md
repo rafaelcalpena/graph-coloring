@@ -17,8 +17,15 @@ Docker Build Image:
 
 Instruções:
 Configure o Docker para usar um numero de CPUs >= 6 para paralelismo
-```docker-compose build```
-```docker-compose up```
+
+Para o testbench:
+```docker compose build```
+```docker compose up```
+
+Para o visualizador:
+```docker compose -f docker-compose-visualizer.yml build```
+```FILE="dimacs/myciel4.col" ALG="greedy-backtracking" docker compose -f docker-compose-visualizer.yml up```
+
 
 Edite o testbench/config.js
 

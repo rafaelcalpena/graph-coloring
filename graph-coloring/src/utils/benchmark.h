@@ -35,7 +35,7 @@ namespace benchmarkUtils {
         std::cout << ", \"backtrackingVertices\":" << backtrackingVertices;
 
         grafo::verificaColoracao(grafo, cores);
-        std::cout << "}}";
+        std::cout << "}}" << std::endl;
         backtrackingLog.close();       
     }
 

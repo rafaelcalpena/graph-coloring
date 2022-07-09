@@ -19,7 +19,7 @@ const allAlgorithms = [
     {name: 'dsatur-gac-2', exact: true}
 ];
 
-let TIME_LIMIT = (process.env.TIMEOUT * 1000) || (10 * MINUTE);
+let TIME_LIMIT = process.env.TIMEOUT ? (process.env.TIMEOUT * 1000) : (10 * MINUTE);
 console.log('TIME_LIMIT in ms', TIME_LIMIT)
 
 const testbench = async () => {

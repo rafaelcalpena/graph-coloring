@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  web:
+    image: nginx
+    volumes:
+    - ./visualizer:/usr/share/nginx/html/visualizer
+    - ./output:/usr/share/nginx/html/output
+    ports:
+    - "8080:80"
+    environment:
+    - NGINX_PORT=80
+  coloring:
+    build: 
+      context: .
+      dockerfile: Dockerfile-visualizer
+    environment:
+      FILE: ${FILE}
+      ALG: ${ALG}
+    volumes:
+    - ./output:/~/output
