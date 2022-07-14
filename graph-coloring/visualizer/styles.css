@@ -47,7 +47,7 @@ h1 {
 .scrollable {
     overflow: auto;
 }
-#logs {
+#logs-list {
     height: 300px;
 }
 .content {

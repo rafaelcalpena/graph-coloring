@@ -174,7 +174,7 @@ const queryString = window.location.search;
                                                 {
                                                     group: 'nodes',
                                                     data: {
-                                                        label: `${this.problemData.i} - {${this.problemData.indice}} cor ${action.value}`,
+                                                        label: `${this.problemData.i} - {${this.problemData.indice}} color ${action.value}`,
                                                         color: action.value,
                                                         id: newNodeId
                                                     }

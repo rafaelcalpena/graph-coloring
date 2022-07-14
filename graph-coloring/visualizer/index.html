@@ -35,25 +35,25 @@
                                 <v-card-title>Info</v-card-title>
                                 <v-card-text>
                                     <div>
-                                        Arquivo: <strong>"{{graphFileName}}"</strong>
+                                        File name: <strong>"{{graphFileName}}"</strong>
                                     </div>
                                     <div>
-                                        Tipo: <strong>{{algorithmType}}</strong>
+                                        Algorithm: <strong>{{algorithmType}}</strong>
                                     </div>
                                     <div>                                        
-                                        Número de Vértices: <strong>{{nVertices}}</strong>
+                                        Vertex Count: <strong>{{nVertices}}</strong>
                                     </div>
                                     <div>    
-                                        Número de Arestas: <strong>{{nArestas}}</strong>
+                                        Edge Count: <strong>{{nArestas}}</strong>
                                     </div>
                                     <div>
-                                        Grau Máximo: <strong>{{grauMaximo}}</strong>
+                                        Maximum Degree: <strong>{{grauMaximo}}</strong>
                                     </div>
                                     <div>    
-                                        Grau Mínimo: <strong>{{grauMinimo}}</strong>
+                                        Minimum Degree: <strong>{{grauMinimo}}</strong>
                                     </div>                                    
                                     <div>    
-                                        Densidade (grafo simples): <strong>{{(2 * nArestas / (nVertices * (nVertices - 1))).toFixed(4)}}</strong>
+                                        Density (simple graph): <strong>{{(2 * nArestas / (nVertices * (nVertices - 1))).toFixed(4)}}</strong>
                                     </div>                                    
                                 </v-card-text>         
                             </v-card>
@@ -63,7 +63,7 @@
                             <v-card
                             elevation="2"
                             >
-                                <v-card-title>Lista de Adjacências: <v-checkbox v-model="showAdjacencyList"> </v-checkbox></v-card-title>
+                                <v-card-title>Adjacency List: <v-checkbox v-model="showAdjacencyList"> </v-checkbox></v-card-title>
                                 <v-card-text v-if="showAdjacencyList">
                                     <div v-for="(item, index) in adjList">
                                         {{index}} : {{item}}
@@ -76,7 +76,7 @@
                             <v-card
                             elevation="2"
                             >
-                            <v-card-title>Número Cromático: {{numeroCromatico}}</v-card-title>   
+                            <v-card-title>Chromatic Number: {{numeroCromatico}}</v-card-title>   
                             </v-card>     
                         </v-container>   
 
@@ -84,10 +84,10 @@
                             <v-card
                             elevation="2"
                             >
-                            <v-card-title>Colorações Encontradas</v-card-title>
+                            <v-card-title>Valid Colorings Found</v-card-title>
                             <v-card-text>
                                     <div v-for="(coloracao, index) in coloracoesOtimas" class="step" v-on:click="applyAction(getStep(coloracao))">
-                                    {{coloracao}} ({{numerosCromaticos[index]}} cores<strong v-if="isOptimal(coloracao)">, ótima</strong>)
+                                    {{coloracao}} ({{numerosCromaticos[index]}} colors<strong v-if="isOptimal(coloracao)">, optimal</strong>)
                                     </div>
                                 </v-card-text>         
                             </v-card>     
@@ -97,14 +97,14 @@
                         <v-card
                         elevation="2"
                         >
-                            <v-card-title>Renderizar Backtracking: <v-checkbox v-model="renderBacktracking"> </v-checkbox></v-card-title>   
+                            <v-card-title>Render Backtracking Tree: <v-checkbox v-model="renderBacktracking"> </v-checkbox></v-card-title>   
                             <v-card-text>
                             <div v-if="renderBacktracking">
-                                <v-checkbox v-bind:disabled="timer !== 0" v-model="backtrackingWithRequestAnimationFrame" label="Layout assíncrono"> </v-checkbox> 
+                                <v-checkbox v-bind:disabled="timer !== 0" v-model="backtrackingWithRequestAnimationFrame" label="Asynchronous Layout Rendering"> </v-checkbox> 
                                 <span></span>
                             </div>
-                            <div>Vértices na Árvore Backtracking: {{backtrackingVerticesCount}}</div>
-                            <div>Arestas na Árvore Backtracking: {{backtrackingEdgesCount}}</div>
+                            <div>Vertices in the Backtracking Tree: {{backtrackingVerticesCount}}</div>
+                            <div>Edges in the Backtracking Tree: {{backtrackingEdgesCount}}</div>
                         </v-card-text>          
                         </v-card>     
                     </v-container>     
@@ -113,15 +113,15 @@
                         <v-card
                         elevation="2"
                         >
-                            <v-card-title>Execução:</v-card-title>
+                            <v-card-title>Algorithm Execution:</v-card-title>
                             <v-card-text>
-                                <div>Passo atual: <strong>{{currentStep + 1}}</strong></div>
-                                <div>Passo final: <strong class="clickable" v-on:click="applyAction(logs.length - 1)">{{logs.length - 1}}</strong></div>
+                                <div>Current Step: <strong>{{currentStep + 1}}</strong></div>
+                                <div>Final Step: <strong class="clickable" v-on:click="applyAction(logs.length - 1)">{{logs.length - 1}}</strong></div>
                                 <div style="display:flex; flex-direction: row">
                                 <v-icon v-on:click="applyAction(currentStep - 1)">mdi-skip-previous</v-icon>
                                 <v-icon v-on:click="applyAction(currentStep + 1)">mdi-skip-next</v-icon>
                             </div>
-                            Operações:
+                            Operations:
                             <div style="display:flex; flex-direction: row">
                                 <v-slider
                                 :value="currentStep"
@@ -131,7 +131,7 @@
                                 v-on:change="applyAction($event)"
                                 ></v-slider>
                             </div>
-                            Velocidade (Operações/s):                            
+                            Speed (Operations/s):                            
                             <div style="display:flex; flex-direction: row">
                             <v-slider
                             v-model="timer"
@@ -140,7 +140,7 @@
                             min="0"
                             ></v-slider>
                             </div>
-                            Velocidade Máxima (Operações/s):
+                            Maximum Speed (Operations/s):
                             <div style="display:flex; flex-direction: row">
                             <v-text-field
                                 v-model="maxOps"
@@ -149,7 +149,7 @@
                                 type="number"
                             />
                             </div>       
-                            <div>Velocidade Real: {{playbackSpeed.toFixed(2)}}</div>                   
+                            <div>Real Speed: {{playbackSpeed.toFixed(2)}}</div>                   
                             </v-card-text>         
                         </v-card>
                     </v-container>               
@@ -159,7 +159,7 @@
                         elevation="2"
                         >             
                             <v-card-title>Logs: <v-checkbox v-model="showLogs"> </v-checkbox></v-card-title> 
-                            <v-card-text>Selecione ação para atualizar carregamento parcial da lista</v-card-text>
+                            <v-card-text>List is dynamically loaded to avoid performance issues</v-card-text>
                             <div v-if="showLogs"
                             id="logs-list"
                             class="scrollable">                                             
@@ -187,7 +187,7 @@
                         <v-card
                         elevation="2"
                         >
-                            <v-card-title>Variáveis do Problema:</v-card-title>
+                            <v-card-title>Problem Variables:</v-card-title>
                             <v-card-text>
                                 <div v-for="(value, name) in problemData">
                                 {{name}}: {{value}}
@@ -200,10 +200,10 @@
                         <v-card
                         elevation="2"
                         >
-                            <v-card-title>Análise dos Vértices</v-card-title>
+                            <v-card-title>Vertex Analysis</v-card-title>
                             <v-card-text>
                                 <div>
-                                    * Resultados renderizados apenas pela UI:
+                                    * Results rendered only by the UI:
                                 </div>
                                 <v-simple-table dense>
                                     <template v-slot:default>
@@ -233,9 +233,9 @@
                                       </tbody>
                                     </template>
                                 </v-simple-table>
-                                <div>Candidatos em ordem: {{candidates}}</div>
-                                <div>Grau Máximo Restante: {{grauMaximoRestante}}</div>
-                                <div>Grau DSATUR Máximo Restante: {{maxDSATURRestante}}</div>
+                                <div>Order of candidates: {{candidates}}</div>
+                                <div>Maximum Degree Remaining: {{grauMaximoRestante}}</div>
+                                <div>Maximum DSATUR Degree Remaining: {{maxDSATURRestante}}</div>
                             </v-card-text>
                         </v-card>     
                     </v-container>                    
@@ -244,7 +244,7 @@
                         <v-card
                         elevation="2"
                         >
-                            <v-card-title>Cores Disponíveis:</v-card-title>
+                            <v-card-title>Available Colors:</v-card-title>
                             <v-card-text>
                                 <div v-for="(value, name) in colors.slice(0, (problemData && problemData.k) ? problemData.k : 0)">
                                 {{name}}: <span class="color-preview" v-bind:style="{background: value}"></span>
