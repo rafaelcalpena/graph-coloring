@@ -1,0 +1,12 @@
+FROM gcc:latest as compiler
+
+WORKDIR ~
+
+COPY . .
+
+# Use g++ for ubuntu
+# ADD -DDEBUG for visualizer
+RUN g++ --version && g++ -std=c++2a -fmax-errors=5 -DDEBUG src/graph-coloring.cpp -o ./run 
+
+# DEBUG=1 will save into output file that the visualizer can open later
+CMD DEBUG=1 FILE=${FILE} ALG=${ALG} ./run

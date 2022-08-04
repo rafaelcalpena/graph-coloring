@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  algorithms:
+    build: 
+      context: .
+    environment:
+      TIMEOUT: ${TIMEOUT}
+      FILES: ${FILES}
+      AWS_BATCH_JOB_ID: ${AWS_BATCH_JOB_ID}
+      AWS_BATCH_JOB_ARRAY_INDEX: ${AWS_BATCH_JOB_ARRAY_INDEX}
+      ALGORITHMS: ${ALGORITHMS}
+    volumes:
+    - ./output:/~/output

@@ -1,0 +1,1 @@
+export default 4 || process.env.MAX_COLORS;
