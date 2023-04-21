@@ -100,8 +100,6 @@ const queryString = window.location.search;
                         ).size
                     });
 
-                    console.log(result);
-
                     return result;
                 },
                 maxDSATUR: function() {
@@ -306,8 +304,6 @@ const queryString = window.location.search;
                             if (this.backtrackingWithRequestAnimationFrame) {
                                 window.requestAnimationFrame(redraw(this));
                             }
-                        } else {
-                            console.log('ja tinha')
                         }
                     }
                 }

@@ -132,7 +132,6 @@
                         selector: '.item',
                         style: {
                             'background-color': (item) => {
-                                console.log(item.data('color'))
                                 return colors[item.data('color')]
                             }
                         }
@@ -140,7 +139,6 @@
                 ],
 
                 elements: constraintsResult.map(i => {
-                    console.log(i, correspondency)
                     return {
                         ...i,
                         data: {
