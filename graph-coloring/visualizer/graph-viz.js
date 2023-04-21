@@ -88,7 +88,6 @@ function setupCytoscape() {
     
         let cyBacktrackingLayout = window.cyBacktrackingLayout = {
                 name: 'breadthfirst',
-                // nodeRepulsion: function (node) { return 1600999; },
                 fit: true,
                 directed: true,
                 grid: true,
